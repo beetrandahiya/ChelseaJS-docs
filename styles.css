@@ -1,0 +1,255 @@
+*{
+    padding: 0%;
+    margin:0;
+}
+
+hr{
+    border: none;
+    height:1px;
+    background-color: #ddd;
+   
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Inter:wght@300;400;500&family=Poppins:wght@300;400;500&display=swap');
+
+body{
+    font-family: 'Inter',sans-serif;
+}
+.logo{
+    font-size: 1.1em;
+}
+.navbar{
+    height:80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    max-width: 100%;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    flex-direction: row;
+}
+
+@media screen and (min-width: 1280px) {
+    .navbar{
+        max-width: 1280px;
+    }
+}
+
+.navstuff{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.navstuff div{
+    margin: 0 1em;
+}
+
+.navstuff div a{
+    text-decoration: none;
+    color: #111;
+    font-size: 1.2em;
+    transition: all 0.3s ease-in-out;
+}
+
+.navstuff div a:hover{
+    color: #695fe6;
+}
+.navstuff div a:hover svg path{
+    transition: all 0.3s ease-in-out;
+    fill: #695fe6;
+}
+
+
+.main{
+    max-width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+}
+
+@media screen and (min-width: 1280px) {
+    .main{
+        max-width: 1280px;
+    }
+}
+
+.sidebar{
+    width: 20%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em;
+    border-right: 1px solid #ddd;
+}
+.sidebar-elem{
+    padding: 0.5em 1em;
+    width: calc(100% - 2em);
+    margin: 1em 0;
+    transition: all 0.1s ease-in-out;
+    border-radius: 8px;
+
+}
+
+.sidebar-elem-active a{
+    color: #695fe6!important;
+}
+.sidebar-elem a{
+    text-decoration: none;
+    color: #111;
+    font-size: 1.2em;
+    transition: all 0.3s ease-in-out;
+}
+.sidebar-elem a:hover{
+    color: #695fe6;
+}
+
+/* dropdown container */
+
+.dropdown-container{
+    display: none;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    
+}
+.dropdown-container .sidebar-elem{
+    font-size: 0.9em;
+    margin-left:2em;  
+}
+
+.dropdown-btn{
+    cursor: pointer;
+    width:100%;
+    border:none;
+    font-size: 1.4em;
+    text-align: left;
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    transition: all 0.1s ease-in-out;
+    background-color: #fff;
+}
+.dropdown-btn i{
+    margin-right: 1em;
+    float : right;
+    font-weight: 100;
+}
+
+
+/* main document */
+.doc{
+    padding:2em;
+    width: calc(100% - 20em);
+}
+
+.doc p{
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 2em 1em;
+    width: calc(100% - 6em);
+}
+.doc a{
+    text-decoration: none;
+    color: #695fe6;
+    transition: all 0.3s ease-in-out;
+}
+.doc a:hover{
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+.doc h3{
+    font-size: 1.5em;
+    margin: 2em 1em;
+    width: calc(100% - 6em);
+}
+.doc img{
+    width: 100%;
+    margin: 1em 0;
+}
+.doc h1{
+    font-size: 2.5em;
+    margin: 2em 0.5em 1em;
+    border-bottom: 3px solid #695fe6;
+    width: calc(100% - 6em);
+}
+.doc pre{
+    width: calc(100% - 6em);
+}
+
+.example-container{
+    width: calc(100% - 6em);
+    margin: 2em 1em;
+    height:300px;
+    background: #000;
+    border-radius: 8px;
+}
+
+
+/* media queries */
+@media screen and (max-width: 832px){
+    .sidebar{
+        width: calc(100% - 2em);
+        border-right: none;
+    }
+    .navbar{
+        width: calc(100% - 2em);
+    }
+    .main{
+        width: 100%;
+        flex-direction: column;
+    }
+    .doc{
+        width: calc(100% - 6em);
+    }
+    .doc p{
+        width: calc(100% - 2em);
+    }
+    .doc pre{
+        width: calc(100% - 2em);
+    }
+    .doc h1{
+        width: calc(100% - 2em);
+    }
+}
+
+/* navbar responsive */
+
+.navbar .navbar-burger{
+    display: none;
+}
+
+@media screen and (max-width: 550px) {
+
+    .navstuff{
+        display: none;
+        padding: 1em;
+        width:100%;
+    }
+    .navbar .navbar-burger{
+        display: block;
+        float: right;
+    }
+    .responsive {
+        display: flex!important;
+        position:relative;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .responsive div{
+        padding:1em;
+    }
+    .responsive-bar{
+        flex-wrap: wrap;
+        height: fit-content;
+        text-align: left;
+        padding-top: 2em;
+    }
+
+    
+    
+}
