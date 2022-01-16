@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link
     rel="stylesheet"
-    href="assets/prism.css"
+    href="../assets/prism.css"
   />
     <link rel="stylesheet" href="styles.css">
     <title>Chelsea.js Docs</title>
@@ -37,12 +37,12 @@
     </div>
     <div class="main">
         <div class="sidebar">
-            <div class="sidebar-elem sidebar-elem-active">
+            <div class="sidebar-elem ">
                 <a href="getting_started.html">Getting Started</a>
             </div>
             <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="shapes/point.html">Point</a>
                 </div>
                 <div class="sidebar-elem">
@@ -194,149 +194,83 @@
 
         </div>
         <div class="doc">
-            <img src="assets/Dummy Banner.png" alt="">
-            <h1>Getting Started</h1>
-            <p>
-                Getting started with Chelsea.js is as easy as pie.<br>
-                By the end of this page, You will realise it for yourself.<br>
-                We'll be going through the basic setup and making your first Chelsea.js animation.<br>
-                Lets get started!
-            </p>
-            <h3>Download</h3>
-            <p>
-                First , you gotta download Chelsea.js( its super tiny ).<br>
-                Chelsea.js is available on <a href="https://www.npmjs.com/package/chelsea.js">npm</a> and <a href="https://www.github.com/beetrandahiya/chelsea.js">Github</a>.
-            </p>
-            <p>
-                Reference to Chelsea.js in your code and you are good to go.
-            </p>
-            <hr>
-            <p>
-                Set Element as the canvas (not to be confused with &lt;canvas&gt;) where you will work.</p>
-            
-            <pre>
-                <code class="language-js">
-    elem = document.getElementById("container");
-    setCanvas(elem);</code>
-            </pre>
-        </p>
-            <p>
-               Add draw function.
-               <pre>
-                <code class="language-js">
-    function draw() {
-        //code here
-    }; 
-    draw();    //calling the function</code>
-               </pre>
-            </p>
-            <p>
-                Add your first circle.
-                <pre>
-                <code class="language-js">
-    function draw(){
-
-        new circle(100,100,50,"#695fe6",1,'#fff',1);
-
-    };
-    draw();</code>  
- </pre>
-            </p>
-            <p>
-                <div class="example-container"></div>
-            </p>
-            
-            <p>
-                Well, I understand you.<br>
-                Drawing isn't cool enough , right?
-            </p>
-            <p>
-                Let's animate it as well. <br>
-                So, add these two simple statements at the start and the end.
+            <h1>Point</h1>
+           <p>
+               Draws a point at the given position with given stroke width.
+   
+           </p>
+              <h3>Syntax</h3>
                 <pre>
                     <code class="language-js">
-    function draw(){
-        clearCanvas();                  //clearing the canvas
-
-        new circle(100,100,50,"#695fe6",1,'#fff',1);
-
-        requestAnimationFrame(draw);    //calls the function again to update the canavs every screen refresh
-    };
-    draw();</code>  
-     </pre>
-            </p>
-            <div class="example-container"></div>
-            <p>
-                Doesn't look like an animation?<br>
-                Well, It actually is refreshing the canvas every screen refresh. Its not visible because we arent changing anything every frame.<br>
-                Lets make it look it like an animation and move your lovely circle forward.
-                <pre>
-                    <code class="language-js">
-    var t=0;
-
-    function draw(){
-        clearCanvas();                  //clearing the canvas
-
-        new circle(100,100+t/5,50,"#695fe6",1,'#fff',1);  // add t/5 to the x coordinate of the circle
-
-        t++;                           //increment t
-
-        requestAnimationFrame(draw);    //calls the function again to update the canavs every screen refresh
-    };
-    draw();</code>  
-     </pre>
-            </p>
-            <div class="example-container"></div>
-            
-            <p>
-                Here is a complete sample HTML page for the above lovely circle.
-                <pre>
-                    <code class="language-html">
-    &lt;html&gt;
-        &lt;head&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-            &lt;div id="container" width="500&gt;" height="500" style="background-color: #000;"&gt;&lt;/div&gt;
-            &lt;script src="chelsea.js"&gt;&lt;/script&gt;
-            &lt;script&gt;
-                var t = 0;
-                elem = document.getElementById("container");
-                setCanvas(elem);
-
-                function draw() {
-                    clearCanvas(); //clearing the canvas
-
-                    new circle(100, 100 + t / 5, 50, "#695fe6", 1, '#fff', 1); // add t/5 to the x coordinate of the circle
-
-                    t++; //increment t
-
-                    requestAnimationFrame(draw); //calls the function again to update the canavs every screen refresh
-                };
-                draw();
-            &lt;/script&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;</code> 
+    new point(x, y, stroke, stroke_width);                   </code>
                 </pre>
-            </p>
-            <p>
-                That's it. Its that simple to make your first animation in ChelseaJS.<br>
-                Well, You must be thinking, Now What?<br>
-                To be frank, Possibilities are infinite.<br>
-                Have some faith, Sky isn't the limit. Actually, There is no frickin' limit.<br>
-                Make your own animations now and Share them with the world.<br>
-                Explore some <a href="examples.html">Examples</a> to get a better idea about making better and more complex animations and art.
+                <h3>Parameters</h3>
+                <p>
+                    <table class="param-table">
+                   <tr>
+                       <td> x  </td><td>x-coordinate of the point</td>
+                    </tr>
+                    <tr>
+                       <td> y  </td><td>y-coordinate of the point</td>
+                    </tr>
+                    <tr>
+                       <td> stroke  </td><td>stroke color of the point</td>
+                    </tr>
+                    <tr>
+                       <td> stroke_width  </td><td>stroke width of the point</td>
+                    </tr>
+                   </table>
+                </p>
+                <h3>Example</h3>
+                <pre>
+                    <code class="language-js">
+    new point(100, 100, "#ff0000", 5);</code>
+    </pre>
+    <div class="example-container">
 
-            </p>
+    </div>
 
-            <h3>Happy Coding!😊</h3>
-            
+    <pre>
+        <code class="language-js">
+    t=0;
+    function draw(){
+        clearCanvas();
+        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
+        t+=0.01;
+        requestAnimationFrame(draw);
+    }</code>
+    </pre>
+    <div class="example-container">
         </div>
+        </div>
+
     </div>
     
-    <script src="main.js"></script>
+    <script src="../main.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Example
+        
+        elem= document.getElementsByClassName("example-container")[0];
+        setCanvas(elem);
+        function draw(){
+            new point(100, 100, "#ff0000", 5);
+        }
+        draw();
+
+        elem1= document.getElementsByClassName("example-container")[1];
+        setCanvas(elem1);
+        var t=0;
+        function draw1(){
+        clearCanvas();
+        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
+        t+=0.01;
+        requestAnimationFrame(draw1);
+        }
+        draw1();
+    </script>
     
-    <script src="assets/prism.js"></script>
+    <script src="../assets/prism.js"></script>
 
 
 </body>
