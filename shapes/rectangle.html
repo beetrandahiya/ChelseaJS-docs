@@ -45,10 +45,10 @@
                 <div class="sidebar-elem">
                     <a href="../shapes/point.html">Point</a>
                 </div>
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../shapes/line.html">Line</a>
                 </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../shapes/rectangle.html">Rectangle</a>
                 </div>
                 <div class="sidebar-elem">
@@ -194,54 +194,62 @@
 
         </div>
         <div class="doc">
-            <h1>Line</h1>
+            <h1>Rectangle</h1>
            <p>
-               Draw a line from point (x1, y1) to point (x2, y2) with a given stroke width and color.
+               Draw a Rectangle, Rectangle is a four-sided polygon with all internal angles equal to 90 degrees.
+            You can change the anchor, stroke, fill etc. 
    
            </p>
               <h3>Syntax</h3>
                 <pre>
                     <code class="language-js">
-    new line(x1, y1, x2, y2, stroke, stroke_width, linecap, dasharray);</code>
+  new rect(x, y, width, height, fill, fill_opacity, stroke, stroke_width, anchor, border_radius);</code>
                 </pre>
                 <h3>Parameters</h3>
                 <p>
                     <table class="param-table">
                    <tr>
-                       <td> x1  </td><td>Number : x-coordinate of the starting point</td>
+                       <td> x  </td><td>Number : x-coordinate of the reference point</td>
                     </tr>
                     <tr>
-                       <td> y1  </td><td>Number : y-coordinate of the starting point</td>
+                       <td> y  </td><td>Number : y-coordinate of the reference point</td>
                     </tr>
                     <tr>
-                       <td> x2  </td><td>Number : x-coordinate of the ending point</td>
+                       <td> width  </td><td>Number : width of the rectangle</td>
                     </tr>
                     <tr>
-                       <td> y2  </td><td>Number : y-coordinate of the ending point</td>
+                       <td> height  </td><td>Number : height of the rectangle</td>
                     </tr>
                     <tr>
-                       <td> stroke  </td><td>Color : stroke color of the line</td>
+                        <td> fill </td><td>Color : fill color of the rectangle</td>
                     </tr>
                     <tr>
-                       <td> stroke_width  </td><td>Number : stroke width of the line</td>
+                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the rectangle</td>
                     </tr>
                     <tr>
-                       <td> linecap  </td><td>'butt', 'round', 'square' : linecap of the line</td>
+                       <td> stroke  </td><td>Color : stroke color of the rectangle</td>
                     </tr>
                     <tr>
-                       <td> dasharray  </td><td>Dasharray : A list of comma and/or white space separated lengths and percentages that specify the lengths of alternating dashes and gaps in line.<br> ex: "5 3 2"</td>
+                       <td> stroke_width  </td><td>Number : stroke width of the rectangle</td>
+                    </tr>
+                    <tr>
+                       <td> anchor  </td><td>'top-left', 'top-right', 'center', 'bottom-left', 'bottom-right' : anchor of the rectangle</td>
+                    </tr>
+                    <tr>
+                       <td> border_radius  </td><td>Number or percentage : Border Radius of the rectangle.</td>
                     </tr>
                    </table>
                 </p>
                 <h3>Example</h3>
                 <pre>
                     <code class="language-js">
-    new line(30,30,30,150, "#695FE6", 15);
-    new line(60,30,60,150, "#695FE6", 15, "round");
-    new line(90,30,90,150, "#695FE6", 15, "square");
-    new line(120,30,120,150, "#695FE6", 15, "butt", "15 5 10 5");
-    new line(150,30,150,150, "#695FE6", 15, "butt", "10 10");</code>
-    </pre>
+    new point(WIDTH/2, HEIGHT/2, "#695fe6", 5);
+    new rect(WIDTH/2,HEIGHT/2,100,100, "#E089B1", 0.1, "#E089B1", 1, "center",2);
+    new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "top-left",2);
+    new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "bottom-left",2);
+    new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "bottom-right",2);
+    new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "top-right",2);
+     </code>              </pre>
     <div class="example-container">
 
     </div>
@@ -251,8 +259,8 @@
     t=0;
     function draw(){
         clearCanvas();
-        new line((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)),(WIDTH/2)-100*(cos(t)), (HEIGHT/2)-100*(sin(t)), "#695fe6", 10, "round");
-        t+=0.01;
+        new rect(WIDTH/2,HEIGHT/2,150,150, "#695FE6", 0.1, "#695FE6", 1, "center",150*sin(t)/2);
+        t+=0.1;
         requestAnimationFrame(draw);
     }</code>
     </pre>
@@ -270,12 +278,13 @@
         elem= document.getElementsByClassName("example-container")[0];
         setCanvas(elem);
         function draw(){
-            new line(30,30,30,150, "#695FE6", 15);
-            new line(60,30,60,150, "#695FE6", 15, "round");
-            new line(90,30,90,150, "#695FE6", 15, "square");
-            new line(120,30,120,150, "#695FE6", 15, "butt", "15 5 10 5");
-            new line(150,30,150,150, "#695FE6", 15, "butt", "10 10");
-               }
+            new point(WIDTH/2, HEIGHT/2, "#695fe6", 5);
+            new rect(WIDTH/2,HEIGHT/2,100,100, "#E089B1", 0.1, "#E089B1", 1, "center",2);
+            new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "top-left",2);
+            new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "bottom-left",2);
+            new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "bottom-right",2);
+            new rect(WIDTH/2,HEIGHT/2,100,100, "#695FE6", 0.1, "#695FE6", 1, "top-right",2);
+        }
         draw();
 
         elem1= document.getElementsByClassName("example-container")[1];
@@ -283,8 +292,8 @@
         var t=0;
         function draw1(){
         clearCanvas();
-        new line((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)),(WIDTH/2)-100*(cos(t)), (HEIGHT/2)-100*(sin(t)), "#695fe6", 10, "round");
-        t+=0.01;
+        new rect(WIDTH/2,HEIGHT/2,150,150, "#695FE6", 0.1, "#695FE6", 1, "center",150*sin(t)/2);
+        t+=0.1;
         requestAnimationFrame(draw1);
         }
         draw1();

@@ -59,11 +59,15 @@ function clamp(e,a,b){                        //constrain value of e between a a
     return Math.min(Math.max(e,a),b);
 }
 
-
-
-////////////////////////////////////////////////////////////////////////
-///////////////  VECTOR FUNCTIONS //////////////////////////////////////
-
+function randomGaussian(mean, stdev) {
+    var y1, x1, x2, w;
+    do {
+        x1 = 2.0 * Math.random() - 1.0;
+        x2 = 2.0 * Math.random() - 1.0;
+        w = x1 * x1 + x2 * x2;
+    } while (w >= 1.0);
+    return mean + stdev * x1 * Math.sqrt(-2.0 * Math.log(w) / w);
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,6 +94,7 @@ class circle {
         return this;
     }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ////////////////////// ELLIPSE  ///////////////////////////////////////////////
@@ -216,8 +221,8 @@ class line{
         this.y2 = y2;
         this.stroke = stroke;
         this.stroke_width = stroke_width;
-        this.dasharray = dasharray;
-        this.linecap = linecap;
+        this.dasharray = dasharray??[];
+        this.linecap = linecap??"butt";
         this.line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         this.line.setAttributeNS(null, "x1", this.x1);
         this.line.setAttributeNS(null, "y1", this.y1);
@@ -233,37 +238,6 @@ class line{
 }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-///////////////////// TEXT ///////////////////////////////////////////////////
-
-class text{
-    constructor(x, y, inputtext, font_size, font_family, font_weight,stroke, stroke_width, fill, anchor) {
-        this.x = x;
-        this.y = y;
-        this.inputtext = inputtext;
-        this.font_size = font_size;
-        this.font_family = font_family;
-        this.font_weight = font_weight;
-        this.fill = fill;
-        this.stroke = stroke;
-        this.stroke_width = stroke_width;
-        this.anchor = anchor;
-        this.text = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        this.text.setAttributeNS(null, "x", this.x);
-        this.text.setAttributeNS(null, "y", this.y);
-        this.text.setAttributeNS(null, "font-size", this.font_size);
-        this.text.setAttributeNS(null, "font-family", this.font_family);
-        this.text.setAttributeNS(null, "font-weight", this.font_weight);
-        this.text.setAttributeNS(null, "fill", this.fill);
-        this.text.setAttributeNS(null, "text-anchor", this.anchor);
-        this.text.setAttributeNS(null, "stroke", this.stroke);
-        this.text.setAttributeNS(null, "stroke-width", this.stroke_width);
-        
-        this.text.innerHTML = this.inputtext;
-        svg.appendChild(this.text);
-        return this;
-    }
-}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -305,13 +279,58 @@ class regpolygon{
 }
 
 
+///////////////////////////////////////////////////////////////////////////////
+///////////////////// STAR ///////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+class star{
+    constructor(x,y,outer_radius,inner_radius,sides,rotation,stroke,stroke_width,fill,fill_opacity) {
+        this.x=x;
+        this.y=y;
+        this.outer_radius=outer_radius;
+        this.inner_radius=inner_radius;
+        this.rotation=rotation;
+        this.sides=sides;
+        this.stroke=stroke;
+        this.stroke_width=stroke_width;
+        this.fill=fill;
+        this.fill_opacity=fill_opacity;
+
+        this.star=document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        this.star.setAttributeNS(null, "points", this.points());
+        this.star.setAttributeNS(null, "stroke", this.stroke);
+        this.star.setAttributeNS(null, "stroke-width", this.stroke_width);
+        this.star.setAttributeNS(null, "fill", this.fill);
+        this.star.setAttributeNS(null, "fill-opacity", this.fill_opacity);
+        svg.appendChild(this.star);
+        return this;
+
+    }
+    points(){
+        var points = "";
+        var outer_angle = (Math.PI*2)/this.sides;
+        var inner_angle = (Math.PI)/this.sides;
+        for(var i=0; i<this.sides; i++){ 
+            var xv = this.x+this.outer_radius*Math.cos(outer_angle*i+this.rotation);
+            var yv = this.y+this.outer_radius*Math.sin(outer_angle*i+this.rotation);
+            points += xv+","+yv+" ";
+            var xv = this.x+this.inner_radius*Math.cos(inner_angle+(i*outer_angle)+this.rotation);
+            var yv = this.y+this.inner_radius*Math.sin(inner_angle+(i*outer_angle )+this.rotation);
+            points += xv+","+yv+" ";
+        }
+        return points;
+    }
+
+}
+
+
 ////////////////////////////////////////////////////////////////////
 //////////////////// POLYGON //////////////////////////////////////
 //////////////////////////////////////////////////////////////////
 
 
 class polygon{
-    constructor(inppoints,stroke,stroke_width,fill , fill_opacity,close){
+    constructor(inppoints,fill , fill_opacity,stroke,stroke_width,close){
         this.inppoints=inppoints;
         this.stroke= stroke;
         this.stroke_width = stroke_width;
@@ -488,7 +507,7 @@ class cubicbezier{
 /////////////////////////////////////////////////////////////////////////
 
 class arc{
-    constructor(cx, cy, rx,ry, start_angle , end_angle, fill_type,stroke,stroke_width,fill, fill_opacity){
+    constructor(cx, cy, rx,ry, start_angle , end_angle, fill_type,fill, fill_opacity,stroke,stroke_width){
         this.cx=cx;
         this.cy=cy;
         this.rx=rx;
@@ -541,6 +560,236 @@ class arc{
     }
     
 
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////// TEXT ///////////////////////////////////////////////////
+
+class text{
+    constructor(x, y, inputtext, font_size, font_family, font_weight,stroke, stroke_width, fill, anchor) {
+        this.x = x;
+        this.y = y;
+        this.inputtext = inputtext;
+        this.font_size = font_size;
+        this.font_family = font_family;
+        this.font_weight = font_weight;
+        this.fill = fill;
+        this.stroke = stroke;
+        this.stroke_width = stroke_width;
+        this.anchor = anchor;
+        this.text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        this.text.setAttributeNS(null, "x", this.x);
+        this.text.setAttributeNS(null, "y", this.y);
+        this.text.setAttributeNS(null, "font-size", this.font_size);
+        this.text.setAttributeNS(null, "font-family", this.font_family);
+        this.text.setAttributeNS(null, "font-weight", this.font_weight);
+        this.text.setAttributeNS(null, "fill", this.fill);
+        this.text.setAttributeNS(null, "text-anchor", this.anchor);
+        this.text.setAttributeNS(null, "stroke", this.stroke);
+        this.text.setAttributeNS(null, "stroke-width", this.stroke_width);
+        
+        this.text.innerHTML = this.inputtext;
+        svg.appendChild(this.text);
+        return this;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////// FONT ///////////////////////////////////////////////////
+
+function loadFont(url,font_family){
+    var font = document.createElement("style");
+    font.type = "text/css";
+    font.innerHTML = "@font-face { font-family: '"+font_family+"'; src: url('"+url+"'); }";
+    document.head.appendChild(font);
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////// CURSOR ///////////////////////////////////////////////////
+function setCursor(cursor) {
+    svg.style.cursor = cursor;
+}
+///////////////////////////////////////////////////////////////////////////////
+///////////////////// TIME ///////////////////////////////////////////////////
+
+function getTime(){
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    var s = d.getSeconds();
+    var ms = d.getMilliseconds();
+    var time = {
+        h: h,
+        m: m,
+        s: s,
+        ms: ms
+    };
+    return time;
+}
+
+function getDate(){
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = d.getMonth()+1;
+    var day = d.getDate();
+    var date = {
+        y: y,
+        m: m,
+        day: day
+    };
+    return date;
+}
+
+function getTimeString(){
+    var d = new Date();
+    var h = d.getHours();
+    var m = d.getMinutes();
+    var s = d.getSeconds();
+    var ms = d.getMilliseconds();
+    var time = h+":"+m+":"+s+":"+ms;
+    return time;
+}
+
+function getDateString(format){
+    var d = new Date();
+    var y = d.getFullYear();
+    var m = d.getMonth()+1;
+    var day = d.getDate();
+    format=format??'dd-mm-yyyy';
+    format=format.toLowerCase();
+    switch(format){
+        case "yyyy-mm-dd":
+            var date = y+"/"+m+"/"+day;
+            break;
+        case "dd-mm-yyyy":
+            var date = day+"/"+m+"/"+y;
+            break;
+        case "mm-dd-yyyy":
+            var date = m+"/"+day+"/"+y;
+            break;
+        case "yyyy-dd-mm":
+            var date = y+"/"+day+"/"+m;
+            break;
+        case "dd-yyyy-mm":
+            var date = day+"/"+y+"/"+m;
+            break;
+        case "mm-yyyy-dd":
+            var date = m+"/"+y+"/"+day;
+            break;
+    }
+    return date;
+}
+
+function getDayName(){
+    var d = new Date();
+    var day = d.getDay();
+    var dayname = "";
+    switch(day){
+        case 0:
+            dayname = "Sunday";
+            break;
+        case 1:
+            dayname = "Monday";
+            break;
+        case 2:
+            dayname = "Tuesday";
+            break;
+        case 3:
+            dayname = "Wednesday";
+            break;
+        case 4:
+            dayname = "Thursday";
+            break;
+        case 5:
+            dayname = "Friday";
+            break;
+        case 6:
+            dayname = "Saturday";
+            break;
+}
+return dayname;
+
+
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+/////////////////// Time taken for function execution /////////////////////////
+
+function timeTaken(func){
+    var t0 = performance.now();
+    func();
+    var t1 = performance.now();
+    return t1 - t0;
+}
+
+
+///////////////////////////////////////////////////////////////////////////////
+/////////////////// Vectors ///////////////////////////////////////////////////
+
+function createVector(x, y) {
+    return {
+        x: x,
+        y: y
+    };
+}
+
+function dotProduct(v1, v2) {
+    return v1.x * v2.x + v1.y * v2.y;
+}
+
+function crossProduct(v1, v2) {
+    return v1.x * v2.y - v1.y * v2.x;
+}
+
+function length(v) {
+    return Math.sqrt(dotProduct(v, v));
+}
+
+function normalize(v) {
+    var l = length(v);
+    return createVector(v.x / l, v.y / l);
+}
+
+function angleBetween(v1, v2) {
+    return Math.acos(dotProduct(v1, v2) / (length(v1) * length(v2)));
+}
+
+function rotate(v, angle) {
+    var s = Math.sin(angle);
+    var c = Math.cos(angle);
+    return createVector(v.x * c - v.y * s, v.x * s + v.y * c);
+}
+
+function addVec(v1, v2) {
+    return createVector(v1.x + v2.x, v1.y + v2.y);
+}
+
+function subtractVec(v1, v2) {
+    return createVector(v1.x - v2.x, v1.y - v2.y);
+}
+
+function multiplyVec(v, scalar) {
+    return createVector(v.x * scalar, v.y * scalar);
+}
+
+function divideVec(v, scalar) {
+    return createVector(v.x / scalar, v.y / scalar);
+}
+
+function distanceVec(v1, v2) {
+    return length(subtract(v1, v2));
+}
+
+function angle(v) {
+    return Math.atan2(v.y, v.x);
+}
+
+function randomVector(min, max) {
+    return createVector(Math.random() * (max - min) + min, Math.random() * (max - min) + min);
 }
 
 
