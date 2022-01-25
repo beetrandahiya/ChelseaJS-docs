@@ -42,7 +42,7 @@
             </div>
             <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../shapes/point.html">Point</a>
                 </div>
                 <div class="sidebar-elem">
@@ -69,7 +69,7 @@
                 <div class="sidebar-elem">
                     <a href="../shapes/star.html">Star</a>
                 </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../shapes/cubbezier.html">Cubic Bezier Curve</a>
                 </div>
                 <div class="sidebar-elem">
@@ -194,51 +194,64 @@
 
         </div>
         <div class="doc">
-            <h1>Point</h1>
+            <h1>Cubic Bezier Curve</h1>
            <p>
-               Draws a point at the given position with given stroke width.
+            Draws a smooth cubic bezier curve passing through a set of points. This is an easy way of smoothening a polygon.
+            Dont worry, you dont have to input control points. It will automatically calculate them for you.
+            All you have to input is the points that you want to draw the curve through and the line tension.<br>
+            You can change all the basic properties like stroke and fill.<br>
+            Input the points in the order in which they are to be drawn.
    
            </p>
               <h3>Syntax</h3>
                 <pre>
                     <code class="language-js">
-    new point(x, y, stroke, stroke_width);                   </code>
+  new cubicbezier(points, fill, fill_opacity, stroke, stroke_width, line_tension);</code>
                 </pre>
                 <h3>Parameters</h3>
                 <p>
                     <table class="param-table">
                    <tr>
-                       <td> x  </td><td>x-coordinate of the point</td>
+                       <td> points </td><td>2D Array : Array of x and y co-ordinates of the edges of the polygon.<br>
+                    ex: [[x1,y1],[x2,y2],[x3,y3]]</td>
                     </tr>
                     <tr>
-                       <td> y  </td><td>y-coordinate of the point</td>
+                        <td> fill  </td><td>Color : fill color of the polygon</td>
                     </tr>
                     <tr>
-                       <td> stroke  </td><td>stroke color of the point</td>
+                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the polygon</td>
                     </tr>
                     <tr>
-                       <td> stroke_width  </td><td>stroke width of the point</td>
+                       <td> stroke  </td><td>Color : stroke color of the polygon</td>
                     </tr>
+                    <tr>
+                       <td> stroke_width  </td><td>Number : stroke width of the polygon</td>
+                    </tr>
+                    <tr>
+                       <td> line_tension </td><td>Number [0 to 1] or percentage: tension of the curve</td>
+                    </tr>
+                    
                    </table>
                 </p>
                 <h3>Example</h3>
                 <pre>
                     <code class="language-js">
-    new point(100, 100, "#ff0000", 5);</code>
-    </pre>
+    new cubicbezier([[50,50],[100,100],[150,120],[200,60],[250,120],[300,90]], "#695fe6", 0, "#44d", 2, 0.3);</code> 
+                     </pre>
     <div class="example-container">
 
     </div>
 
     <pre>
         <code class="language-js">
-    t=0;
+    var t=0;
     function draw(){
         clearCanvas();
-        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
-        t+=0.01;
+        new cubicbezier([[50,150],[100,100],[150,120],[200,60],[250,120],[300,90] ], "#695fe6", 0, "#44d", 2, 1*abs(sin(t)));
+        t+=0.001;
         requestAnimationFrame(draw);
-    }</code>
+    };
+</code>
     </pre>
     <div class="example-container">
         </div>
@@ -250,11 +263,10 @@
     <script src="script.js"></script>
     <script>
         // Example
-        
         elem= document.getElementsByClassName("example-container")[0];
         setCanvas(elem);
         function draw(){
-            new point(100, 100, "#ff0000", 5);
+            new cubicbezier([[50,50],[100,100],[150,120],[200,60],[250,120],[300,90]], "#695fe6", 0, "#44d", 2, 0.3);
         }
         draw();
 
@@ -263,8 +275,9 @@
         var t=0;
         function draw1(){
         clearCanvas();
-        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
-        t+=0.01;
+        new cubicbezier([[50,150],[100,100],[150,120],[200,60],[250,120],[300,90] ], "#695fe6", 0, "#44d", 2, 1*abs(sin(t)));
+        t+=0.001;
+        
         requestAnimationFrame(draw1);
         }
         draw1();

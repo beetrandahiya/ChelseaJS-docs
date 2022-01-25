@@ -244,7 +244,7 @@ class line{
 ///////////////////// REGULAR POLYGON ///////////////////////////////////////////////////
 
 class regpolygon{
-    constructor(x,y,radius,sides,rotation,stroke,stroke_width,fill,fill_opacity) {
+    constructor(x,y,radius,sides,rotation,fill,fill_opacity,stroke,stroke_width) {
         this.x = x;
         this.y = y;
         this.radius = radius;
@@ -284,7 +284,7 @@ class regpolygon{
 ///////////////////////////////////////////////////////////////////////////////
 
 class star{
-    constructor(x,y,outer_radius,inner_radius,sides,rotation,stroke,stroke_width,fill,fill_opacity) {
+    constructor(x,y,outer_radius,inner_radius,sides,rotation,fill,fill_opacity,stroke,stroke_width) {
         this.x=x;
         this.y=y;
         this.outer_radius=outer_radius;
@@ -431,7 +431,7 @@ class twoPointQuadraticBezier{
 //////////////////////////////////////////////////////////////////
 
 class cubicbezier{
-    constructor(points,stroke,stroke_width,fill,fill_opacity,line_tension){
+    constructor(points,fill,fill_opacity,stroke,stroke_width,line_tension){
         this.points=points;
         this.stroke=stroke;
         this.stroke_width=stroke_width;

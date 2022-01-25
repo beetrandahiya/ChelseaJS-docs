@@ -22,7 +22,7 @@
             <div>
                 <a href="examples.html">Examples</a>
             </div>
-            <div>
+            <div>   
                 <a href="download.html">Download</a>
             </div>
             <div>
@@ -42,7 +42,7 @@
             </div>
             <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../shapes/point.html">Point</a>
                 </div>
                 <div class="sidebar-elem">
@@ -66,7 +66,7 @@
                 <div class="sidebar-elem">
                     <a href="../shapes/regpolygon.html">Regular Polygon</a>
                 </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../shapes/star.html">Star</a>
                 </div>
                 <div class="sidebar-elem">
@@ -194,51 +194,83 @@
 
         </div>
         <div class="doc">
-            <h1>Point</h1>
+            <h1>Star</h1>
            <p>
-               Draws a point at the given position with given stroke width.
+            Draw a Star by providing the x and y co-ordinates, the inner and outer radius . A Star is a type of non-convex polygon.<br> 
+            You can change all the basic properties like stroke and fill.<br>
    
            </p>
               <h3>Syntax</h3>
                 <pre>
                     <code class="language-js">
-    new point(x, y, stroke, stroke_width);                   </code>
+  new star(cx, cy, o_r, i_r, sides, rotation, fill, fill_opacity, stroke, stroke_width);</code>
                 </pre>
                 <h3>Parameters</h3>
                 <p>
                     <table class="param-table">
                    <tr>
-                       <td> x  </td><td>x-coordinate of the point</td>
+                       <td> cx </td><td>Number : The x co-ordinate of the center of the star.</td>
                     </tr>
                     <tr>
-                       <td> y  </td><td>y-coordinate of the point</td>
+                       <td> cy </td><td>Number : The y co-ordinate of the center of the star.</td>
                     </tr>
                     <tr>
-                       <td> stroke  </td><td>stroke color of the point</td>
+                       <td> o_r </td><td>Number : The Outer radius of the polygon.<br>
+                    to be precise , its the distance between the center and the outer vertices.</td>
                     </tr>
                     <tr>
-                       <td> stroke_width  </td><td>stroke width of the point</td>
+                       <td> i_r </td><td>Number : The Inner radius of the polygon.<br>
+                    to be precise , its the distance between the center and the inner vertices.</td>
                     </tr>
+                    <tr>
+                       <td> sides </td><td>Number : The number of sides of the star.</td>
+                    </tr>
+                    <tr>
+                       <td> rotation </td><td>Number : The rotation of the star.</td>
+                    </tr>
+                    <tr>
+                        <td> fill  </td><td>Color : fill color of the star</td>
+                    </tr>
+                    <tr>
+                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the star</td>
+                    </tr>
+                    <tr>
+                       <td> stroke  </td><td>Color : stroke color of the star</td>
+                    </tr>
+                    <tr>
+                       <td> stroke_width  </td><td>Number : stroke width of the star</td>
+                    </tr>
+                    
+                    
                    </table>
                 </p>
                 <h3>Example</h3>
                 <pre>
                     <code class="language-js">
-    new point(100, 100, "#ff0000", 5);</code>
-    </pre>
+    new star(100, HEIGHT/2, 60, 10, 3, 0, "#695fe6", 0.3, "#44d", 2);
+    new star(240, HEIGHT/2, 60, 30, 4, 0, "#695fe6", 0.3, "#44d", 2);
+    new star(380, HEIGHT/2, 60, 30, 5, 0, "#695fe6", 0.3, "#44d", 2);
+    new star(520, HEIGHT/2, 60, 30, 6, 0, "#695fe6", 0.3, "#44d", 2);
+    new star(660, HEIGHT/2, 60, 30, 15, 0, "#695fe6", 0.3, "#44d", 2);</code> 
+                     </pre>
     <div class="example-container">
 
     </div>
 
     <pre>
         <code class="language-js">
-    t=0;
+    var t=0;
     function draw(){
         clearCanvas();
-        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
+        new star(100, HEIGHT/2, 60, 10, 3, t, "#695fe6", 0.3, "#44d", 2);
+        new star(240, HEIGHT/2, 60, 30, 4, t, "#695fe6", 0.3, "#44d", 2);
+        new star(380, HEIGHT/2, 60, 30, 5, t, "#695fe6", 0.3, "#44d", 2);
+        new star(520, HEIGHT/2, 60, 30, 6, t, "#695fe6", 0.3, "#44d", 2);
+        new star(660, HEIGHT/2, 60, 30, 15, t, "#695fe6", 0.3, "#44d", 2);
         t+=0.01;
         requestAnimationFrame(draw);
-    }</code>
+    };
+</code>
     </pre>
     <div class="example-container">
         </div>
@@ -250,20 +282,29 @@
     <script src="script.js"></script>
     <script>
         // Example
-        
         elem= document.getElementsByClassName("example-container")[0];
         setCanvas(elem);
         function draw(){
-            new point(100, 100, "#ff0000", 5);
+
+            new star(100, HEIGHT/2, 60, 10, 3, 0, "#695fe6", 0.3, "#44d", 2);
+            new star(240, HEIGHT/2, 60, 30, 4, 0, "#695fe6", 0.3, "#44d", 2);
+            new star(380, HEIGHT/2, 60, 30, 5, 0, "#695fe6", 0.3, "#44d", 2);
+            new star(520, HEIGHT/2, 60, 30, 6, 0, "#695fe6", 0.3, "#44d", 2);
+            new star(660, HEIGHT/2, 60, 30, 15, 0, "#695fe6", 0.3, "#44d", 2);
         }
         draw();
 
         elem1= document.getElementsByClassName("example-container")[1];
         setCanvas(elem1);
         var t=0;
+        
         function draw1(){
         clearCanvas();
-        new point((WIDTH/2)+100*(cos(t)), (HEIGHT/2)+100*(sin(t)), "#ff0000", 10);
+        new star(100, HEIGHT/2, 60, 10, 3, t, "#695fe6", 0.3, "#44d", 2);
+        new star(240, HEIGHT/2, 60, 30, 4, t, "#695fe6", 0.3, "#44d", 2);
+        new star(380, HEIGHT/2, 60, 30, 5, t, "#695fe6", 0.3, "#44d", 2);
+        new star(520, HEIGHT/2, 60, 30, 6, t, "#695fe6", 0.3, "#44d", 2);
+        new star(660, HEIGHT/2, 60, 30, 15, t, "#695fe6", 0.3, "#44d", 2);
         t+=0.01;
         requestAnimationFrame(draw1);
         }
