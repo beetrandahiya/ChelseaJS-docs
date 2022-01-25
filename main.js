@@ -368,7 +368,7 @@ class polygon{
 
 
 class twoPointCubicBezier{
-    constructor(x1,y1,xc1,yc1,x2,y2,xc2,yc2,stroke,stroke_width,fill,fill_opacity){
+    constructor(x1,y1,xc1,yc1,x2,y2,xc2,yc2,fill,fill_opacity,stroke,stroke_width){
         this.x1=x1;
         this.y1=y1;
         this.xc1=xc1;
@@ -401,7 +401,7 @@ class twoPointCubicBezier{
 //////////////////// TWO POINT QUADRATIC BEZIER ////////////////////////
 //////////////////////////////////////////////////////////////////
 class twoPointQuadraticBezier{
-    constructor(x1,y1,xc,yc,x2,y2,stroke,stroke_width,fill,fill_opacity){
+    constructor(x1,y1,xc,yc,x2,y2,fill,fill_opacity,stroke,stroke_width){
         this.x1=x1;
         this.y1=y1;
         this.xc=xc;
