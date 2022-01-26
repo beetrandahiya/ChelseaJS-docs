@@ -112,7 +112,7 @@
             <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem sidebar-elem-active">
-                    <a href="../math/trignometry.html">Trignometry</a>
+                    <a href="../math/trignometry.html">Trigonometry</a>
                     </div>  
                 <div class="sidebar-elem">
                     <a href="../math/algebra.html">Algebraic Functions</a>
@@ -203,100 +203,139 @@
         <div class="doc">
             <h1>Trigonometry</h1>
            <p>
-               Following are the trigonometric functions in Chelsea.js 
+               Following are the trigonometric functions in Chelsea.js <br>
                All the functions are briefly explained with pure mathematical formulae , examples and implementation.
-   
+   <br>
+               <div class="note">Note: All angles should be inputted in radian measures.</div>
            </p>
-              <h3>Syntax</h3>
+              <h3>Sine</h3>
+              <p>
+                  Sine of an angle is the length of the line joining the x-axis and the point on the unit circle at the same angle.<br>
+              </p>
                 <pre>
                     <code class="language-js">
-  new circle(cx, cy, r, fill, fill_opacity, stroke, stroke_width);</code>
+    sin(angle);
+
+    sin(0);     // returns 0
+    sin(PI/2);  // returns 1</code>
                 </pre>
-                <h3>Parameters</h3>
+              <p> Graphical representation of the above function:</p> 
+                <div class="graph-container">
+                
+                </div>
+
+                <hr>
+                <h3>Cosine</h3>
                 <p>
-                    <table class="param-table">
-                   <tr>
-                       <td> cx  </td><td>Number : x-coordinate of the center</td>
-                    </tr>
-                    <tr>
-                       <td> cy  </td><td>Number : y-coordinate of the center</td>
-                    </tr>
-                    <tr>
-                       <td> r  </td><td>Number : radius of the circle</td>
-                    </tr>
-                    <tr>
-                        <td> fill </td><td>Color : fill color of the circle</td>
-                    </tr>
-                    <tr>
-                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the circle</td>
-                    </tr>
-                    <tr>
-                       <td> stroke  </td><td>Color : stroke color of the circle</td>
-                    </tr>
-                    <tr>
-                       <td> stroke_width  </td><td>Number : stroke width of the circle</td>
-                    </tr>
-                    
-                   </table>
+                    Cosine of an angle is the length of the line joining the y-axis and the point on the unit circle at the same angle.<br>
                 </p>
-                <h3>Example</h3>
                 <pre>
                     <code class="language-js">
-    new circle(WIDTH/2, HEIGHT/2, 70, "#E089B1", 0.1, "#E089B1", 2);
-    new circle(WIDTH/2, HEIGHT/2+50, 70, "#695FE6", 0.5, "#695FE6", 4);
-    new circle(WIDTH/2+100, HEIGHT/2, 70, "#F7BE93", 1, "#F7BE93", 2);</code>
+    cos(angle);
+
+    cos(0);         // returns 1
+    cos(PI/2);      // returns 0
+    cos(PI);        // returns -1 </code>
               </pre>
-    <div class="example-container">
+              <p> Graphical representation of the above function:</p> 
+              <div class="graph-container">
 
     </div>
+    <hr>
+    <h3>Tangent</h3>
+    <p>
+        Tangent of an angle is the slope of the line joining the origin and the point on the unit circle at the same angle.<br>
+    </p>
 
     <pre>
         <code class="language-js">
-    t=0;
-    function draw(){
-        clearCanvas();
-        for(i=0;i&lt;360;i+=30){
-            ic=mapRange(i,0,360,0,1);
-            new circle(WIDTH/2+80*cos(degToRad(i+t)),HEIGHT/2+80*sin(degToRad(i+t)),20, `rgba(103, 93, 225,${ic})`, 0.4,  `rgba(103, 93, 225,${ic})`, 1);
-        };
-        t+=1;
-        requestAnimationFrame(draw);
-    };
+    tan(angle);
+
+    tan(0);         // returns 0
+    tan(PI/2);      // very large value since js doesnt return Infinity for Math.tan(PI/2) and these math functions are mere implementation of Math in js.
 </code>
     </pre>
-    <div class="example-container">
+    <div class="graph-container">
         </div>
+        <hr>
+        <h3>Arc Sine</h3>
+        <p>
+            Arc Sine of an angle is the angle whose sine is the given value.<br>
+        </p>
+        <pre>
+            <code class="language-js">
+    asin(value);
+
+    asin(0);         // returns 0
+    asin(1);         // returns PI/2
+    asin(-1);        // returns -PI/2
+    </code>
+        </pre>
+        <div class="graph-container">
+            </div>
+            <hr>
+            <h3>Arc Cosine</h3>
+            <p>
+                Arc Cosine of an angle is the angle whose cosine is the given value.<br>
+            </p>
+            <pre>
+                <code class="language-js">
+    acos(value);
+
+    acos(0);         // returns PI/2
+    acos(1);         // returns 0
+    acos(-1);        // returns PI
+    </code>
+            </pre>
+            <div class="graph-container">
+                </div>
+                <hr>
+                <h3>Arc Tangent</h3>
+                <p>
+                    Arc Tangent of an angle is the angle whose tangent is the given value.<br>
+                </p>
+                <pre>
+                    <code class="language-js">
+    atan(value);
+                        
+    atan(0);         // returns 0
+    atan(1);         // returns PI/4
+    atan(-1);        // returns -PI/4
+    </code>
+    </pre>
+    <div class="graph-container">
+        </div>
+        <hr>
+        <h3>2 Argument Arc Tangent</h3>
+        <p>
+            atan2(y,x) is defined as the angle between the positive x-axis and the ray to the point(x,y).<br>
+        </p>
+        <pre>
+            <code class="language-js">
+    atan2(y,x);
+
+    atan2(0,1);         // returns 0
+    atan2(1,1);         // returns PI/4
+    atan2(-1,1);        // returns -PI/4
+    </code>
+        </pre>
+
+    <div class="graph-container"></div>
+
+    <hr>
+    
+
+
+
+
+
         </div>
 
     </div>
     
     <script src="../main.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Example
-        elem= document.getElementsByClassName("example-container")[0];
-        setCanvas(elem);
-        function draw(){
-           // new point(WIDTH/2, HEIGHT/2, "#695fe6", 5);
-            new circle(WIDTH/2, HEIGHT/2, 70, "#E089B1", 0.1, "#E089B1", 2);
-            new circle(WIDTH/2, HEIGHT/2+50, 70, "#695FE6", 0.5, "#695FE6", 4);
-            new circle(WIDTH/2+100, HEIGHT/2, 70, "#F7BE93", 1, "#F7BE93", 2);
-        }
-        draw();
-
-        elem1= document.getElementsByClassName("example-container")[1];
-        setCanvas(elem1);
-        var t=0;
-        function draw1(){
-        clearCanvas();
-        for(i=0;i<360;i+=30){
-            ic=mapRange(i,0,360,0,1);
-        new circle(WIDTH/2+80*cos(degToRad(i+t)),HEIGHT/2+80*sin(degToRad(i+t)),20, `rgba(103, 93, 225,${ic})`, 0.4,  `rgba(103, 93, 225,${ic})`, 1);
-        }
-        t+=1;
-        requestAnimationFrame(draw1);
-        }
-        draw1();
+    <script src="trignoscripts.js">
     </script>
     
     <script src="../assets/prism.js"></script>

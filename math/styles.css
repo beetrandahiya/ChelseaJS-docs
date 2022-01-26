@@ -171,6 +171,7 @@ body{
     width: 100%;
     margin: 1em 0;
 }
+
 .doc h1{
     font-size: 2.5em;
     margin: 2em 0.5em 1em;
@@ -188,7 +189,24 @@ body{
     background: #000;
     border-radius: 8px;
 }
+.graph-container{
+    width: calc(100% - 6em);
+    margin: 2em 1em;
+    height:300px;
+    background: #000;
+    border-radius: 8px;
+}
 
+.note{
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 2em 1em;
+    width: calc(100% - 12em);
+    padding: 1em;
+    border-radius: 8px;
+    background-color: rgba(105,95,230,0.1);
+    color:rgba(105,95,230,1)
+}
 
 /* media queries */
 @media screen and (max-width: 832px){

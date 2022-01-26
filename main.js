@@ -130,7 +130,7 @@ class ellipse{
 
 
 class rect{
-    constructor(x, y, width, height, fill,fill_opacity, stroke,stroke_width, anchor, border_radius) {
+    constructor(x, y, width, height, fill,fill_opacity, stroke,stroke_width, anchor="top-left", border_radius=0) {
     
         this.x=x;
         this.y=y;
@@ -140,8 +140,8 @@ class rect{
         this.stroke=stroke;
         this.stroke_width=stroke_width;
         this.fill_opacity=fill_opacity;
-        this.anchor=anchor ?? "top-left";
-        this.border_radius=border_radius ?? 0;
+        this.anchor=anchor;
+        this.border_radius=border_radius;
         this.rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         this.rect.setAttributeNS(null, "fill", this.fill);
         this.rect.setAttributeNS(null, "stroke", this.stroke);
@@ -213,7 +213,7 @@ class point{
 ////////////////////// LINE  ///////////////////////////////////////////////
 
 class line{
-    constructor(x1, y1, x2, y2, stroke,stroke_width, linecap, dasharray) {
+    constructor(x1, y1, x2, y2, stroke,stroke_width, linecap="butt", dasharray="") {
 
         this.x1 = x1;
         this.y1 = y1;
@@ -221,8 +221,8 @@ class line{
         this.y2 = y2;
         this.stroke = stroke;
         this.stroke_width = stroke_width;
-        this.dasharray = dasharray??[];
-        this.linecap = linecap??"butt";
+        this.dasharray = dasharray;
+        this.linecap = linecap;
         this.line = document.createElementNS("http://www.w3.org/2000/svg", "line");
         this.line.setAttributeNS(null, "x1", this.x1);
         this.line.setAttributeNS(null, "y1", this.y1);
@@ -330,13 +330,13 @@ class star{
 
 
 class polygon{
-    constructor(inppoints,fill , fill_opacity,stroke,stroke_width,close){
+    constructor(inppoints,fill , fill_opacity,stroke,stroke_width,close=false){
         this.inppoints=inppoints;
         this.stroke= stroke;
         this.stroke_width = stroke_width;
         this.fill = fill;
         this.fill_opacity = fill_opacity;
-        this.close = close ?? false;
+        this.close = close;
         
         this.polygon = document.createElementNS("http://www.w3.org/2000/svg","path");
         this.polygon.setAttributeNS(null, "d",this.pathd());    
@@ -354,7 +354,7 @@ class polygon{
             dtext+= "L " +this.inppoints[i][0]+","+this.inppoints[i][1]+ " ";
 
         }
-        if(this.close==true){
+        if(this.close){
             dtext+= "Z";
         }
         
@@ -431,13 +431,14 @@ class twoPointQuadraticBezier{
 //////////////////////////////////////////////////////////////////
 
 class cubicbezier{
-    constructor(points,fill,fill_opacity,stroke,stroke_width,line_tension){
+    constructor(points,fill,fill_opacity,stroke,stroke_width,line_tension=0.2,close=false){
         this.points=points;
         this.stroke=stroke;
         this.stroke_width=stroke_width;
         this.fill=fill;
         this.fill_opacity=fill_opacity;
-        this.line_tension=line_tension??0.2;
+        this.line_tension=line_tension;
+        this.close=close;
         
 
         this.cubicbezier = document.createElementNS("http://www.w3.org/2000/svg","path");
@@ -460,8 +461,8 @@ class cubicbezier{
             ? `M ${point[0]},${point[1]}`
             : `${acc} ${command(point, i, a)}`
             , '')
-            if(this.close==true){
-                dval+="Z";
+            if(this.close){
+                this.dval+="Z";
             }
 
 
@@ -653,12 +654,12 @@ function getTimeString(){
     return time;
 }
 
-function getDateString(format){
+function getDateString(format='dd-mm-yyyy'){
     var d = new Date();
     var y = d.getFullYear();
     var m = d.getMonth()+1;
     var day = d.getDate();
-    format=format??'dd-mm-yyyy';
+    format=format;
     format=format.toLowerCase();
     switch(format){
         case "yyyy-mm-dd":
@@ -823,6 +824,8 @@ function degToRad(deg) {
 ///////////////////////////////////////////////////////////////////////////////
 
 ////////////// common mathematical functions ///////////////////////////////
+
+// trignometry functions
 function sin(angle) {
     return Math.sin(angle);
 }
@@ -842,6 +845,30 @@ function asin(angle) {
 function acos(angle){
     return Math.acos(angle);
 }
+
+function atan(angle){
+    return Math.atan(angle);
+}
+
+function atan2(y,x){
+    return Math.atan2(y,x);
+}
+
+function atanh(angle){
+    return Math.atanh(angle);
+}
+
+function sinh(angle){
+    return Math.sinh(angle);
+}
+function cosh(angle){
+    return Math.cosh(angle);
+}
+function tanh(angle){
+    return Math.tanh(angle);
+}
+///////////////////////
+
 
 function abs(e){
     return Math.abs(e);
@@ -908,12 +935,12 @@ function makecombinations(arr){
 mousepos={x:0,y:0};
   function fetch_mouse_pos(canvas, evt) {
     
-    var rect = canvas.getBoundingClientRect();
+    var recta = canvas.getBoundingClientRect();
     canvas.addEventListener(evt, function(evt) {
         //console.log(evt.clientX - rect.left, evt.clientY - rect.top);
         return mousepos={
-            x: evt.clientX - rect.left,
-            y: evt.clientY - rect.top
+            x: evt.clientX - recta.left,
+            y: evt.clientY - recta.top
         };
     });
 };
