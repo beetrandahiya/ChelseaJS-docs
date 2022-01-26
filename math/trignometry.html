@@ -15,6 +15,8 @@
 <link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -252,8 +254,7 @@
     tan(angle);
 
     tan(0);         // returns 0
-    tan(PI/2);      // very large value since js doesnt return Infinity for Math.tan(PI/2) and these math functions are mere implementation of Math in js.
-</code>
+    tan(PI/2);      // very large value since js doesnt return Infinity for Math.tan(PI/2) and these math functions are mere implementation of Math in js.</code>
     </pre>
     <div class="graph-container">
         </div>
@@ -268,8 +269,7 @@
 
     asin(0);         // returns 0
     asin(1);         // returns PI/2
-    asin(-1);        // returns -PI/2
-    </code>
+    asin(-1);        // returns -PI/2 </code>
         </pre>
         <div class="graph-container">
             </div>
@@ -284,8 +284,7 @@
 
     acos(0);         // returns PI/2
     acos(1);         // returns 0
-    acos(-1);        // returns PI
-    </code>
+    acos(-1);        // returns PI</code>
             </pre>
             <div class="graph-container">
                 </div>
@@ -300,8 +299,7 @@
                         
     atan(0);         // returns 0
     atan(1);         // returns PI/4
-    atan(-1);        // returns -PI/4
-    </code>
+    atan(-1);        // returns -PI/4</code>
     </pre>
     <div class="graph-container">
         </div>
@@ -316,18 +314,74 @@
 
     atan2(0,1);         // returns 0
     atan2(1,1);         // returns PI/4
-    atan2(-1,1);        // returns -PI/4
-    </code>
+    atan2(-1,1);        // returns -PI/4</code>
         </pre>
 
-    <div class="graph-container"></div>
+   <!-- <div class="graph-container"></div>-->
 
     <hr>
-    
+    <p>
+        Coming up are the Hyperbolic Functions<br>
 
+        <b style="line-height:1.5em; ">Hyperbolic functions are analogues of the ordinary trigonometric functions, but defined using the hyperbola rather than the circle.</b>
+    </p>
+<hr>
+    <h3>Hyperbolic Sine</h3>
+    <p>
+        
+<br>
+        Hyperbolic sine of an angle is the length of the line joining the x-axis and the point on the hyperbola at the same angle.<br>
+        It can also be defined in form of exponents.<br>
+        $$\sinh(\theta)=\frac{e^x-e^{-x}}{2}$$
 
+    </p>
+    <pre>
+        <code class="language-js">
+    sinh(angle);
 
+    sinh(0);         // returns 0
+    sinh(PI/2);      // returns 2.3012989023072947
+    sinh(PI);        // returns 11.548739357257748</code>
+    </pre>
 
+    <p>
+        Graphical representation of the all Hyperbolic function:
+    </p>
+    <div class="graph-container" style="height: 560px;"></div>
+
+    <hr>
+    <h3>Hyperbolic Cosine</h3>
+    <p>
+        Hyperbolic cosine of an angle is the length of the line joining the y-axis and the point on the hyperbola at the same angle.<br>
+        It can also be defined in form of exponents.<br>
+        $$\cosh(\theta)=\frac{e^x+e^{-x}}{2}$$
+    </p>
+    <pre>
+        <code class="language-js">
+    cosh(angle);
+
+    cosh(0);         // returns 1
+    cosh(PI/2);      // returns 2.5091784786580567
+    cosh(PI);        // returns 11.591953275521519
+</code>
+</pre>
+
+<hr>
+<h3>Hyperbolic Tangent</h3>
+<p>
+    Hyperbolic tangent of an angle is the slope of the line joining the origin and the point on the hyperbola at the same angle.<br>
+    It can also be defined in form of exponents.<br>
+    $$\tanh(\theta)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
+</p>
+<pre>
+    <code class="language-js">
+    tanh(angle);
+
+    tanh(0);         // returns 0
+    tanh(PI/2);      // returns 0.9171523356672744
+    tanh(PI);        // returns 0.99627207622075
+    </code> 
+</pre>
 
         </div>
 

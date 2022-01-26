@@ -89,3 +89,33 @@ function draw5(){
     }
 }
 draw5()
+
+
+
+//////////////hyerbolic tangents/////////////////
+
+graph1=document.getElementsByClassName("graph-container")[6];
+//sinh and cosh and tanh
+function draw7(){
+    setCanvas(graph1);
+    new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.4);
+   new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.4);
+   new line((WIDTH/2)+(WIDTH/(4*PI)),0,(WIDTH/2)+(WIDTH/(4*PI)),HEIGHT,'rgba(255,255,255,0.4)',0.4);
+    new line((WIDTH/2)-(WIDTH/(4*PI)),0,(WIDTH/2)-(WIDTH/(4*PI)),HEIGHT,'rgba(255,255,255,0.4)',0.4);
+    new line(0,HEIGHT/2+(HEIGHT/(6)),WIDTH,HEIGHT/2+(HEIGHT/(6)),'rgba(255,255,255,0.4)',0.4);
+    new line(0,HEIGHT/2-(HEIGHT/(6)),WIDTH,HEIGHT/2-(HEIGHT/(6)),'rgba(255,255,255,0.4)',0.4);
+
+    new text(80,50,'sinh',20,'Inter',400,'#695FE6',0,'#695FE6','middle');
+    new text(80,80,'cosh',20,'Inter',400,'#695FE6',0,'#F4BFE6','middle');
+    new text(80,110,'tanh',20,'Inter',400,'#695FE6',0,'#DC4966','middle');
+    for(i=0;i<innerWidth;i+=1){
+       x=mapRange(i,0,WIDTH,-2*Math.PI,2*Math.PI);
+       y=HEIGHT/2-HEIGHT*sinh(x)/6;
+       y1=HEIGHT/2-HEIGHT*cosh(x)/6;
+       y2=HEIGHT/2-HEIGHT*tanh(x)/6;
+       new point(i,y,'#695FE6',1);
+       new point(i,y1,'#F4BFE6',1);
+         new point(i,y2,'#DC4966',1);
+    }
+}
+draw7();
