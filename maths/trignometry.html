@@ -61,7 +61,7 @@
                 <div class="sidebar-elem">
                     <a href="../shapes/circle.html">Circle</a>
                 </div>  
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../shapes/ellipse.html">Ellipse</a>
                 </div>
                 <div class="sidebar-elem">
@@ -111,7 +111,7 @@
             </div>
             <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../math/trignometry.html">Trignometry</a>
                     </div>  
                 <div class="sidebar-elem">
@@ -201,16 +201,16 @@
 
         </div>
         <div class="doc">
-            <h1>Ellipse</h1>
+            <h1>Trignometry</h1>
            <p>
-            Draw an Ellipse by providing its center co-ordinates, major and minor axis.<br>Ellipse is a plane curve surrounding two focal points, such that for all points on the curve, the sum of the two distances to the focal points is a constant.<br>
+            Draw a Circle, Circle is a closed figure that is the locus of all points in a plane that are at a given distance (radius) from a given point, the center of the circle.<br>
             You can change all the basic properties like stroke and fill.
    
            </p>
               <h3>Syntax</h3>
                 <pre>
                     <code class="language-js">
-  new ellipse(cx, cy, rx, ry, fill, fill_opacity, stroke, stroke_width);</code>
+  new circle(cx, cy, r, fill, fill_opacity, stroke, stroke_width);</code>
                 </pre>
                 <h3>Parameters</h3>
                 <p>
@@ -222,22 +222,19 @@
                        <td> cy  </td><td>Number : y-coordinate of the center</td>
                     </tr>
                     <tr>
-                       <td> rx  </td><td>Number : length of semi-horizontal axis of the ellipse</td>
+                       <td> r  </td><td>Number : radius of the circle</td>
                     </tr>
                     <tr>
-                        <td> ry  </td><td>Number : length of semi-vertical axis of the ellipse</td>
+                        <td> fill </td><td>Color : fill color of the circle</td>
                     </tr>
                     <tr>
-                        <td> fill </td><td>Color : fill color of the ellipse</td>
+                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the circle</td>
                     </tr>
                     <tr>
-                        <td> fill_opacity  </td><td>Number [0 to 1] or percentage: fill opacity of the ellipse</td>
+                       <td> stroke  </td><td>Color : stroke color of the circle</td>
                     </tr>
                     <tr>
-                       <td> stroke  </td><td>Color : stroke color of the ellipse</td>
-                    </tr>
-                    <tr>
-                       <td> stroke_width  </td><td>Number : stroke width of the ellipse</td>
+                       <td> stroke_width  </td><td>Number : stroke width of the circle</td>
                     </tr>
                     
                    </table>
@@ -245,9 +242,10 @@
                 <h3>Example</h3>
                 <pre>
                     <code class="language-js">
-    new ellipse(WIDTH/2-50, HEIGHT/2, 70,50, "#E089B1", 0.1, "#E089B1", 2);
-    new ellipse(WIDTH/2+50, HEIGHT/2,50, 70, "#695FE6", 0.5, "#695FE6", 4);</code> 
-                     </pre>
+    new circle(WIDTH/2, HEIGHT/2, 70, "#E089B1", 0.1, "#E089B1", 2);
+    new circle(WIDTH/2, HEIGHT/2+50, 70, "#695FE6", 0.5, "#695FE6", 4);
+    new circle(WIDTH/2+100, HEIGHT/2, 70, "#F7BE93", 1, "#F7BE93", 2);</code>
+              </pre>
     <div class="example-container">
 
     </div>
@@ -257,8 +255,11 @@
     t=0;
     function draw(){
         clearCanvas();
-        new ellipse(WIDTH/2-50, HEIGHT/2, 90*abs(sin(t)),60, "#E089B1", 0.1, "#E089B1", 2);
-        t+=0.01;
+        for(i=0;i&lt;360;i+=30){
+            ic=mapRange(i,0,360,0,1);
+            new circle(WIDTH/2+80*cos(degToRad(i+t)),HEIGHT/2+80*sin(degToRad(i+t)),20, `rgba(103, 93, 225,${ic})`, 0.4,  `rgba(103, 93, 225,${ic})`, 1);
+        };
+        t+=1;
         requestAnimationFrame(draw);
     };
 </code>
@@ -277,9 +278,9 @@
         setCanvas(elem);
         function draw(){
            // new point(WIDTH/2, HEIGHT/2, "#695fe6", 5);
-            new ellipse(WIDTH/2-50, HEIGHT/2, 70,50, "#E089B1", 0.1, "#E089B1", 2);
-            new ellipse(WIDTH/2+50, HEIGHT/2,50, 70, "#695FE6", 0.5, "#695FE6", 4);
-            
+            new circle(WIDTH/2, HEIGHT/2, 70, "#E089B1", 0.1, "#E089B1", 2);
+            new circle(WIDTH/2, HEIGHT/2+50, 70, "#695FE6", 0.5, "#695FE6", 4);
+            new circle(WIDTH/2+100, HEIGHT/2, 70, "#F7BE93", 1, "#F7BE93", 2);
         }
         draw();
 
@@ -288,8 +289,11 @@
         var t=0;
         function draw1(){
         clearCanvas();
-        new ellipse(WIDTH/2-50, HEIGHT/2, 90*abs(sin(t)),60, "#E089B1", 0.1, "#E089B1", 2);
-        t+=0.01;
+        for(i=0;i<360;i+=30){
+            ic=mapRange(i,0,360,0,1);
+        new circle(WIDTH/2+80*cos(degToRad(i+t)),HEIGHT/2+80*sin(degToRad(i+t)),20, `rgba(103, 93, 225,${ic})`, 0.4,  `rgba(103, 93, 225,${ic})`, 1);
+        }
+        t+=1;
         requestAnimationFrame(draw1);
         }
         draw1();
