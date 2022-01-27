@@ -817,7 +817,6 @@ function mapRange (value, a, b, c, d) {
 }
 ///////////////////////////////////////////////////////////////////////////////
 
-
 /////////// function to convert degree to radian ///////////////////
 function degToRad(deg) {
     return deg * Math.PI / 180;
@@ -922,11 +921,10 @@ function factorial(n) {
 function combinations(n,r){
     return factorial(n)/(factorial(r)*factorial(n-r));
 }
-
 function permutations(n,r){
     return factorial(n)/factorial(n-r);
 }
-
+ 
 function makecombinations(arr){
     var combs=[];
     for(var i=0;i<arr.length;i++){
@@ -943,12 +941,12 @@ function makecombinations(arr){
 mousepos={x:0,y:0};
   function fetch_mouse_pos(canvas, evt) {
     
-    var recta = canvas.getBoundingClientRect();
+    var rect = canvas.getBoundingClientRect();
     canvas.addEventListener(evt, function(evt) {
         //console.log(evt.clientX - rect.left, evt.clientY - rect.top);
         return mousepos={
-            x: evt.clientX - recta.left,
-            y: evt.clientY - recta.top
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
         };
     });
 };
@@ -968,6 +966,17 @@ function lerp(a, b, n) {
 function cosrp(a, b, n) {
     return a + (b - a) * (1 - Math.cos(n * Math.PI)) / 2;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+/////////////// smoothstep function //////////////////////////////////////////
+
+function smoothstep(a, b, x) {
+    var t = clamp((x - a) / (b - a), 0, 1);
+    return t * t * (3 - 2 * t);
+}
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////// PRNG (Psuedo Random Number Generator) /////////////////////////
@@ -1006,3 +1015,5 @@ function lerp_hex(a, b, n) {
         rb = ab + n * (bb - ab);
     return '#' + ((1 << 24) + (rr << 16) + (rg << 8) + rb | 0).toString(16).slice(1);
 }
+
+
