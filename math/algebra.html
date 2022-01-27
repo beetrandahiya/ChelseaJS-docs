@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link
+    rel="stylesheet"
+    href="../assets/prism.css"
+  />
+    <link rel="stylesheet" href="styles.css">
+    <title>Chelsea.js Docs</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"> <span style="font-weight: 800;">CHELSEA</span>JS</div>
+        <a href="javascript:void(0);" class="navbar-burger" onclick="navbar_resp()">
+            <i class="fa fa-bars"></i>
+            </a>
+        <div class="navstuff">
+            <div>
+                <a href="index.html">Home</a>
+            </div>
+            <div>
+                <a href="examples.html">Examples</a>
+            </div>
+            <div>
+                <a href="download.html">Download</a>
+            </div>
+            <div>
+                <a href="https://www.github.com/beetrandahiya">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 1024 1024" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill="#1B1F23"/>
+                        </svg>                </a>
+            </div>
+            
+        </div>
+       
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-elem ">
+                <a href="../index.html">Getting Started</a>
+            </div>
+            <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../shapes/point.html">Point</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/line.html">Line</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/rectangle.html">Rectangle</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/circle.html">Circle</a>
+                </div>  
+                <div class="sidebar-elem">
+                    <a href="../shapes/ellipse.html">Ellipse</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/arc.html">Arc</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/polygon.html">Polygon</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/regpolygon.html">Regular Polygon</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/star.html">Star</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/cubbezier.html">Cubic Bezier Curve</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/twopointcubicbezier.html">Two Point Cubic Bezier Curve</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/twopointquadbezier.html">Two Point Cubic Bezier Curve</a>
+                </div>
+                
+
+                
+
+            </div>
+            <button class="dropdown-btn">Enviroment <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../shapes/circle.html">Width</a>
+                    </div>  
+                <div class="sidebar-elem">
+                    <a href="../shapes/height.html">Height</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/framerate.html">frameRate</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/clearCanvas.html">clearCanvas</a>
+                    </div>
+                
+
+
+
+            </div>
+            <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../math/trignometry.html">Trigonometry</a>
+                    </div>  
+                <div class="sidebar-elem sidebar-elem-active">
+                    <a href="../math/algebra.html">Algebraic Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/conversions.html">Conversions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/interp.html">Interpolations</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/random.html">Random Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/scaling.html">Scaling Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/constants.html">Constants</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../math/vector.html">Vector Functions</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Color <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../color/rgb.html">RGB</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/rgba.html">RGBA</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/hsl.html">HSL</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/hsla.html">HSLA</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/hex.html">Hex</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/lerpColor.html">Lerp Color</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/colorConversions.html">Color Conversions</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Events <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../events/mouse.html">Mouse</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../events/keyboard.html">Keyboard</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../events/touch.html">Touch</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Time <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                
+                <div class="sidebar-elem">
+                    <a href="../time/frameCount.html">Frame Count</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/getTime.html">Time</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/date.html">Date</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/day.html">Day</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/timeConversions.html">Time Conversions</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/timeTaken.html">Execution time</a>
+                    </div>
+            </div>
+            
+
+
+            
+
+        </div>
+        <div class="doc">
+            <h1>Algebra</h1>
+           <p>
+               Following are the Algebraic functions in Chelsea.js<br>
+               All the functions are briefly explained with examples and easy-to-understand language.
+           </p>
+
+            <h3>Power</h3>
+            <p>
+                Calculates a number raised to a power. In simpler words, x to the power of y is equal to x multiplied by itself y times.
+                <br>
+                For example, 2 to the power of 3 is equal to 2 multiplied by itself 3 times i.e. 8.
+
+            </p>
+            <pre>
+                <code class="language-js">
+    pow(x, y);
+
+    pow(2, 3);     // returns 8
+    pow(3, 2);     // returns 9   </code>
+            </pre>
+            
+
+            <h3>Square Root</h3>
+            <p>
+                The square root of a number is the number that when multiplied by itself, equals the original number.
+                <br>
+                For example, the square root of 16 is 4.
+            </p>
+            <pre>
+                <code class="language-js">
+    sqrt(x);
+
+    sqrt(16);     // returns 4   </code>
+            </pre>
+
+            <h3>Cube Root</h3>
+            <p>
+                The cube root of a number is the number that when multiplied by itself three times, equals the original number.
+                <br>
+                For example, the cube root of 27 is 3.
+            </p>
+            <pre>
+                <code class="language-js">
+    cbrt(x);
+
+    cbrt(27);    // returns 3   </code>
+            </pre>
+
+            <h3>Exponential</h3>
+            <p>
+                The exponential function returns the value of e raised to the power of the value of x.
+                <br>
+                For example, the exponential of 3 is equal to e to the power of 3.
+            </p>
+            <pre>
+                <code class="language-js">
+    exp(x);
+
+    exp(3);     // returns 20.085536923187668   </code>
+            </pre>
+        
+            <h3>Logarithm</h3>
+            <p>
+                The logarithm function returns the natural logarithm (base e) of a number.
+                <br>
+                For example, the logarithm of 3 is equal to the natural logarithm of 3.
+            </p>
+            <pre>
+                <code class="language-js">
+    log(x);
+
+    log(3);      // returns 1.0986122886681098   
+    log(10);     // returns 2.302585092994046   
+    log(E);      // returns 1   </code>
+    </pre>
+            <hr>
+    <h3>Logarithm Base 10</h3>
+            <p>
+                The logarithm base 10 function returns the common logarithm (base 10) of a number.
+                <br>
+                For example, the logarithm base 10 of 3 is equal to the common logarithm of 3.
+            </p>
+            <pre>
+                <code class="language-js">
+    log10(x);
+
+    log10(3);     // returns 0.47712125471966244   
+    log10(10);    // returns 1   
+    log10(E);     // returns 0.4342944819032518  </code>
+    </pre>
+
+    <hr>
+    <h3>Absolute</h3>
+              <p>
+                The absolute function returns the absolute value(magnitude) of a number.
+                <br> The absolute value of a number is always positive.
+
+                </p>
+                <pre>
+                    <code class="language-js">
+    abs(x);
+
+    abs(-5);      // returns 5
+    abs(5);       // returns 5   </code>
+                </pre>
+
+
+                <h3>Floor</h3>
+                <p>
+                    The floor function returns the largest integer less than or equal to a number.
+                    <br>
+                    For example, the floor of 3.14 is equal to 3.
+                </p>
+                <pre>
+                    <code class="language-js">
+    floor(x);
+
+    floor(3.14);  // returns 3
+    floor(3.9);   // returns 3   </code>
+                </pre>
+
+                <h3>Ceil</h3>
+                <p>
+                    The ceil function returns the smallest integer greater than or equal to a number.
+                    <br>
+                    For example, the ceil of 3.14 is equal to 4.
+                </p>
+                <pre>
+                    <code class="language-js">
+    ceil(x);
+
+    ceil(3.14);   // returns 4
+    ceil(3.9);    // returns 4   </code>
+                </pre>
+
+                <h3>Round</h3>
+                <p>
+                    The round function returns the value of a number rounded to the nearest integer.
+                    <br>
+                    For example, the round of 3.14 is equal to 3.
+                </p>
+                <pre>
+                    <code class="language-js">
+    round(x);
+
+    round(3.14);  // returns 3
+    round(3.6);   // returns 4
+    round(3.5);   // returns 4</code>
+    </pre>
+    <h3>Maximum</h3>
+    <p>
+        The maximum function returns the largest of two or more numbers.
+        <br>
+        For example, the maximum of 3 and 4 is equal to 4.
+    </p>
+    <pre>
+        <code class="language-js">
+    max([array]);
+
+    max([3, 4]);    // returns 4
+    max([3, 4, 1, 2, 3]); // returns 4   </code>
+    </pre>
+
+    <h3>Minimum</h3>
+    <p>
+        The minimum function returns the smallest of two or more numbers.
+        <br>
+        For example, the minimum of 3 and 4 is equal to 3.
+    </p>
+    <pre>
+        <code class="language-js">
+    min([array]);
+
+    min([3, 4]);    // returns 3
+    min([3, 4, 1, 2, 4, 5, 7, 3]); // returns 1 
+</code>
+</pre>
+<hr>
+
+<h3>Factorial</h3>
+<p>
+    The factorial function returns the factorial of a number. In simpler words factorial of a number is equal to the product of all the numbers from 1 to the number itself.
+    <br>
+    For example, the factorial of 3 is equal to 3 multiplied by 2 multiplied by 1.
+</p>
+$$ \text{factorial}(x) = x! = (x) \times (x-1) \times (x-2) \times (x-3) ... \times 1 $$
+<pre>
+    <code class="language-js">
+    factorial(x);
+
+    factorial(3);     // returns 6
+    factorial(5);     // returns 120   
+    factorial(20);    // returns 2432902008176640000
+</code>
+</pre>
+\(
+    \newcommand{\Perm}[2]{{}^{#1}\!P_{#2}}
+    \newcommand{\Comb}[2]{{}^{#1}C_{#2}}
+\)
+<h3>Combinations</h3>
+<p>
+    The combinations function returns the number of combinations of a set of objects.
+    <br>
+    For example, the combinations of 2 objects in a set of 3 objects is equal to 3.<br>
+    In simpler words, lets say we have three balls : [<span style="color: red;">red</span>, <span style="color: green;">green</span>, <span style="color: blue;">blue</span>].<br>
+    Then all possible combinations of two objects are : [<span style="color: red;">red</span>, <span style="color: green;">green</span>], [<span style="color: red;">red</span>, <span style="color: blue;">blue</span>], [<span style="color: green;">green</span>, <span style="color: blue;">blue</span>].
+   <br> i.e. $$ \Comb{3}{2} = 3$$
+
+    
+
+$$ \text{combinations}(n, k) = \frac{n!}{k!(n-k)!}= \Comb{n}{k} $$
+</p>
+<pre>
+    <code class="language-js">
+    combinations(n, k);
+
+    combinations(3, 2);     // returns 3
+    combinations(4, 2);     // returns 6
+    combinations(5, 2);     // returns 10
+    combinations(6, 2);     // returns 15
+    combinations(7, 2);     // returns 21
+    combinations(8, 2);     // returns 28
+    combinations(9, 2);     // returns 36
+    combinations(10, 2);    // returns 45
+    </code>
+</pre>
+
+<h3>Permutations</h3>
+<p>
+    The permutations function returns the number of permutations of a set of objects.
+    <br>
+    For example, the permutations of 2 objects in a set of 3 objects is equal to 6.<br>
+    In simpler words, lets say we have three balls : [<span style="color: red;">red</span>, <span style="color: green;">green</span>, <span style="color: blue;">blue</span>].<br>
+    Then all possible permutations of two objects are :<br> [<span style="color: red;">red</span>,  <span style="color: green;">green</span>], [<span style="color: red;">red</span>, <span style="color: blue;">blue</span>], [ <span style="color: green;">green</span>, <span style="color: blue;">blue</span>],[ <span style="color: green;">green</span>, <span style="color: red;">red</span>], [<span style="color: blue;">blue</span>, <span style="color: red;">red</span>], [<span style="color: blue;">blue</span>,  <span style="color: green;">green</span>].
+<br>
+    i.e. $$ \Perm{3}{2} = 6$$
+    $$ \text{permutations}(n, k) = \frac{n!}{(n-k)!}= \Perm{n}{k} $$
+</p>
+
+<pre>
+    <code class="language-js">
+    permutations(n, k);
+
+    permutations(3, 2);     // returns 6
+    permutations(4, 2);     // returns 12
+    permutations(5, 2);     // returns 20
+    permutations(6, 2);     // returns 30
+    permutations(7, 2);     // returns 42
+    permutations(8, 2);     // returns 56
+    permutations(9, 2);     // returns 72
+    permutations(10, 2);    // returns 90
+    </code>
+</pre>
+
+<h3>Make Combinations</h3>
+<p>
+    Returns an array of all possible combinations of two objects in the given array.
+    <br><br>    
+    For example, lets say we have three balls : [<span style="color: red;">red</span>, <span style="color: green;">green</span>, <span style="color: blue;">blue</span>].<br>
+    Then all possible combinations of two objects are : [<span style="color: red;">red</span>, <span style="color: green;">green</span>], [<span style="color: red;">red</span>, <span style="color: blue;">blue</span>], [<span style="color: green;">green</span>, <span style="color: blue;">blue</span>].<br>
+    This function returns the array: 
+    <div style="width:100%; font-size: 1.2em;text-align: center; margin-bottom:1em;">
+    [[<span style="color: red;">red</span>, <span style="color: green;">green</span>],<br>
+     [<span style="color: red;">red</span>, <span style="color: blue;">blue</span>], <br>
+      [<span style="color: green;">green</span>, <span style="color: blue;">blue</span>]]
+</div>
+</p>
+<pre>
+    <code class="language-js">
+    makeCombinations(arr);
+
+    makeCombinations([1, 2, 3]);         // returns [[1, 2], [1, 3], [2, 3]]
+    makeCombniations([🔴,🔵,🟢,🟣]);   //retuns [[🔴,🔵], [🔴,🟢], [🔴,🟣], [🔵,🟢], [🔵,🟣], [🟢,🟣]]
+</code>
+</pre>
+<br>
+<hr>
+
+
+
+
+
+
+            <hr>
+
+    
+        </div>
+
+    </div>
+    
+    <script src="../main.js"></script>
+    <script src="script.js"></script>
+    
+    <script src="../assets/prism.js"></script>
+
+
+</body>
+</html>

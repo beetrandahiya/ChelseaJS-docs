@@ -25,6 +25,7 @@ const QUARTER_PI = Math.PI / 4;
 const THIRD_PI = Math.PI / 3;
 const TWO_PI = Math.PI * 2;
 const PHI = (1 + Math.sqrt(5)) / 2;
+const E = Math.E;
 
 
 
@@ -876,6 +877,9 @@ function abs(e){
 function sqrt(e){
     return Math.sqrt(e);
 }
+function cbrt(e){
+    return Math.cbrt(e);
+}
 function pow(e,p){
     return Math.pow(e,p);
 }
@@ -918,7 +922,11 @@ function factorial(n) {
 function combinations(n,r){
     return factorial(n)/(factorial(r)*factorial(n-r));
 }
- 
+
+function permutations(n,r){
+    return factorial(n)/factorial(n-r);
+}
+
 function makecombinations(arr){
     var combs=[];
     for(var i=0;i<arr.length;i++){
