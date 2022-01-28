@@ -30,7 +30,7 @@ const E = Math.E;
 
 
 ///////////////////////////////////////////////////////////////////////
-///////////////////Scaling functions //////////////////////////////////
+///////////////////Random and Scaling functions //////////////////////////////////
 
 function random(a,b){
     return Math.random()*(b-a)+a;
@@ -44,9 +44,17 @@ function randomBool(){
     return Math.random()>0.5;
 }
 
+function randomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
+}
+
 function randomColorRGB(){
     return "rgb("+randomInt(0,255)+","+randomInt(0,255)+","+randomInt(0,255)+")";
 }
+function randomColorRGBA() {
+    return "rgba("+randomInt(0,255)+","+randomInt(0,255)+","+randomInt(0,255)+","+random(0,1)+")";
+}
+
 
 function randomColorHex(){
     return "#"+randomInt(0,255).toString(16)+randomInt(0,255).toString(16)+randomInt(0,255).toString(16);
@@ -54,6 +62,10 @@ function randomColorHex(){
 
 function randomColorHSL(){
     return "hsl("+randomInt(0,360)+","+randomInt(0,100)+"%,"+randomInt(0,100)+"%)";
+}
+
+function randomColorHSLA() {
+    return "hsla("+randomInt(0,360)+","+randomInt(0,100)+"%,"+randomInt(0,100)+"%,"+random(0,1)+")";
 }
 
 function clamp(e,a,b){                        //constrain value of e between a and b
