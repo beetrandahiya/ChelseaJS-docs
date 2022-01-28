@@ -126,7 +126,7 @@
                 <div class="sidebar-elem">
                     <a href="../math/interp.html">Interpolations</a>
                     </div>
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../math/random.html">Random Functions</a>
                     </div>
                 <div class="sidebar-elem">
@@ -135,7 +135,7 @@
                 <div class="sidebar-elem">
                     <a href="../math/constants.html">Constants</a>
                 </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../math/vector.html">Vector Functions</a>
                 </div>
             </div>
@@ -204,188 +204,306 @@
 
         </div>
         <div class="doc">
-            <h1>Random </h1>
-           <p>
-               Following are the Random functions in Chelsea.js<br>
-               All the functions are briefly explained in easy-to-understand language.
-           </p>
 
-            <h3>Random</h3>
+            <h1>
+                Vectors
+            </h1>
             <p>
-                The random function returns a random number in the given range.
+                Yay! You have vectors too in Chelsea.js <br>
+                Vectors are used to represent points in 2D space. They are used to represent the position of objects in 2D space.
+                Vectors open a whole new frontier in the world of graphics.
+                <br>
+                Following is a list of all the functions you can use with vectors in Chelsea.js
+                
             </p>
-
-            <pre>
-                <code class="language-js">
-    random(min, max);
-
-    random(4, 10);     // returns a random number between 4 and 10</code>
-            </pre>
-       <!--    <h4>Examples</h4>
-            <pre>
-                <code class="language-js">
-    function draw(){
-        clearCanvas();
-        new point(random(0,WIDTH), random(0,HEIGHT),'red',6);
-        requestAnimationFrame(draw);
-    }</code>
-            </pre>
-            <div class="example-container"></div>
---> 
-            <h3>Random Integer</h3>
+            <h3>
+                Create Vector
+            </h3>
             <p>
-                The randomInt function returns a random integer in the given range.
+                createVector(x, y) is used to create a vector with components x and y in 2D space.
             </p>
-
             <pre>
                 <code class="language-js">
-    randomInt(min, max);
+    createVector(x,y);
 
-    randomInt(3,14);    // returns a random integer between 3 and 14</code>
+    var v = createVector(1,2);          // v= { x : 1, y : 2} </code>
+            </pre>
+            <h3>
+                Add Vectors
+            </h3>
+            <p>
+                addVec(v1, v2) is used to add a vector to another vector.
+            </p>
+            <pre>
+                <code class="language-js">
+    addVec(v1, v2);
+
+    var v1 = createVector(1,2);
+    var v2 = createVector(3,4);
+
+    var v3 = addVec(v1, v2);              // v3 = { x : 4, y : 6} </code>
+            </pre>
+            <h3>
+                Subtract Vectors
+            </h3>
+            <p>
+                subtractVec(v1, v2) is used to subtract a vector from another vector.
+            </p>
+            <pre>
+                <code class="language-js">
+    subtractVec(v1, v2);
+
+    var v1 = createVector(1,4);
+    var v2 = createVector(6,2);
+
+    var v3 = subtractVec(v1, v2);          // v3 = { x : -5, y : 2} </code>
+            </pre>
+            <h3>
+                Multiply Vector
+            </h3>
+            <p>
+                multiplyVec(v, scalar) is used to multiply a vector to a scalar( magnitude ).
+            </p>
+            <pre>
+                <code class="language-js">
+    multiplyVec(v, scalar);
+
+    var v = createVector(1,2);
+    var s = 3;
+
+    var v2 = multiplyVec(v, s);            // v2 = { x : 3, y : 6} </code>
+            </pre>
+            <h3>
+                Divide Vector
+            </h3>
+            <p>
+                divideVec(v, scalar) is used to divide a vector by a scalar( magnitude ).
+            </p>
+            <pre>
+                <code class="language-js">
+    divideVec(v, scalar);
+
+    var v = createVector(5,9);
+    var s = 3;
+
+    var v2 = divideVec(v, s);           // v2 = {x: 1.6666666666666667, y: 3} </code>
+            </pre>
+            <h3>
+                Get Distance between two vectors
+            </h3>
+            <p>
+                distanceVec(v1, v2) is used to get the distance between heads of two vectors.
+            </p>
+            <pre>
+                <code class="language-js">
+    distanceVec(v1, v2);
+
+    var v1 = createVector(1,2);
+    var v2 = createVector(3,4);
+
+    var d = distanceVec(v1, v2);          // d = 2.8284271247461903 </code>
     </pre>
-
-    <h3>Random Boolean</h3>
+    <h3>
+        Angle Between Vectors
+    </h3>
     <p>
-        The randomBool function returns a random boolean value.(True or False)
+        angleBetween(v1, v2) is used to get the angle between two vectors.
     </p>
-
     <pre>
         <code class="language-js">
-    randomBool();    // returns a random boolean value</code>
+    angleBetween(v1, v2);
+
+    var v1 = createVector(1,2);
+    var v2 = createVector(3,4);
+
+    var a = angleBetween(v1, v2);          // a = 0.17985349979247847 </code>
     </pre>
-
-
-    <hr>
-
-    <h3>Random Element</h3>
+    <h3>
+        Rotate Vector
+    </h3>
     <p>
-        The randomElement function returns a random element from the given array.
+        rotate(v, angle) is used to rotate a vector by an angle.
     </p>
-
     <pre>
         <code class="language-js">
-    randomElement(array);
+    rotate(v, angle);
 
-    randomElement(['a', 'b', 'c']);    // returns a random element from the given array i.e. 'a' or 'b' or 'c'</code>
+    var v = createVector(1,2);
+
+    var v2 = rotate(v, PI/2);            // v2 = { x : 2, y : -1} </code>
     </pre>
 
-    <hr>
 
-    <h3>Random Color RGB</h3>
-    <p>
-        The randomColorRGB function returns a random color in RGB format.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomColorRGB();    // returns a random color in RGB format, for example rgb(23,65,145)</code>
-    </pre>
-
-    <h3>Random Color RGBA</h3>
-    <p>
-        The randomColorRGBA function returns a random color in RGBA format.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomColorRGBA();    // returns a random color in RGBA format, for example rgba(213,65,145,0.5)</code>
-    </pre>
-
-    <h3>Random Color HSL</h3>
-    <p>
-        The randomColorHSL function returns a random color in HSL format.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomColorHSL();    // returns a random color in HSL format, for example hsl(213,65%,35%)</code>
-    </pre>
-
-    <h3>Random Color HSLA</h3>
-    <p>
-        The randomColorHSLA function returns a random color in HSLA format.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomColorHSLA();    // returns a random color in HSLA format, for example hsla(213,65%,35%,0.5)</code>
-    </pre>
-
-    <h3>Random Color Hex</h3>
-    <p>
-        The randomColorHex function returns a random color in Hex format.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomColorHex();    // returns a random color in Hex format, for example #ff00ff</code>
-    </pre>
-
-    <h3>Random Gaussian</h3>
-    <p>
-        The randomGaussian function returns a random number with a Gaussian or Normal distribution.<br>
-        It means, that the the random number is more probable to be near the mean value.<br>
-        I like to call it a "Biased Random Number" because it is biased towards the mean value.
-    </p>
-
-    <pre>
-        <code class="language-js">
-    randomGaussian(mean, standardDeviation);
-
-    randomGaussian(0, 1);    // returns a random number with a Gaussian or Normal distribution</code>
-    </pre>
-
-    <div class="example-container"></div>
-<hr>
     
-<h3>
-    Random Vector
-</h3>
-<p>
-    randomVector() generates a normalized random vector.<br>
-    </p>
-<pre>
-    <code class="language-js">
-randomVector();  
+
+            <h3>
+                Magnitude
+            </h3>
+            <p>
+                magnitude(v) is used to get the magnitude of a vector.<br>
+                The magnitude is the length of the vector.
+            </p>
+            <pre>
+                <code class="language-js">
+    magnitude(v);
+
+    var v = createVector(3,4);
+
+    var m = magnitude(v);                // m = 5 </code>
+            </pre>
+            <h3>
+                Angle
+            </h3>
+            <p>
+                angle(v) is used to get the angle( in radian ) of a vector with the positive x-axis.
+            </p>
+            <pre>
+                <code class="language-js">
+    angle(v);
+
+    var v = createVector(3,4);
+
+    var a = angle(v);                    // a = 0.9272952180016122 </code>
+            </pre>
+            <h3>
+                Normalized Vector
+            </h3>
+            <p>
+                normalize(v) is used to get the normalized vector of a vector.<br>
+                The normalized vector is a vector with the same direction as the original vector, but with a magnitude of 1.
+            </p>
+            <pre>
+                <code class="language-js">
+    normalize(v);
+
+    var v = createVector(3,4);
+
+    var n = normalize(v);                // n = { x : 0.6, y : 0.8} </code>
+            </pre>
+            <hr>
+            <h3>
+                Dot Product
+            </h3>
+            <p>
+                dotProduct(v1, v2) is used to get the dot product of two vectors.<br>
+                The dot product is the sum of the products of the components of the vectors.
+            </p>
+            <pre>
+                <code class="language-js">
+    dotProduct(v1, v2);
+
+    var v1 = createVector(4,6);
+    var v2 = createVector(3,4);
+
+    var d = dotProduct(v1, v2);          // d = 36 </code>
+            </pre>
+            <h3>
+                Cross Product
+            </h3>
+            <p>
+                crossProduct(v1, v2) is used to get the cross product of two vectors.<br>
+                The cross product in 2D space is the area of a parallelogram with the two vectors as sides
+                and a negative value of the cross product simply signifies that the vectors are in clockwise order.
+            </p>
+            <pre>
+                <code class="language-js">
+    crossProduct(v1, v2);
+
+    var v1 = createVector(4,6);
+    var v2 = createVector(3,4);
+
+    var c = crossProduct(v1, v2);          // c = -2 </code>
+            </pre>
+            <hr>
+            <h3>
+                Projection  
+            </h3>
+            <p>
+                projection(v1, v2) is used to get the projection of a vector(v1) onto another vector(v2).<br>
+                The projection in simple words is the length of shadow that vector(v1) casts on vector(v2).
+            </p>
+            <pre>
+                <code class="language-js">
+    projection(v1, v2);
+
+    var v1 = createVector(4,6);
+    var v2 = createVector(3,4);
+
+    var p = projection(v1, v2);          // p = 2 </code>
+            </pre>
+            <h3>
+                Reflection
+            </h3>
+            <p>
+                reflect(v1, v2) is used to get the reflection of a vector(v1) in another vector(v2).<br>
+                The reflection in simple words is the vector that is created by reflecting the vector(v1) in vector(v2).
+            </p>
+            <pre>
+                <code class="language-js">
+    reflect(v1, v2);
+
+    var v1 = createVector(1,6);
+    var v2 = createVector(2,4);
+
+    var r = reflect(v1, v2);          // r = { x : 4.2, y : 4.4} </code>
+            </pre>
+            <hr>
+        
+            <h3>
+                Random Vector
+            </h3>
+            <p>
+                randomVector() generates a normalized random vector.<br>
+                </p>
+            <pre>
+                <code class="language-js">
+    randomVector();  
+    </code>
+            </pre>
+            <h3>
+                Random Vector with Components
+            </h3>
+            <p>
+                randomVectorComp(min, max) generates a vector with random components between minimum and maximum value.<br>
+                </p>
+            <pre>
+                <code class="language-js">
+    randomVectorComp(min, max);
+    </code>
+</pre>
+            <h3>
+                Random Vector with Magnitude
+            </h3>
+            <p>
+                randomVectorMagnitude(min, max) generates a random vector with the specified minimum and maximum values.<br>
+                </p>
+            <pre>
+                <code class="language-js">
+    randomVectorMagnitude(min, max);</code>
+            </pre>
+            <h3>
+                Random Vector with Angle
+            </h3>
+            <p>
+                randomVectorAngle(angle, min, max) generates a random vector with magnitude between m1, m2 at a given angle.<br>
+                magnitude constraints are optional.
+                </p>
+            <pre>
+                <code class="language-js">
+    randomVectorAngle(angle, min, max);
 </code>
 </pre>
-<h3>
-    Random Vector with Components
-</h3>
-<p>
-    randomVectorComp(min, max) generates a vector with random components between minimum and maximum value.<br>
-    </p>
-<pre>
-    <code class="language-js">
-randomVectorComp(min, max);
-</code>
-</pre>
-<h3>
-    Random Vector with Magnitude
-</h3>
-<p>
-    randomVectorMagnitude(min, max) generates a random vector with the specified minimum and maximum values.<br>
-    </p>
-<pre>
-    <code class="language-js">
-randomVectorMagnitude(min, max);</code>
-</pre>
-<h3>
-    Random Vector with Angle
-</h3>
-<p>
-    randomVectorAngle(angle, min, max) generates a random vector with magnitude between m1, m2 at a given angle.<br>
-    magnitude constraints are optional.
-    </p>
-<pre>
-    <code class="language-js">
-randomVectorAngle(angle, min, max);
-</code>
-</pre>
-   
- 
+<hr>
+
+            
 
 
+
+
+
+
+
+            
 
 
 
@@ -397,7 +515,6 @@ randomVectorAngle(angle, min, max);
     
     <script src="../main.js"></script>
     <script src="script.js"></script>
-    <script src="randomscript.js"></script>
     
     <script src="../assets/prism.js"></script>
 

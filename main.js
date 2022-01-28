@@ -23,7 +23,6 @@ const TAU = 2 * Math.PI;
 const HALF_PI = Math.PI / 2;
 const QUARTER_PI = Math.PI / 4;
 const THIRD_PI = Math.PI / 3;
-const TWO_PI = Math.PI * 2;
 const PHI = (1 + Math.sqrt(5)) / 2;
 const E = Math.E;
 
@@ -759,17 +758,31 @@ function crossProduct(v1, v2) {
     return v1.x * v2.y - v1.y * v2.x;
 }
 
-function length(v) {
+function magnitude(v) {
     return Math.sqrt(dotProduct(v, v));
 }
 
 function normalize(v) {
-    var l = length(v);
+    var l = magnitude(v);
     return createVector(v.x / l, v.y / l);
 }
 
+function projection(v1, v2) {
+    return dotProduct(v1, v2) / magnitude(v2);
+}
+
+function reflect(v1, v2) {
+    var cp = crossProduct(v1, v2);
+    theta=angleBetween(v1,v2);
+    if(cp<0){
+        theta = -theta;
+    }
+    return rotate(v1,2*theta);
+
+}
+
 function angleBetween(v1, v2) {
-    return Math.acos(dotProduct(v1, v2) / (length(v1) * length(v2)));
+    return Math.acos(dotProduct(v1, v2) / (magnitude(v1) * magnitude(v2)));
 }
 
 function rotate(v, angle) {
@@ -795,18 +808,30 @@ function divideVec(v, scalar) {
 }
 
 function distanceVec(v1, v2) {
-    return length(subtract(v1, v2));
+    return magnitude(subtractVec(v1, v2));
 }
 
 function angle(v) {
     return Math.atan2(v.y, v.x);
 }
 
-function randomVector(min, max) {
+function randomVector(){
+    return normalize(createVector(Math.random(),Math.random()));
+}
+
+function randomVectorComp(min, max) {
     return createVector(Math.random() * (max - min) + min, Math.random() * (max - min) + min);
 }
 
+function randomVectorMagnitude(min, max) {
+    var v = randomVector();
+    return multiplyVec(v,min,max);
+}
 
+function randomVectorAngle(angle, min=0, max=1) {
+    var v = createVector(Math.cos(angle),Math.sin(angle));
+    return multiplyVec(v,random(min,max));
+}
 
 ///////////// function to Clear canvas on every draw /////////////////////////////////
 
