@@ -18,6 +18,7 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+<link rel="stylesheet" href="conversionstyles.css">
 </head>
 <body>
     <div class="navbar">
@@ -213,11 +214,14 @@
                 All the functions used for conversions in the library are listed here.
 
             </p>
+            <h2>
+                Angle Conversions
+            </h2>
             <h3>
                 Degree to Radian
             </h3>
             <p>
-                The function degToRad() converts the given angle in degrees to radians.<br>
+                The function degToRad(deg) converts the given angle in degrees to radians.<br>
                 You might use it a lot because, all the angle inputs in the library are in radians.
             </p>
             <pre>
@@ -230,7 +234,7 @@
                 Radian to Degree
             </h3>
             <p>
-                The function radToDeg() converts the given angle in radians to degrees.<br>
+                The function radToDeg(rad) converts the given angle in radians to degrees.<br>
             </p>
             <pre>
                 <code class="language-js">
@@ -238,12 +242,95 @@
 
     radToDeg(PI);          // returns 180</code>
             </pre>
-
+<hr>
+            <h2>
+                Color Conversions
+            </h2>
+            
             <h3>
                 RGB to Hex
             </h3>
+            <p>
+                The function RGBtoHex(r,g,b) converts the given RGB color to Hex color form.<br>
+            </p>
+            <pre>
+                <code class="language-js">
+    RGBtoHex(r,g,b);
 
+    RGBtoHex(255,0,0);     // returns "#ff0000"</code>
+            </pre>
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            r
+                        </td>
+                        <td>
+                            Number [0-255] : Red value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            g
+                        </td>
+                        <td>
+                            Number [0-255] : Green value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            b
+                        </td>
+                        <td>
+                            Number [0-255] : Blue value of the color
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="rgbtohex">
+               RGB( <input type="text" oninput="rgbhexex()" value="105">, <input type="text" oninput="rgbhexex()" value="95">, <input type="text"  oninput="rgbhexex()" value="230">)
 
+               <div class="color-output"></div>
+            </div>
+            <hr>
+            <h3>
+                Hex to RGB
+            </h3>
+            <p>
+                The function HexToRGB(hex) converts the given Hex color to RGB color form.<br>
+                It returns an object with the properties r, g, b.
+            </p>
+            <pre>
+                <code class="language-js">
+    HexToRGB(hex);
+
+    HexToRGB("#ff0000");   // returns {r: 255, g: 0, b: 0}</code>
+            </pre>
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            hex
+                        </td>
+                        <td>
+                            String : Hex color value
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="hextorgb">
+                <input type="text" oninput="hexrgbex()" value="#ff0000">
+
+                <div class="color-output"></div>
+            </div>
+            <hr>
+            
     
         </div>
 
@@ -251,7 +338,7 @@
     
     <script src="../main.js"></script>
     <script src="script.js"></script>
-    
+    <script src="conversionscript.js"></script>
     <script src="../assets/prism.js"></script>
 
 

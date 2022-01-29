@@ -172,6 +172,12 @@ body{
     margin: 1em 1em;
     width: calc(100% - 6em);
 }
+.doc h2{
+    font-size:2em;
+    margin: 2em 1em;
+    width: calc(100% - 6em);
+    border-bottom: 1px solid #695fe6;
+}
 .doc img{
     width: 100%;
     margin: 1em 0;
@@ -186,6 +192,7 @@ body{
 .doc pre{
     width: calc(100% - 6em);
 }
+
 
 .example-container{
     width: calc(100% - 6em);
