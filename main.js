@@ -1012,6 +1012,10 @@ function smoothstep(a, b, x) {
     return t * t * (3 - 2 * t);
 }
 
+function smootherstep(a, b, x) {
+    var t = clamp((x - a) / (b - a), 0, 1);
+    return t * t * t * (t * (t * 6 - 15) + 10);
+}
 
 
 
