@@ -325,11 +325,62 @@
                 </table>
             </p>
             <div class="color-example" id="hextorgb">
-                <input type="text" oninput="hexrgbex()" value="#ff0000">
+                <input type="text" oninput="hexrgbex()" value="#32FE90">
 
                 <div class="color-output"></div>
             </div>
             <hr>
+            <h3>
+                RGB to HSL
+            </h3>
+            <p>
+                The function RGBtoHSL(r,g,b) converts the given RGB color to HSL color form.<br>
+                It returns an object with the properties h, s, l.
+            </p>
+            <pre>
+                <code class="language-js">
+    RGBtoHSL(r,g,b);
+
+    RGBtoHSL(255,0,0);     // returns {h: 0, s: 100%, l: 50%}</code>
+            </pre>
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            r
+                        </td>
+                        <td>
+                            Number [0-255] : Red value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            g
+                        </td>
+                        <td>
+                            Number [0-255] : Green value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            b
+                        </td>
+                        <td>
+                            Number [0-255] : Blue value of the color
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="rgbtohsl">
+                RGB( <input type="text" oninput="rgbhslex()" value="105">, <input type="text" oninput="rgbhslex()" value="95">, <input type="text"  oninput="rgbhslex()" value="230">)
+
+                <div class="color-output"></div>
+            </div>
+            <hr>
+        
             
     
         </div>

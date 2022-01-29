@@ -28,3 +28,22 @@ elem.style.borderWidth="8px";
 }
 
 hexrgbex();
+
+//rgbtohsl
+
+function rgbhslex(){
+    elem=document.getElementById("rgbtohsl");
+    r=parseInt(elem.getElementsByTagName("input")[0].value);
+    g=parseInt(elem.getElementsByTagName("input")[1].value);
+    b=parseInt(elem.getElementsByTagName("input")[2].value);
+    hsl=RGBtoHSL(r,g,b);
+    console.log(hsl);
+    hsl="hsl( "+hsl.h+", "+hsl.s+", "+hsl.l+" )";
+    out=document.getElementsByClassName("color-output")[2];
+    out.innerHTML=hsl;
+
+    elem.style.borderColor=hsl;
+    elem.style.borderWidth="8px";
+
+}
+rgbhslex();

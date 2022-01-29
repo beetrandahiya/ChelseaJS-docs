@@ -1066,6 +1066,8 @@ function lerp_hex(a, b, n) {
 
 ///////////////////////////////////////////////////////////////////////////////
 /////////////// conversion functions //////////////////////////////////////////
+
+
 function RGBtoHex(r, g, b) {
     return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 }
@@ -1084,6 +1086,7 @@ function HextoRGB(hex) {
       b: parseInt(result[3], 16)
     } : null;
   }
+
 
 function RGBtoHSL(r,g,b){
     r /= 255;
@@ -1125,7 +1128,11 @@ function RGBtoHSL(r,g,b){
     s = +(s * 100).toFixed(1);
     l = +(l * 100).toFixed(1);
 
-    return "hsl(" + h + "," + s + "%," + l + "%)";
+    return {
+        h : h,
+        s : s+"%",
+        l : l+"%"
+    }
 }
 
 function HSLtoRGB(h,s,l){
@@ -1155,7 +1162,11 @@ function HSLtoRGB(h,s,l){
         g = Math.round((g + m) * 255);
         b = Math.round((b + m) * 255);
     
-        return "rgb(" + r + "," + g + "," + b + ")";
+        return {
+            r : r,
+            g : g,
+            b : b 
+        }
 }
 
 function HextoHSL(H){
@@ -1200,7 +1211,11 @@ function HextoHSL(H){
   s = +(s * 100).toFixed(1);
   l = +(l * 100).toFixed(1);
 
-  return "hsl(" + h + "," + s + "%," + l + "%)";
+  return {
+    h : h,
+    s : s+"%",
+    l : l+"%"
+}
 }
 
 function HSLToHex(h,s,l) {
