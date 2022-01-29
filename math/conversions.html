@@ -252,6 +252,7 @@
             </h3>
             <p>
                 The function RGBtoHex(r,g,b) converts the given RGB color to Hex color form.<br>
+                It returns a string with the Hex color value.
             </p>
             <pre>
                 <code class="language-js">
@@ -380,7 +381,151 @@
                 <div class="color-output"></div>
             </div>
             <hr>
-        
+
+            
+            <h3>
+                HSL to RGB
+            </h3>
+            <p>
+                The function HSLtoRGB(h,s,l) converts the given HSL color to RGB color form.<br>
+                It returns an object with the properties r, g, b.
+            </p>
+            <pre>
+                <code class="language-js">
+    HSLtoRGB(h,s,l);
+
+    HSLtoRGB(0,100%,50%);   // returns {r: 255, g: 0, b: 0}</code>
+            </pre>
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            h
+                        </td>
+                        <td>
+                            Number [0-360] : Hue value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            s
+                        </td>
+                        <td>
+                            Number [0-100] : Saturation value of the color<br>
+                            Enter only the number, and not the percentage sign.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            l
+                        </td>
+                        <td>
+                            Number [0-100] : Lightness value of the color<br>
+                            Enter only the number, and not the percentage sign.
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="hsltorgb">
+                HSL( <input type="text" oninput="hslrgbex()" value="295">, <input type="text" oninput="hslrgbex()" value="100">%, <input type="text"  oninput="hslrgbex()" value="50">% )
+
+                <div class="color-output"></div>
+            </div>
+            <hr>
+
+            <h3>
+                HSL to Hex
+            </h3>
+            <p>
+                The function HSLtoHex( h, s, l ) converts the given HSL color to Hex color form.<br>
+                It returns a string with the Hex color value.
+            </p>
+            <pre>
+                <code class="language-js">
+    HSLtoHex(h,s,l);
+
+    HSLtoHex(188,100,60);      // returns '#33e3ff'</code>
+    </pre>
+
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            h
+                        </td>
+                        <td>
+                            Number [0-360] : Hue value of the color
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            s
+                        </td>
+                        <td>
+                            Number [0-100] : Saturation value of the color<br>
+                            Enter only the number, and not the percentage sign.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            l
+                        </td>
+                        <td>
+                            Number [0-100] : Lightness value of the color<br>
+                            Enter only the number, and not the percentage sign.
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="hsltohex">
+                HSL( <input type="text" oninput="hslhexex()" value="45">, <input type="text" oninput="hslhexex()" value="100">%, <input type="text"  oninput="hslhexex()" value="70">% )
+
+                <div class="color-output"></div>
+            </div>
+            <hr>
+
+            <h3>
+                Hex to HSL
+            </h3>
+            <p>
+                The function HexToHSL(hex) converts the given Hex color to HSL color form.<br>
+                It returns an object with the properties h, s, l.
+            </p>
+            <pre>
+                <code class="language-js">
+    HexToHSL(hex);
+
+    HexToHSL('#33e3ff');      // returns {h: 188, s: 100, l: 60}</code>
+            </pre>
+            <h4>
+                Parameters
+            </h4>
+            <p>
+                <table class="param-table">
+                    <tr>
+                        <td>
+                            hex
+                        </td>
+                        <td>
+                            String : Hex color value
+                        </td>
+                    </tr>
+                </table>
+            </p>
+            <div class="color-example" id="hextohsl">
+                <input type="text" oninput="hexhslex()" value="#33e3ff">
+
+                <div class="color-output"></div>
+            </div>
+            <hr>
+           
+
             
     
         </div>
