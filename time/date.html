@@ -332,12 +332,35 @@
     </h3>
     <pre>
         <code class="language-js">
+    function draw(){
+        formats=[
+            'mm/dd/yyyy',
+            'dd/mm/yyyy',
+            'yyyy/mm/dd',
+            'yyyy/dd/mm',
+            'dd/yyyy/mm',
+            'mm/yyyy/dd'
+        ]
+        formats2=[
+            'mm-dd-yyyy',
+            'dd-mm-yyyy',
+            'yyyy-mm-dd',
+            'yyyy-dd-mm',
+            'dd-yyyy-mm',
+            'mm-yyyy-dd'
+        ]
+
+        for(i=0;i&lt;formats.length;i++){
+            t=getDateString(formats[i]);
+            t2=getDateString(formats2[i]);
+            new text(50,60+i*HEIGHT/8,"Today is "+t,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
+            new text(450,60+i*HEIGHT/8,"Today is "+t2,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
+        } 
+    }
+    draw();
             </code>
     </pre>
     <div class="example-container"></div>
-
-
-
 
 
 
@@ -390,9 +413,9 @@
             }
 
             
-            new text(100,HEIGHT/2-60,"Today is "+t.day+dn+" day",60,'Montserrat',500,'#fff',0,'#69f506','start');
-            new text(100,HEIGHT/2,"of "+t.m+mn+" month",60,'Montserrat',500,'#fff',0,'#69f506','start');
-            new text(100,HEIGHT/2+60,"of the Year "+t.y,60,'Montserrat',500,'#fff',0,'#69f506','start');
+            new text(100,HEIGHT/2-60,"Today is "+t.day+dn+" day",60,'Montserrat',500,'#fff',0,'#695FE6','start');
+            new text(100,HEIGHT/2,"of "+t.m+mn+" month",60,'Montserrat',500,'#fff',0,'#695FE6','start');
+            new text(100,HEIGHT/2+60,"of the Year "+t.y,60,'Montserrat',500,'#fff',0,'#695FE6','start');
 
             
         }
@@ -410,11 +433,22 @@
                 'dd/yyyy/mm',
                 'mm/yyyy/dd'
             ]
+            formats2=[
+                'mm-dd-yyyy',
+                'dd-mm-yyyy',
+                'yyyy-mm-dd',
+                'yyyy-dd-mm',
+                'dd-yyyy-mm',
+                'mm-yyyy-dd'
+            ]
 
             for(i=0;i<formats.length;i++){
                 t=getDateString(formats[i]);
-            new text(20,50+i*HEIGHT/8,"Today is "+t,30,'Montserrat',500,'#fff',0,'#69f506','start');
+                t2=getDateString(formats2[i]);
+                new text(50,60+i*HEIGHT/8,"Today is "+t,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
+                new text(450,60+i*HEIGHT/8,"Today is "+t2,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
             }
+
             
         }
 
