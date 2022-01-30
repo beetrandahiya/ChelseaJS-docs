@@ -186,10 +186,10 @@
                 <div class="sidebar-elem">
                     <a href="../time/getTime.html">Time</a>
                 </div>
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../time/date.html">Date</a>
                 </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../time/day.html">Day</a>
                 </div>
                 <div class="sidebar-elem">
@@ -208,11 +208,10 @@
         <div class="doc">
 
             <h1>
-                getDate()
+                getDayName()
             </h1>
             <p>
-                Returns the current date according to the computer's local time.
-                It returns a object with year, month, day.
+                Returns the name of the day of the week for the current date.
             </p>
 
             <h3>
@@ -220,9 +219,7 @@
             </h3>
             <pre>
                 <code class="language-js">
-    getDate();         /* returns { y : current year ,
-                                    m : current month ,
-                                    day : current day }</code>
+    getDayName();         //returns "Tuesday"</code>
             </pre>
 
             <h3>
@@ -232,47 +229,14 @@
             <pre>
                 <code class="language-js">
     setCanvas(elem);
+    ft=0;
     function draw(){
-        t=getDate();
+        clearCanvas();
+        t=getTime();
 
-        switch(t.day){
-            case 1:
-            case 21:
-            case 31:
-                dn="st"                
-                break;
-            case 2:
-            case 22:
-                dn="nd"                
-                break;
-            case 3:
-            case 23:
-                dn="rd"                
-                break;
-            default:
-                dn="th"                
-                break;
-        }
-        switch(t.m){
-            case 1:
-                mn="st"                
-                break;
-            case 2:
-                mn="nd"                
-                break;
-            case 3:
-                mn="rd"                
-                break;
-            default:
-                mn="th"                
-                break;           
-        }
-
-        
-        new text(100,HEIGHT/2-60,"Today is "+t.day+dn+" day",60,'Montserrat',500,'#fff',0,'#69f506','start');
-        new text(100,HEIGHT/2,"of "+t.m+mn+" month",60,'Montserrat',500,'#fff',0,'#69f506','start');
-        new text(100,HEIGHT/2+60,"of the Year "+t.y,60,'Montserrat',500,'#fff',0,'#69f506','start');
-
+        new text(100,HEIGHT/2,"Time : "+t.h+":"+t.m+":"+t.s+":"+t.ms,60,'Montserrat',500,'#fff',0,`hsl(${ft},100%,50%)`,'start');
+        ft++;
+        requestAnimationFrame(draw);
     }
     draw()
                     </code>
@@ -282,97 +246,21 @@
         
             <hr>
             <h1>
-                getDateString(format);
+                getTimeString()
             </h1>
             <p>
-                Returns the current date according to the computer's local time.
-                It returns a string with the date according to the format.
-            </p>
-            
+                Returns the current time according to the computer clock.
+               <br> It returns a string of the form " h : m : s : ms"
+                </p>
+
             <h3>
                 Syntax
             </h3>
             <pre>
                 <code class="language-js">
-    getDateString('mm/dd/yyyy');         //returns in the form "01/30/2022"</code>
-    </pre>
-
-    <h3>
-        Parameters
-    </h3>
-    <p>
-        <table class="param-table">
-       <tr>
-           <td> format  </td><td>String : format in which the date is to be returned<br>
-                                   Possible formats are :
-                                      <ul style="margin-left:2em;">
-                                            <li>
-                                                    'mm/dd/yyyy' or 'mm-dd-yyyy'
-                                            </li>
-                                            <li>
-                                                    'dd/mm/yyyy' or 'dd-mm-yyyy'
-                                            </li>
-                                            <li>
-                                                    'yyyy/mm/dd' or 'yyyy-mm-dd'
-                                            </li>
-                                            <li>
-                                                    'yyyy/dd/mm' or 'yyyy-dd-mm'
-                                            </li>
-                                            <li>
-                                                    'dd/yyyy/mm' or 'dd-yyyy-mm'
-                                            </li>
-                                            <li>
-                                                    'mm/yyyy/dd' or 'mm-yyyy-dd'
-                                            </li>
-
-                                        </ul>
-        </tr>
-        
-       </table>
-    </p>
-    <h3>
-        Example
-    </h3>
-    <pre>
-        <code class="language-js">
-    function draw(){
-        formats=[
-            'mm/dd/yyyy',
-            'dd/mm/yyyy',
-            'yyyy/mm/dd',
-            'yyyy/dd/mm',
-            'dd/yyyy/mm',
-            'mm/yyyy/dd'
-        ]
-        formats2=[
-            'mm-dd-yyyy',
-            'dd-mm-yyyy',
-            'yyyy-mm-dd',
-            'yyyy-dd-mm',
-            'dd-yyyy-mm',
-            'mm-yyyy-dd'
-        ]
-
-        for(i=0;i&lt;formats.length;i++){
-            t=getDateString(formats[i]);
-            t2=getDateString(formats2[i]);
-            new text(50,60+i*HEIGHT/8,"Today is "+t,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
-            new text(450,60+i*HEIGHT/8,"Today is "+t2,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
-        } 
-    }
-    draw();
-            </code>
-    </pre>
-    <div class="example-container"></div>
-
-
-
-
-
-
-
-
-
+    getTimeString();         // returns "h:m:s:ms"  
+                             // for example "21:38:52:274"</code>
+                    </pre>
         </div>
 
     </div>
@@ -380,86 +268,18 @@
     <script src="../main.js"></script>
     <script src="script.js"></script>
     <script>
-        elem= document.getElementsByClassName('example-container')[0];
+        elem= document.querySelector(".example-container");
         setCanvas(elem);
+        ft=0;
         function draw(){
-            t=getDate();
+            clearCanvas();
+            t=getTime();
 
-            switch(t.day){
-                case 1:
-                case 21:
-                case 31:
-                    dn="st"                
-                    break;
-                case 2:
-                case 22:
-                    dn="nd"                
-                    break;
-                case 3:
-                case 23:
-                    dn="rd"                
-                    break;
-                default:
-                    dn="th"                
-                    break;
-            }
-            switch(t.m){
-                case 1:
-                    mn="st"                
-                    break;
-                case 2:
-                    mn="nd"                
-                    break;
-                case 3:
-                    mn="rd"                
-                    break;
-                default:
-                    mn="th"                
-                    break;           
-            }
-
-            
-            new text(100,HEIGHT/2-60,"Today is "+t.day+dn+" day",60,'Montserrat',500,'#fff',0,'#695FE6','start');
-            new text(100,HEIGHT/2,"of "+t.m+mn+" month",60,'Montserrat',500,'#fff',0,'#695FE6','start');
-            new text(100,HEIGHT/2+60,"of the Year "+t.y,60,'Montserrat',500,'#fff',0,'#695FE6','start');
-
-            
+            new text(100,HEIGHT/2,"Time : "+t.h+":"+t.m+":"+t.s+":"+t.ms,60,'Montserrat',500,'#fff',0,`hsl(${ft},100%,50%)`,'start');
+            ft++;
+            requestAnimationFrame(draw);
         }
-        draw();
-
-        elem1= document.getElementsByClassName('example-container')[1];
-        setCanvas(elem1);
-        function draw1(){
-            
-            formats=[
-                'mm/dd/yyyy',
-                'dd/mm/yyyy',
-                'yyyy/mm/dd',
-                'yyyy/dd/mm',
-                'dd/yyyy/mm',
-                'mm/yyyy/dd'
-            ]
-            formats2=[
-                'mm-dd-yyyy',
-                'dd-mm-yyyy',
-                'yyyy-mm-dd',
-                'yyyy-dd-mm',
-                'dd-yyyy-mm',
-                'mm-yyyy-dd'
-            ]
-
-            for(i=0;i<formats.length;i++){
-                t=getDateString(formats[i]);
-                t2=getDateString(formats2[i]);
-                new text(50,60+i*HEIGHT/8,"Today is "+t,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
-                new text(450,60+i*HEIGHT/8,"Today is "+t2,30,'Montserrat',500,'#fff',0,`hsl(${i*50},100%,50%)`,'start');
-            }
-
-            
-        }
-
-        draw1();
-
+        draw()
     </script>
     
     <script src="../assets/prism.js"></script>
