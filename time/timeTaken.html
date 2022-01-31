@@ -208,10 +208,11 @@
         <div class="doc">
 
             <h1>
-                getDayName()
+                timeTaken(func)
             </h1>
             <p>
-                Returns the name of the day of the week for the current date.
+                Returns the time taken to execute a code-block in milliseconds.<br>
+                Just enclose the code-block in a function, and pass the function to timeTaken.
             </p>
 
             <h3>
@@ -219,41 +220,54 @@
             </h3>
             <pre>
                 <code class="language-js">
-    getDayName();         //returns "Tuesday"</code>
+    function hello(){
+        console.log("Hello World");
+    }
+    
+    timeTaken(hello);              //returns the time taken to execute the function hello()  </code>
             </pre>
 
             <h3>
                 Example
             </h3>
-
+<p>
+    Left half of the canvas is filled with rectangles of magenta color made using iteration of nested for loops and right half is filled with rectangle of violet color made using iteration of nested while loops.
+    and text displays the time taken by both the loops to execute.<br>
+    <div class="note">Time taken can vary even in every page refresh.</div>
+   
+</p>
             <pre>
                 <code class="language-js">
-    setCanvas(elem);
-    t=0;
-    function draw(){
-        clearCanvas();
-        dn=getDayName();
-
-        if(getTime().h<19 && getTime().h>6){
-            //draw sun
-            elem.style.backgroundColor="#D9EDF5";
-            new circle(100,HEIGHT/2-70,50,'#F7C631',1,'#F4910166',2);
-            for(i=0;i&lt;2*PI;i+=PI/8){
-                new line(100+cos(i+t)*55,HEIGHT/2-70+sin(i+t)*55,100+cos(i+t)*70,HEIGHT/2-70+sin(i+t)*70,'#F7C631',3,'round');
+    function lefthalf(){
+        for(i=0;i&lt;WIDTH/2;i+=5){
+            for(j=0;j&lt;HEIGHT;j+=5){
+                new rect(i,j,5,5,'#f0f',1,'#f0f',0.5);
             }
         }
-        else{
-            //draw moon
-            elem.style.backgroundColor="#000022";
-            new circle(100,HEIGHT/2-70,50,'#ddddff',1,'#F49101',0);
-            new circle(70,HEIGHT/2-100,60,'#000022',1,'#F49101',0);
-            
-        }
-        //draw day's name
-        new text(200,HEIGHT/2+20,"Happy "+dn+"!",60,'Montserrat',500,'#fff',0,`#009515bb`,'start');
+    }
 
-        t+=0.01;
-        requestAnimationFrame(draw);
+    function righthalf(){
+        i=WIDTH/2;
+        while(i&lt;WIDTH){
+            j=0;    
+            while(j&lt;HEIGHT){
+                new rect(i,j,5,5,'#82AAFF',1,'#82AAFF',0.5);
+                j+=5;
+            }
+            i+=5;
+        }
+        
+    }
+
+    function draw(){
+        
+        lefthalf();
+        righthalf();
+        tl=timeTaken(lefthalf);
+        tr=timeTaken(righthalf);
+        new text(WIDTH/4,HEIGHT/2,"for loops: "+tl+"ms",16,'Inter',400,'#000',0,'#000','middle');
+        new text(WIDTH/4*3,HEIGHT/2,"while loops: "+tr+"ms",16,'Inter',400,'#000',0,'#000','middle');
+        
     }
     draw()
                     </code>
@@ -267,27 +281,36 @@
     <script>
         elem= document.querySelector(".example-container");
         setCanvas(elem);
-        t=0;
-        function draw(){
-            clearCanvas();
-            dn=getDayName();
-            if(getTime().h<19 && getTime().h>6){
-                elem.style.backgroundColor="#D9EDF5";
-               new circle(100,HEIGHT/2-70,50,'#F7C631',1,'#F4910166',2);
-               for(i=0;i<2*PI;i+=PI/8){
-                     new line(100+cos(i+t)*55,HEIGHT/2-70+sin(i+t)*55,100+cos(i+t)*70,HEIGHT/2-70+sin(i+t)*70,'#F7C631',3,'round');
-               }
+        function lefthalf(){
+            for(i=0;i<WIDTH/2;i+=5){
+                for(j=0;j<HEIGHT;j+=5){
+                    new rect(i,j,5,5,'#f0f',1,'#f0f',0.5);
+                }
             }
-            else{
-                elem.style.backgroundColor="#000022";
-                new circle(100,HEIGHT/2-70,50,'#ddddff',1,'#F49101',0);
-                new circle(70,HEIGHT/2-100,60,'#000022',1,'#F49101',0);
-                
-            }
+        }
 
-            new text(200,HEIGHT/2+20,"Happy "+dn+"!",60,'Montserrat',500,'#fff',0,`#009515bb`,'start');
-            t+=0.01;
-            requestAnimationFrame(draw);
+        function righthalf(){
+            i=WIDTH/2;
+            while(i<WIDTH){
+                j=0;    
+                while(j<HEIGHT){
+                    new rect(i,j,5,5,'#82AAFF',1,'#82AAFF',0.5);
+                    j+=5;
+                }
+                i+=5;
+            }
+           
+        }
+
+        function draw(){
+         
+            lefthalf();
+            righthalf();
+            tl=timeTaken(lefthalf);
+            tr=timeTaken(righthalf);
+            new text(WIDTH/4,HEIGHT/2,"for loops: "+tl+"ms",16,'Inter',400,'#000',0,'#000','middle');
+            new text(WIDTH/4*3,HEIGHT/2,"while loops: "+tr+"ms",16,'Inter',400,'#000',0,'#000','middle');
+            
         }
         draw()
     </script>
