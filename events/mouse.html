@@ -100,13 +100,13 @@
                 <div class="sidebar-elem">
                     <a href="../enviro/width.html">Width</a>
                     </div>  
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../enviro/height.html">Height</a>
                     </div>
                 <div class="sidebar-elem">
                     <a href="../enviro/framerate.html">frameRate</a>
                     </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../enviro/clearCanvas.html">clearCanvas</a>
                     </div>
                 
@@ -167,7 +167,7 @@
             </div>
             <button class="dropdown-btn">Events <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../events/mouse.html">Mouse</a>
                 </div>
                 <div class="sidebar-elem">
@@ -204,29 +204,12 @@
         <div class="doc">
 
             <h1>
-                HEIGHT
-            </h1>
+               Mouse Events           </h1>
             <p>
-                The height of the canvas.
+               Coming Soon !!
             </p>
-
-            <h3>
-                Example
-            </h3>
-
-            <pre>
-                <code class="language-js">
-    setCanvas(elem);
-    function draw(){
-        for(i = 0 ; i &lt; HEIGHT ; i+=10){
-            new line(0,i,WIDTH,i,`hsl(${i/3},100%,50%)`,3);
-        } 
-    }
-    draw()                </code>
-            </pre>
-            <div class="example-container"></div>
             
-        
+            
             
         </div>
 
@@ -234,19 +217,7 @@
     
     <script src="../main.js"></script>
     <script src="script.js"></script>
-    <script>
-        elem= document.querySelector(".example-container");
-        setCanvas(elem);
-        
-        function draw(){
-            
-            for(i = 0 ; i < HEIGHT ; i+=10){
-            new line(0,i,WIDTH,i,`hsl(${i},100%,50%)`,3);
-        } 
-           
-        }
-        draw()
-    </script>
+    
     
     <script src="../assets/prism.js"></script>
 
