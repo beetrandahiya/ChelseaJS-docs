@@ -17,6 +17,9 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="navbar">
@@ -97,7 +100,7 @@
                 <div class="sidebar-elem">
                     <a href="../enviro/width.html">Width</a>
                     </div>  
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../enviro/height.html">Height</a>
                     </div>
                 <div class="sidebar-elem">
@@ -113,7 +116,7 @@
             </div>
             <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
-                <div class="sidebar-elem sidebar-elem-active">
+                <div class="sidebar-elem">
                     <a href="../math/trignometry.html">Trigonometry</a>
                     </div>  
                 <div class="sidebar-elem">
@@ -131,7 +134,7 @@
                 <div class="sidebar-elem">
                     <a href="../math/scaling.html">Scaling Functions</a>
                     </div>
-                <div class="sidebar-elem">
+                <div class="sidebar-elem sidebar-elem-active">
                     <a href="../math/constants.html">Constants</a>
                 </div>
                 <div class="sidebar-elem">
@@ -201,193 +204,50 @@
 
         </div>
         <div class="doc">
-            <h1>Trigonometry</h1>
-           <p>
-               Following are the trigonometric functions in Chelsea.js <br>
-               All the functions are briefly explained with pure mathematical formulae , examples and implementation.
-   <br>
-               <div class="note">Note: All angles should be inputted in radian measures.</div>
-           </p>
-              <h3>Sine</h3>
-              <p>
-                  Sine of an angle is the length of the line joining the x-axis and the point on the unit circle at the same angle.<br>
-              </p>
-                <pre>
-                    <code class="language-js">
-    sin(angle);
 
-    sin(0);     // returns 0
-    sin(PI/2);  // returns 1</code>
-                </pre>
-              <p> Graphical representation of the above function:</p> 
-                <div class="graph-container">
-                
-                </div>
-
-                <hr>
-                <h3>Cosine</h3>
-                <p>
-                    Cosine of an angle is the length of the line joining the y-axis and the point on the unit circle at the same angle.<br>
-                </p>
-                <pre>
-                    <code class="language-js">
-    cos(angle);
-
-    cos(0);         // returns 1
-    cos(PI/2);      // returns 0
-    cos(PI);        // returns -1 </code>
-              </pre>
-              <p> Graphical representation of the above function:</p> 
-              <div class="graph-container">
-
-    </div>
-    <hr>
-    <h3>Tangent</h3>
-    <p>
-        Tangent of an angle is the slope of the line joining the origin and the point on the unit circle at the same angle.<br>
-    </p>
-
-    <pre>
-        <code class="language-js">
-    tan(angle);
-
-    tan(0);         // returns 0
-    tan(PI/2);      // very large value since js doesnt return Infinity for Math.tan(PI/2) and these math functions are mere implementation of Math in js.</code>
-    </pre>
-    <div class="graph-container">
-        </div>
-        <hr>
-        <h3>Arc Sine</h3>
-        <p>
-            Arc Sine of an angle is the angle whose sine is the given value.<br>
-        </p>
-        <pre>
-            <code class="language-js">
-    asin(value);
-
-    asin(0);         // returns 0
-    asin(1);         // returns PI/2
-    asin(-1);        // returns -PI/2 </code>
-        </pre>
-        <div class="graph-container">
-            </div>
-            <hr>
-            <h3>Arc Cosine</h3>
+            <h1>
+                HEIGHT
+            </h1>
             <p>
-                Arc Cosine of an angle is the angle whose cosine is the given value.<br>
+                The height of the canvas.
             </p>
+
+            <h3>
+                Example
+            </h3>
+
             <pre>
                 <code class="language-js">
-    acos(value);
-
-    acos(0);         // returns PI/2
-    acos(1);         // returns 0
-    acos(-1);        // returns PI</code>
+    setCanvas(elem);
+    function draw(){
+        for(i = 0 ; i &lt; HEIGHT ; i+=10){
+            new line(0,i,WIDTH,i,`hsl(${i/3},100%,50%)`,3);
+        } 
+    }
+    draw()                </code>
             </pre>
-            <div class="graph-container">
-                </div>
-                <hr>
-                <h3>Arc Tangent</h3>
-                <p>
-                    Arc Tangent of an angle is the angle whose tangent is the given value.<br>
-                </p>
-                <pre>
-                    <code class="language-js">
-    atan(value);
-                        
-    atan(0);         // returns 0
-    atan(1);         // returns PI/4
-    atan(-1);        // returns -PI/4</code>
-    </pre>
-    <div class="graph-container">
-        </div>
-        <hr>
-        <h3>2 Argument Arc Tangent</h3>
-        <p>
-            atan2(y,x) is defined as the angle between the positive x-axis and the ray to the point(x,y).<br>
-        </p>
-        <pre>
-            <code class="language-js">
-    atan2(y,x);
-
-    atan2(0,1);         // returns 0
-    atan2(1,1);         // returns PI/4
-    atan2(-1,1);        // returns -PI/4</code>
-        </pre>
-
-   <!-- <div class="graph-container"></div>-->
-
-    <hr>
-    <p>
-        Coming up are the Hyperbolic Functions<br>
-
-        <b style="line-height:1.5em; ">Hyperbolic functions are analogues of the ordinary trigonometric functions, but defined using the hyperbola rather than the circle.</b>
-    </p>
-<hr>
-    <h3>Hyperbolic Sine</h3>
-    <p>
+            <div class="example-container"></div>
+            
         
-<br>
-        Hyperbolic sine of an angle is the length of the line joining the x-axis and the point on the hyperbola at the same angle.<br>
-        It can also be defined in form of exponents.<br>
-        $$\sinh(\theta)=\frac{e^x-e^{-x}}{2}$$
-
-    </p>
-    <pre>
-        <code class="language-js">
-    sinh(angle);
-
-    sinh(0);         // returns 0
-    sinh(PI/2);      // returns 2.3012989023072947
-    sinh(PI);        // returns 11.548739357257748</code>
-    </pre>
-
-    <p>
-        Graphical representation of the all Hyperbolic function:
-    </p>
-    <div class="graph-container" style="height: 560px;"></div>
-
-    <hr>
-    <h3>Hyperbolic Cosine</h3>
-    <p>
-        Hyperbolic cosine of an angle is the length of the line joining the y-axis and the point on the hyperbola at the same angle.<br>
-        It can also be defined in form of exponents.<br>
-        $$\cosh(\theta)=\frac{e^x+e^{-x}}{2}$$
-    </p>
-    <pre>
-        <code class="language-js">
-    cosh(angle);
-
-    cosh(0);         // returns 1
-    cosh(PI/2);      // returns 2.5091784786580567
-    cosh(PI);        // returns 11.591953275521519
-</code>
-</pre>
-
-<hr>
-<h3>Hyperbolic Tangent</h3>
-<p>
-    Hyperbolic tangent of an angle is the slope of the line joining the origin and the point on the hyperbola at the same angle.<br>
-    It can also be defined in form of exponents.<br>
-    $$\tanh(\theta)=\frac{e^x-e^{-x}}{e^x+e^{-x}}$$
-</p>
-<pre>
-    <code class="language-js">
-    tanh(angle);
-
-    tanh(0);         // returns 0
-    tanh(PI/2);      // returns 0.9171523356672744
-    tanh(PI);        // returns 0.99627207622075
-    </code> 
-</pre>
-
+            
         </div>
 
     </div>
     
     <script src="../main.js"></script>
     <script src="script.js"></script>
-    <script src="trignoscripts.js">
+    <script>
+        elem= document.querySelector(".example-container");
+        setCanvas(elem);
+        
+        function draw(){
+            
+            for(i = 0 ; i < HEIGHT ; i+=10){
+            new line(0,i,WIDTH,i,`hsl(${i},100%,50%)`,3);
+        } 
+           
+        }
+        draw()
     </script>
     
     <script src="../assets/prism.js"></script>
