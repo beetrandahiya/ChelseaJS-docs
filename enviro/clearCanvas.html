@@ -221,21 +221,59 @@
         clearCanvas();
 
         //code
-        
+
         requestAnimationFrame(draw);
     }</code>
             </pre>
             <h3>
                 Example
             </h3>
+            <p>
+                Not using clearCanvas() can be used to make some nice things, like...
+            </p>
 
             <pre>
                 <code class="language-js">
-    frameRate('#fps-counter');              </code>
+    setCanvas(elem);
+    pos={
+        x:10,
+        y:10,
+        r:10
+    }
+    vel={
+        x:1,
+        y:1
+    }
+    w=WIDTH;
+    h=HEIGHT;
+    function velOnCollision(pos,vel){
+        
+        if(pos.x+pos.r&gt;w || pos.x-pos.r&lt;0){
+            vel.x*=-1
+        }
+        if(pos.y+pos.r&gt;h || pos.y-pos.r&lt;0){
+            vel.y*=-1;
+        }
+    
+    }
+    t=0;
+
+    function draw(){
+        new circle(pos.x,pos.y,pos.r,`hsl(${t},100%,50%)`,1,'#ff0000',0);
+        pos.x+=vel.x;
+        pos.y+=vel.y;
+        velOnCollision(pos,vel);
+        t++;
+        requestAnimationFrame(draw);
+    }
+    draw();             </code>
             </pre>
-            <div id="fps-counter"></div>
+            <div class="example-container"></div>
             
         
+            <div class="note">
+                <b>Note</b>: If you dont use clearCanvas(), over longer time, the illustration will start getting slower because of tons of elements. 
+            </div>
             
         </div>
 
@@ -244,8 +282,42 @@
     <script src="../main.js"></script>
     <script src="script.js"></script>
     <script>
-        
-        frameRate('#fps-counter');
+
+elem=document.querySelector('.example-container');
+setCanvas(elem);
+pos={
+    x:10,
+    y:10,
+    r:10
+}
+vel={
+    x:1,
+    y:1
+}
+w=WIDTH;
+h=HEIGHT;
+function velOnCollision(pos,vel){
+
+if(pos.x+pos.r>w || pos.x-pos.r<0){
+   vel.x*=-1
+}
+if(pos.y+pos.r>h || pos.y-pos.r<0){
+   vel.y*=-1;
+}
+
+}
+t=0;
+function draw(){
+    
+    new circle(pos.x,pos.y,pos.r,`hsl(${t},100%,50%)`,1,'#ff0000',0);
+    pos.x+=vel.x;
+    pos.y+=vel.y;
+    velOnCollision(pos,vel);
+    t++;
+    requestAnimationFrame(draw);
+}
+draw();
+
     </script>
     
     <script src="../assets/prism.js"></script>
