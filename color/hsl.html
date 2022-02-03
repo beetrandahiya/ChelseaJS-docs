@@ -253,20 +253,20 @@
             <div class="clr-example-control">
                 <div>
                     <div class="clr-example-control-label">
-                        <span id="huetext">Hue </span> = <span id="hval">244</span>
+                        <span id="huetext">Hue </span> = <span id="hval">244°</span>
                     </div>
                     <input type="range" id="hue" min="0" max="360" value="244">
 
                 </div>                
                 <div>
                     <div class="clr-example-control-label">
-                        <span>Saturation</span> = <span id="sval">73</span>
+                        <span>Saturation</span> = <span id="sval">73%</span>
                     </div>
                     <input type="range" id="saturation" min="0" max="100" value="73">
                 </div>
                 <div>
                     <div class="clr-example-control-label">
-                        <span>Lightness</span> = <span id="lval">64</span>
+                        <span>Lightness</span> = <span id="lval">64%</span>
                     </div>
                     <input type="range" id="lightness" min="0" max="100" value="64">
                 </div>
@@ -313,27 +313,22 @@
 
 
         document.getElementById("hue").addEventListener("input",function(){
-            document.getElementById("hval").innerHTML=this.value;
+            document.getElementById("hval").innerHTML=this.value+"°";
             document.getElementById("saturation").style=`  background-image: linear-gradient( 90deg,hsla(${h},0%,${l}%,${a}),hsla(${h},100%,${l}%,${a}));`;
             document.getElementById("lightness").style=` background-image: linear-gradient( 90deg,hsl(${h},73%,0%),hsl(${h},73%,20%),hsl(${h},73%,40%),hsl(${h},73%,60%),hsl(${h},73%,80%),hsl(${h},73%,100%));`;
             document.getElementById("alpha").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,${l}%,0),hsla(${h},${s}%,${l}%,1));`;
             
         });
         document.getElementById("saturation").addEventListener("input",function(){
-            document.getElementById("sval").innerHTML=this.value;
+            document.getElementById("sval").innerHTML=this.value+"%";
           
         });
         document.getElementById("lightness").addEventListener("input",function(){
-            document.getElementById("lval").innerHTML=this.value;
+            document.getElementById("lval").innerHTML=this.value+"%";
          
         });
         document.getElementById("alpha").addEventListener("input",function(){
             document.getElementById("aval").innerHTML=this.value;
-            document.getElementById("saturation").style=`  background-image: linear-gradient( 90deg,hsla(${h},0%,${l}%,${a}),hsla(${h},100%,${l}%,${a}));`;
-            document.getElementById("lightness").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,0%,${a}),hsla(${h},${s}%,100%,${a}));`;
-            document.getElementById("hue").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,${l}%,0),hsla(${h},${s}%,${l}%,1));`;
-            
-           
         });
 
     </script>
