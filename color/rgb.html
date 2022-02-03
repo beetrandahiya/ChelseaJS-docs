@@ -198,27 +198,55 @@
         <div class="doc">
 
             <h1>
-                WIDTH
+                RGB
             </h1>
             <p>
-                The width of the canvas.
+            RGB is an additive color model.<br>
+            It is defined by rgb( <span style="color: red;">red</span>, <span style="color: green;">green</span>, <span style="color: blue;">blue</span> ).<br>
+            Where red, green, blue are numbers between ( 0 - 255 ) i.e. 8 bits of information about each color.<br>
+            255 is the brightest color and 0 is the darkest color.<br>
+                </p>
+            <p>
+                We can add one more channel to the RGB color model.<br>
+                i.e. the <span class="alpc">alpha</span> channel.<br>
+                and the color model is defined by rgba( red, green, blue, alpha ).<br>
+                Where alpha is a number between ( 0 - 1 ) which is the information about transparency of the color.<br>
+                1 is opaque and 0 is completely transparent. By default alpha is 1.
             </p>
+            <div class="note">
+                <b>Note:</b> rgb( red, green, blue ) is the same as rgba( red, green, blue, 1 ).
+            </div>
 
-            <h3>
-                Example
-            </h3>
-
-            <pre>
-                <code class="language-js">
-    setCanvas(elem);
-    function draw(){
-        for(i = 0 ; i &lt; WIDTH ; i+=10){
-            new line(i,0,i,HEIGHT,`hsl(${i/3},100%,50%)`,3);
-        } 
-    }
-    draw()                </code>
-            </pre>
+            
             <div class="example-container"></div>
+
+            <div class="clr-example-control">
+                <div>
+                    <div class="clr-example-control-label">
+                        <span style="color: red;">Red </span> = <span id="rval">105</span>
+                    </div>
+                    <input type="range" id="red" min="0" max="255" value="105">
+
+                </div>                
+                <div>
+                    <div class="clr-example-control-label">
+                        <span style="color: green;">Green</span> = <span id="gval">95</span>
+                    </div>
+                    <input type="range" id="green" min="0" max="255" value="95">
+                </div>
+                <div>
+                    <div class="clr-example-control-label">
+                        <span style="color: blue;">Blue</span> = <span id="bval">230</span>
+                    </div>
+                    <input type="range" id="blue" min="0" max="255" value="230">
+                </div>
+                <div>
+                    <div class="clr-example-control-label">
+                        Alpha = <span id="aval">1</span>
+                    </div>
+                    <input type="range" id="alpha" min="0" max="1" value="1" step="0.1">
+                </div>
+                </div>
             
         
             
@@ -231,15 +259,40 @@
     <script>
         elem= document.querySelector(".example-container");
         setCanvas(elem);
+
         
         function draw(){
-            
-            for(i=0;i<WIDTH;i+=10){
-                new line(i,0,i,HEIGHT,`hsl(${i/3},100%,50%)`,3);
+             clearCanvas();
+            r=document.querySelector("#red").value;
+            g=document.querySelector("#green").value;
+            b=document.querySelector("#blue").value;
+            a=document.querySelector("#alpha").value;
+            new text(WIDTH/2,HEIGHT/4-20,`rgba(${r},${g},${b},${a})`,24,'montserrat',500,'#fff',0,`rgba(${r},${g},${b},${a})`,'middle');
+            for(i=WIDTH/4;i<3*WIDTH/4;i+=10){
+                
+                new line(i,HEIGHT/4,i,3*HEIGHT/4,`rgba(${r},${g},${b},${a})`,6);
             }
            
+            requestAnimationFrame(draw);
         }
-        draw()
+
+        draw();
+
+
+
+        document.querySelector("#red").addEventListener("input",function(){
+            document.querySelector("#rval").innerHTML=this.value;
+        });
+        document.querySelector("#green").addEventListener("input",function(){
+            document.querySelector("#gval").innerHTML=this.value;
+        });
+        document.querySelector("#blue").addEventListener("input",function(){
+            document.querySelector("#bval").innerHTML=this.value;
+        });
+        document.querySelector("#alpha").addEventListener("input",function(){
+            document.querySelector("#aval").innerHTML=this.value;
+        });
+
     </script>
     
     <script src="../assets/prism.js"></script>
