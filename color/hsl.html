@@ -201,24 +201,82 @@
                 HSL
             </h1>
             <p>
-                The width of the canvas.
+            HSL stands for <b>Hue, Saturation, and Lightness</b>.<br>It is a color model that is used to describe the color of a light source.
+            It was developed to more closely align with the way human vision perceives color-making attributes.<br>
+            It is defined by hsl(hue, saturation, lightness) where hue is the color, saturation is the amount of color, and lightness is the amount of light.
+                </p>
+                <h4>
+                    Hue
+                </h4>
+                <p>
+                    Hue is a degree on the color wheel from 0 to 360.<br>
+                    Just for reference 0 is red, 120 is green, 240 is blue.
+                </p>
+                <h4>
+                    Saturation
+                </h4>
+                <p>
+                    Saturation is a percentage of the color's saturation.<br>
+                    0% means a shade of gray and 100% is the full color.
+                </p>
+                <h4>
+                    Lightness
+                </h4>
+                <p>
+                    Lightness is a percentage of the color's lightness.<br>
+                    0% means black and 100% is white.
+                </p>
+            <p>
+                We can add one more channel to the HSL color model.<br>
+                i.e. the <span class="alpc">alpha</span> channel.<br>
+                and the color model is defined by hsla( hue, saturation, lightness, alpha ).<br>
+                Where alpha is a number between ( 0 - 1 ) which is the information about transparency of the color.<br>
+                1 is opaque and 0 is completely transparent. By default alpha is 1.
             </p>
+            <div class="note">
+                <b>Note:</b> hsl( hue, saturation, lightness ) is the same as hsla( hue, saturation, lightness, 1 ).
+            </div>
 
             <h3>
-                Example
+                Syntax
             </h3>
-
             <pre>
                 <code class="language-js">
-    setCanvas(elem);
-    function draw(){
-        for(i = 0 ; i &lt; WIDTH ; i+=10){
-            new line(i,0,i,HEIGHT,`hsl(${i/3},100%,50%)`,3);
-        } 
-    }
-    draw()                </code>
+    hsl( hue, saturation, lightness )              // for example : hsl( 128, 100%, 50% )
+    hsl( hue, saturation, lightness, alpha )       // for example : hsl( 128, 100%, 60%, 0.5)
+    hsla( hue, saturation, lightness, alpha )      // for example : hsla( 128, 100%, 60%, 0.5)</code>
             </pre>
+
+            
             <div class="example-container"></div>
+
+            <div class="clr-example-control">
+                <div>
+                    <div class="clr-example-control-label">
+                        <span id="huetext">Hue </span> = <span id="hval">244</span>
+                    </div>
+                    <input type="range" id="hue" min="0" max="360" value="244">
+
+                </div>                
+                <div>
+                    <div class="clr-example-control-label">
+                        <span>Saturation</span> = <span id="sval">73</span>
+                    </div>
+                    <input type="range" id="saturation" min="0" max="100" value="73">
+                </div>
+                <div>
+                    <div class="clr-example-control-label">
+                        <span>Lightness</span> = <span id="lval">64</span>
+                    </div>
+                    <input type="range" id="lightness" min="0" max="100" value="64">
+                </div>
+                <div>
+                    <div class="clr-example-control-label">
+                        Alpha = <span id="aval">1</span>
+                    </div>
+                    <input type="range" id="alpha" min="0" max="1" value="1" step="0.1">
+                </div>
+                </div>
             
         
             
@@ -231,15 +289,53 @@
     <script>
         elem= document.querySelector(".example-container");
         setCanvas(elem);
+
         
         function draw(){
-            
-            for(i=0;i<WIDTH;i+=10){
-                new line(i,0,i,HEIGHT,`hsl(${i/3},100%,50%)`,3);
+             clearCanvas();
+            h= document.getElementById("hue").value;
+            s= document.getElementById("saturation").value;
+            l= document.getElementById("lightness").value;
+            a= document.getElementById("alpha").value;
+            new text(WIDTH/2,HEIGHT/4-20,`hsla(${h},${s}%,${l}%,${a})`,24,'montserrat',500,'#fff',0,`hsla(${h},${s}%,${l}%,${a})`,'middle');
+            for(i=WIDTH/4;i<3*WIDTH/4;i+=10){
+                
+                new line(i,HEIGHT/4,i,3*HEIGHT/4,`hsla(${h},${s}%,${l}%,${a})`,6);
             }
            
+            requestAnimationFrame(draw);
         }
-        draw()
+
+        draw();
+
+
+
+
+
+        document.getElementById("hue").addEventListener("input",function(){
+            document.getElementById("hval").innerHTML=this.value;
+            document.getElementById("saturation").style=`  background-image: linear-gradient( 90deg,hsla(${h},0%,${l}%,${a}),hsla(${h},100%,${l}%,${a}));`;
+            document.getElementById("lightness").style=` background-image: linear-gradient( 90deg,hsl(${h},73%,0%),hsl(${h},73%,20%),hsl(${h},73%,40%),hsl(${h},73%,60%),hsl(${h},73%,80%),hsl(${h},73%,100%));`;
+            document.getElementById("alpha").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,${l}%,0),hsla(${h},${s}%,${l}%,1));`;
+            
+        });
+        document.getElementById("saturation").addEventListener("input",function(){
+            document.getElementById("sval").innerHTML=this.value;
+          
+        });
+        document.getElementById("lightness").addEventListener("input",function(){
+            document.getElementById("lval").innerHTML=this.value;
+         
+        });
+        document.getElementById("alpha").addEventListener("input",function(){
+            document.getElementById("aval").innerHTML=this.value;
+            document.getElementById("saturation").style=`  background-image: linear-gradient( 90deg,hsla(${h},0%,${l}%,${a}),hsla(${h},100%,${l}%,${a}));`;
+            document.getElementById("lightness").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,0%,${a}),hsla(${h},${s}%,100%,${a}));`;
+            document.getElementById("hue").style=`   background-image: linear-gradient( 90deg,hsla(${h},${s}%,${l}%,0),hsla(${h},${s}%,${l}%,1));`;
+            
+           
+        });
+
     </script>
     
     <script src="../assets/prism.js"></script>

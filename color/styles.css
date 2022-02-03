@@ -370,3 +370,18 @@ body{
     transition: all 0.3s ease-in-out;
 
 }
+
+#hue{
+    background-image: linear-gradient( 90deg,hsl(0,100%,50%),
+    hsl(30,100%,50%),hsl(60,100%,50%),hsl(90,100%,50%),
+    hsl(120,100%,50%),hsl(150,100%,50%),hsl(180,100%,50%),hsl(210,100%,50%),hsl(240,100%,50%),
+    hsl(270,100%,50%),hsl(300,100%,50%),hsl(330,100%,50%),hsl(360,100%,50%));
+}
+
+#saturation{
+    background-image: linear-gradient( 90deg,hsl(244,0%,64%),hsl(244,100%,64%));
+}
+
+#lightness{
+    background-image: linear-gradient( 90deg,hsl(244,73%,0%),hsl(244,73%,20%),hsl(244,73%,40%),hsl(244,73%,60%),hsl(244,73%,80%),hsl(244,73%,100%));
+}
