@@ -227,23 +227,22 @@
             <pre>
                 <code class="language-js">
     lerpHex( color1 , color2 , amount );
-    lerpHex('#695FE6','#1B1F23',0.3);        // returns #514bab
-                </code>
+    lerpHex('#695FE6','#1B1F23',0.3);        // returns #514bab</code>
             </pre>
            
             <h3>
                 Example
                 </h3>
+                <pre>
+                    <code class="language-js">
+    for(i=0;i&lt;1;i+=0.01){
+        x=mapRange(i,0,1,WIDTH/4,3*WIDTH/4);
+        new circle(x,HEIGHT/2,10,lerpHex('#695FE6','#ffb7ff',i),1,"#000",0);
+    }                            </code>
+                </pre>
 
             
             <div class="example-container"></div>
-
-            <div class="clr-example-control-hex">
-                <div>
-                  <input type="text" id="hex" value="#695FE6">
-                </div>                
-                
-                </div>
             
         
             
@@ -257,30 +256,17 @@
         elem= document.querySelector(".example-container");
         setCanvas(elem);
 
-        var hexcont = document.querySelector(".clr-example-control-hex");
-        var hex = hexcont.querySelector("#hex").value;
-        hexcont.style=`border: 6px solid ${hex};`;
-        
-
-        
         function draw(){
-             clearCanvas();
-            hex= document.querySelector("#hex").value;
-            new text(WIDTH/2,HEIGHT/4-20,hex,24,'montserrat',500,'#fff',0,hex,'middle');
-            for(i=WIDTH/4;i<3*WIDTH/4;i+=10){
-                
-                new line(i,HEIGHT/4,i,3*HEIGHT/4,hex,6);
+            
+            for(i=0;i<1;i+=0.01){
+                x=mapRange(i,0,1,WIDTH/4,3*WIDTH/4);
+                new circle(x,HEIGHT/2,10,lerpHex('#695FE6','#ffb7ff',i),1,"#000",0);
             }
+
            
-            requestAnimationFrame(draw);
         }
 
         draw();
-
-        hexcont.addEventListener("input",function(){
-            hexcont.style=`border: 6px solid ${hexcont.querySelector("#hex").value};`;
-        });
-
 
 
 
