@@ -1,0 +1,36 @@
+/* color examples */
+.color-example{
+    width: 50%;
+    font-size: 1.2em;
+    height: 200px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 24px;
+    margin: auto;
+    text-align: center;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+.color-example input{
+    width: 2em;
+    outline: none;
+    border:none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5em;
+    font-size: 1.2em;
+    margin: 0.5em;
+    transition: all 0.3s ease-in-out;
+}
+.color-example .color-output{
+    margin-top: 2em;
+}
+.color-example input:focus{
+    border: 1px solid #695fe6;
+}
+#hextorgb input{
+    width: 4em;
+}
+#hextohsl input{
+    width: 4em;
+}
