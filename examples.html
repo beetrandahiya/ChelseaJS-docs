@@ -27,7 +27,7 @@
                 <a href="index.html">Home</a>
             </div>
             <div>
-                <a href="examples.html">Examples</a>
+                <a href="examples.html" style="color:#695fe6; ">Examples</a>
             </div>
             <div>
                 <a href="download.html">Download</a>
@@ -44,7 +44,7 @@
     </div>
     <div class="main">
         <div class="sidebar">
-            <div class="sidebar-elem sidebar-elem-active">
+            <div class="sidebar-elem">
                 <a href="../index.html">Getting Started</a>
             </div>
             <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
@@ -201,141 +201,51 @@
 
         </div>
         <div class="doc">
-            <img src="assets/Dummy Banner.png" alt="">
-            <h1>Getting Started</h1>
+ 
+            <h1>Examples</h1>
             <p>
-                Getting started with Chelsea.js is as easy as pie.<br>
-                By the end of this page, You will realise it for yourself.<br>
-                We'll be going through the basic setup and making your first Chelsea.js animation.<br>
-                Lets get started!
-            </p>
-            <h3>Download</h3>
-            <p>
-                First , you gotta download Chelsea.js( its super tiny ).<br>
-                Chelsea.js is available on <a href="https://www.npmjs.com/package/chelsea.js">npm</a> and <a href="https://www.github.com/beetrandahiya/chelsea.js">Github</a>.
-            </p>
-            <p>
-                Reference to Chelsea.js in your code and you are good to go.
+                Examples are a great way to learn how to use the library.<br>
+                Here are some examples to help you get acquainted with the library. Some of the examples are a bit complex, but they are well commented.<br> 
+                Actually the complex Examples are meant to show to possibilities of the library.<br>
+
             </p>
             <hr>
+            <h3>Sort Algorithms</h3>
             <p>
-                Set Element as the canvas (not to be confused with &lt;canvas&gt;) where you will work.</p>
+                These examples show how easy it is to visualize the sorting algorithms using ChelseaJS.
+            </p>
+
+            <ul class="examples-list">
+                <li>
+                    <a href="examples/sort/bubble.html">Bubble Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/selection.html">Selection Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/insertion.html">Insertion Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/merge.html">Merge Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/quick.html">Quick Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/heap.html">Heap Sort</a>
+                    </li>
+                <li>
+                    <a href="examples/sort/shell.html">Shell Sort</a>
+                </li>
+                <li>
+                    <a href="examples/sort/comb.html">Comb Sort</a>
+                    </li>
+            </ul>
+            <hr>
+            <h3>Mathematics</h3>
+
+
             
-            <pre>
-                <code class="language-js">
-    elem = document.getElementById("container");
-    setCanvas(elem);</code>
-            </pre>
-        </p>
-            <p>
-               Add draw function.
-               <pre>
-                <code class="language-js">
-    function draw() {
-        //code here
-    }; 
-    draw();    //calling the function</code>
-               </pre>
-            </p>
-            <p>
-                Add your first circle.
-                <pre>
-                <code class="language-js">
-    function draw(){
-
-        new circle(100,100,50,"#695fe6",1,'#fff',1);
-
-    };
-    draw();</code>  
- </pre>
-            </p>
-            <p>
-                <div class="example-container"></div>
-            </p>
-            
-            <p>
-                Well, I understand you.<br>
-                Drawing isn't cool enough , right?
-            </p>
-            <p>
-                Let's animate it as well. <br>
-                So, add these two simple statements at the start and the end.
-                <pre>
-                    <code class="language-js">
-    function draw(){
-        clearCanvas();                  //clearing the canvas
-
-        new circle(100,100,50,"#695fe6",1,'#fff',1);
-
-        requestAnimationFrame(draw);    //calls the function again to update the canavs every screen refresh
-    };
-    draw();</code>  
-     </pre>
-            </p>
-            <div class="example-container"></div>
-            <p>
-                Doesn't look like an animation?<br>
-                Well, It actually is refreshing the canvas every screen refresh. Its not visible because we arent changing anything every frame.<br>
-                Lets make it look it like an animation and move your lovely circle forward.
-                <pre>
-                    <code class="language-js">
-    var t=0;
-
-    function draw(){
-        clearCanvas();                  //clearing the canvas
-
-        new circle(100,100+t/5,50,"#695fe6",1,'#fff',1);  // add t/5 to the x coordinate of the circle
-
-        t++;                           //increment t
-
-        requestAnimationFrame(draw);    //calls the function again to update the canavs every screen refresh
-    };
-    draw();</code>  
-     </pre>
-            </p>
-            <div class="example-container"></div>
-            
-            <p>
-                Here is a complete sample HTML page for the above lovely circle.
-                <pre>
-                    <code class="language-html">
-    &lt;html&gt;
-        &lt;head&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-            &lt;div id="container" width="500&gt;" height="500" style="background-color: #000;"&gt;&lt;/div&gt;
-            &lt;script src="chelsea.js"&gt;&lt;/script&gt;
-            &lt;script&gt;
-                var t = 0;
-                elem = document.getElementById("container");
-                setCanvas(elem);
-
-                function draw() {
-                    clearCanvas(); //clearing the canvas
-
-                    new circle(100, 100 + t / 5, 50, "#695fe6", 1, '#fff', 1); // add t/5 to the x coordinate of the circle
-
-                    t++; //increment t
-
-                    requestAnimationFrame(draw); //calls the function again to update the canavs every screen refresh
-                };
-                draw();
-            &lt;/script&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;</code> 
-                </pre>
-            </p>
-            <p>
-                That's it. Its that simple to make your first animation in ChelseaJS.<br>
-                Well, You must be thinking, Now What?<br>
-                To be frank, Possibilities are infinite.<br>
-                Have some faith, Sky isn't the limit. Actually, There is no frickin' limit.<br>
-                Make your own animations now and Share them with the world.<br>
-                Explore some <a href="examples.html">Examples</a> to get a better idea about making better and more complex animations and art.
-
-            </p>
-
-            <h3>Happy Coding!😊</h3>
             
         </div>
     </div>

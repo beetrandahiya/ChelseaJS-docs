@@ -253,3 +253,16 @@ body{
     
     
 }
+
+
+.examples-list{
+    list-style: none;
+    padding: 0;
+    margin: 0em 2em 2em 2em;
+    font-size: 1.2em;
+
+}
+.examples-list li{
+    padding: 0.5em 0;
+    margin: 0;
+}
