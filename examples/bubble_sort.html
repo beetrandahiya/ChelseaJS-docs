@@ -4,17 +4,20 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link
     rel="stylesheet"
-    href="assets/prism.css"
+    href="../assets/prism.css"
   />
     <link rel="stylesheet" href="styles.css">
     <title>Chelsea.js Docs</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<!--<link rel="manifest" href="/site.webmanifest">-->
-<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 </head>
 <body>
     <div class="navbar">
@@ -27,7 +30,7 @@
                 <a href="index.html">Home</a>
             </div>
             <div>
-                <a href="examples.html" style="color:#695fe6; ">Examples</a>
+                <a href="examples.html">Examples</a>
             </div>
             <div>
                 <a href="download.html">Download</a>
@@ -44,46 +47,46 @@
     </div>
     <div class="main">
         <div class="sidebar">
-            <div class="sidebar-elem">
+            <div class="sidebar-elem ">
                 <a href="../index.html">Getting Started</a>
             </div>
             <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem">
-                    <a href="shapes/point.html">Point</a>
+                    <a href="../shapes/point.html">Point</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/line.html">Line</a>
+                    <a href="../shapes/line.html">Line</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/rectangle.html">Rectangle</a>
+                    <a href="../shapes/rectangle.html">Rectangle</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/circle.html">Circle</a>
+                    <a href="../shapes/circle.html">Circle</a>
                 </div>  
                 <div class="sidebar-elem">
-                    <a href="shapes/ellipse.html">Ellipse</a>
+                    <a href="../shapes/ellipse.html">Ellipse</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/arc.html">Arc</a>
+                    <a href="../shapes/arc.html">Arc</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/polygon.html">Polygon</a>
+                    <a href="../shapes/polygon.html">Polygon</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/regpolygon.html">Regular Polygon</a>
+                    <a href="../shapes/regpolygon.html">Regular Polygon</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/star.html">Star</a>
+                    <a href="../shapes/star.html">Star</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/cubbezier.html">Cubic Bezier Curve</a>
+                    <a href="../shapes/cubbezier.html">Cubic Bezier Curve</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/twopointcubicbezier.html">Two Point Cubic Bezier Curve</a>
+                    <a href="../shapes/twopointcubicbezier.html">Two Point Cubic Bezier Curve</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="shapes/twopointquadbezier.html">Two Point Cubic Bezier Curve</a>
+                    <a href="../shapes/twopointquadbezier.html">Two Point Cubic Bezier Curve</a>
                 </div>
                 
 
@@ -93,16 +96,16 @@
             <button class="dropdown-btn">Enviroment <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem">
-                    <a href="enviro/width.html">Width</a>
+                    <a href="../enviro/width.html">Width</a>
                     </div>  
                 <div class="sidebar-elem">
-                    <a href="enviro/height.html">Height</a>
+                    <a href="../enviro/height.html">Height</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="enviro/framerate.html">frameRate</a>
+                    <a href="../enviro/framerate.html">frameRate</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="enviro/clearCanvas.html">clearCanvas</a>
+                    <a href="../enviro/clearCanvas.html">clearCanvas</a>
                     </div>
                 
 
@@ -112,86 +115,76 @@
             <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem">
-                    <a href="math/trignometry.html">Trigonometry</a>
+                    <a href="../math/trignometry.html">Trigonometry</a>
                     </div>  
                 <div class="sidebar-elem">
-                    <a href="math/algebra.html">Algebraic Functions</a>
+                    <a href="../math/algebra.html">Algebraic Functions</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="math/conversions.html">Conversions</a>
+                    <a href="../math/conversions.html">Conversions</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="math/interp.html">Interpolations</a>
+                    <a href="../math/interp.html">Interpolations</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="math/random.html">Random Functions</a>
+                    <a href="../math/random.html">Random Functions</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="math/scaling.html">Scaling Functions</a>
+                    <a href="../math/scaling.html">Scaling Functions</a>
                     </div>
                 <div class="sidebar-elem">
-                    <a href="math/constants.html">Constants</a>
+                    <a href="../math/constants.html">Constants</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="math/vector.html">Vector Functions</a>
+                    <a href="../math/vector.html">Vector Functions</a>
                 </div>
             </div>
             <button class="dropdown-btn">Color <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem">
-                    <a href="color/rgb.html">RGB</a>
+                    <a href="../color/rgb.html">RGB</a>
+                </div>
+<div class="sidebar-elem">
+                    <a href="../color/hsl.html">HSL</a>
+                </div>
+<div class="sidebar-elem">
+                    <a href="../color/hex.html">Hex</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="color/rgba.html">RGBA</a>
+                    <a href="../color/lerpColor.html">Lerp Color</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="color/hsl.html">HSL</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="color/hsla.html">HSLA</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="color/hex.html">Hex</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="color/lerpColor.html">Lerp Color</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="color/colorConversions.html">Color Conversions</a>
+                    <a href="../color/colorConversions.html">Color Conversions</a>
                 </div>
             </div>
             <button class="dropdown-btn">Events <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 <div class="sidebar-elem">
-                    <a href="events/mouse.html">Mouse</a>
+                    <a href="../events/mouse.html">Mouse</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="events/keyboard.html">Keyboard</a>
+                    <a href="../events/keyboard.html">Keyboard</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="events/touch.html">Touch</a>
+                    <a href="../events/touch.html">Touch</a>
                 </div>
             </div>
             <button class="dropdown-btn">Time <i class="fas fa-angle-down"></i></button>
             <div class="dropdown-container">
                 
+                
                 <div class="sidebar-elem">
-                    <a href="time/frameCount.html">Frame Count</a>
+                    <a href="../time/getTime.html">Time</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="time/getTime.html">Time</a>
+                    <a href="../time/date.html">Date</a>
                 </div>
                 <div class="sidebar-elem">
-                    <a href="time/date.html">Date</a>
+                    <a href="../time/day.html">Day</a>
                 </div>
+                
                 <div class="sidebar-elem">
-                    <a href="time/day.html">Day</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="time/timeConversions.html">Time Conversions</a>
-                </div>
-                <div class="sidebar-elem">
-                    <a href="time/timeTaken.html">Execution time</a>
+                    <a href="../time/timeTaken.html">Execution time</a>
                     </div>
             </div>
             
@@ -201,70 +194,50 @@
 
         </div>
         <div class="doc">
- 
-            <h1>Examples</h1>
-            <p>
-                Examples are a great way to learn how to use the library.<br>
-                Here are some examples to help you get acquainted with the library. Some of the examples are a bit complex, but they are well commented.<br> 
-                Actually the complex Examples are meant to show to possibilities of the library.<br>
 
-            </p>
-            <hr>
-            <h3>Sort Algorithms</h3>
-            <p>
-                These examples show how easy it is to visualize the sorting algorithms using ChelseaJS.
-            </p>
+            <div class="example-container">
 
-            <ul class="examples-list">
-                <li>
-                    <a href="examples/bubble_sort.html">Bubble Sort</a>
-                </li>
-                <li>
-                    <a href="examples/selection_sort.html">Selection Sort</a>
-                </li>
-                <li>
-                    <a href="examples/insertion_sort.html">Insertion Sort</a>
-                </li>
-                <li>
-                    <a href="examples/merge_sort.html">Merge Sort</a>
-                </li>
-                <li>
-                    <a href="examples/quick_sort.html">Quick Sort</a>
-                </li>
-                <li>
-                    <a href="examples/heap_sort.html">Heap Sort</a>
-                    </li>
-                <li>
-                    <a href="examples/shell_sort.html">Shell Sort</a>
-                </li>
-                <li>
-                    <a href="examples/comb_sort.html">Comb Sort</a>
-                    </li>
-            </ul>
-            <hr>
-            <h3>Mathematics</h3>
-            <p>
-                These examples show how easy it is to visualize mathematics using ChelseaJS.
-            </p>
-            <ul class="examples-list">
-                <li>
-                    <a href="examples/math/sine.html">Sine Wave</a>
-                </li>
-
-            </ul>
-
-
-
-
-            
-            
+    
         </div>
+
     </div>
     
-    <script src="main.js"></script>
+    <script src="../main.js"></script>
     <script src="script.js"></script>
+    <script>
+        elem=document.querySelector(".example-container");
+        setCanvas(elem);
+        arr=[];
+        for(i=0;i<WIDTH/4;i++){
+            arr.push(random(0,HEIGHT));
+        }
+        k=0;
+        function draw(){
+            clearCanvas();
+            
+                for(j=0;j<arr.length-k-1;j++){
+                    if(arr[j]>arr[j+1]){
+                        [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];      //es6 destructuring
+                        swap=true;
+                    }
+
+                }
+                
+            
+            for(i=0;i<arr.length;i++){
+                x=mapRange(i,0,arr.length,0,WIDTH);
+                new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);
+            }
+              if(swap){
+                k++;
+                swap=false;
+              }
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
     
-    <script src="assets/prism.js"></script>
+    <script src="../assets/prism.js"></script>
 
 
 </body>
