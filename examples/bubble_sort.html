@@ -27,13 +27,13 @@
             </a>
         <div class="navstuff">
             <div>
-                <a href="index.html">Home</a>
+                <a href="../index.html">Home</a>
             </div>
             <div>
-                <a href="examples.html">Examples</a>
+                <a href="../examples.html">Examples</a>
             </div>
             <div>
-                <a href="download.html">Download</a>
+                <a href="../download.html">Download</a>
             </div>
             <div>
                 <a href="https://www.github.com/beetrandahiya">
@@ -199,6 +199,57 @@
 
     
         </div>
+        <h1>
+            Bubble Sort
+        </h1>
+        <p>
+            Here is a ChelseaJS visualization of the Bubble Sort algorithm.<br>
+            Bubble sort is a simple sorting algorithm that works by repeatedly swapping adjacent elements if they are in the wrong order.<br>
+           
+            <b>Time Complexity:</b> O(n<sup>2</sup>)
+            <br>
+            Therefore, Its not a good sorting algorithm for large data sets.
+
+        </p>
+
+        <h3>
+            Code
+        </h3>
+        <pre>
+            <code class="language-js">
+    elem=document.querySelector(".example-container");
+    setCanvas(elem);
+    arr=[];
+    for(i=0;i&lt;WIDTH/2;i++){
+        arr.push(random(0,HEIGHT));                            //make a random array
+    }
+    k=0;
+    function draw(){
+        clearCanvas();
+        
+            for(j=0;j&lt;arr.length-k-1;j++){                
+                if(arr[j]>arr[j+1]){                           //check wrong order
+                    [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];   //es6 destructuring to swap adjacents
+                    swap=true;
+                }
+
+            }
+            
+        
+        for(i=0;i&lt;arr.length;i++){
+            x=mapRange(i,0,arr.length,0,WIDTH);
+            new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);   //drawing the array
+        }
+
+            if(swap){                                         //stop swapping if no swap occured
+            k++;
+            swap=false;
+            }
+        requestAnimationFrame(draw);
+    }
+    draw();
+            </code>
+        </pre>
 
     </div>
     
@@ -208,16 +259,16 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         arr=[];
-        for(i=0;i<WIDTH/4;i++){
+        for(i=0;i<WIDTH/2;i++){
             arr.push(random(0,HEIGHT));
         }
         k=0;
         function draw(){
             clearCanvas();
             
-                for(j=0;j<arr.length-k-1;j++){
-                    if(arr[j]>arr[j+1]){
-                        [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];      //es6 destructuring
+                for(j=0;j<arr.length-k-1;j++){                
+                    if(arr[j]>arr[j+1]){                              //check wrong order
+                        [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];      //es6 destructuring to swap adjacents
                         swap=true;
                     }
 
