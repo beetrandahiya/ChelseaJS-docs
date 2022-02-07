@@ -200,11 +200,9 @@
     
         </div>
         <h1>
-            Sine Wave        </h1>
+            Sine Wave outta Circle        </h1>
         <p>
-            This is a very simple sine wave.
-            <br>
-            Nothing fancy!
+            You can see how a sine wave can be generated from a circle.
         </p>
 
         <h3>
@@ -215,14 +213,29 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     t=0;
+    t2=0;
+    
     function draw(){
         clearCanvas();
+        points=[]
+        x=90+80*cos(t);
+        y=HEIGHT/2+80*sin(t);
         
-        for(i=0;i&lt;WIDTH;i++){
-            new circle(i, HEIGHT/2-70*sin(degToRad(i-t)), 1, '#695fe6',1,'#fff',0);   
+        new circle(90,HEIGHT/2,80,'#695fe6',0,'#fff',2);
+        new line(90,HEIGHT/2,x,y,'#fff',2);
+        new circle(x,y,5,'#695fe6',0.6,'#fff',1);
+        new line(90,y,x,y,'#695fe6',1);
+        new line(90,HEIGHT/2-80,90,HEIGHT/2+80,'#695fe6',1);
+        for(i=0;i&lt;WIDTH-90;i++){
+            
+            points.push([90+i,HEIGHT/2+80*sin(degToRad(i-t2))]);
+            
         }
-        
-        t++;
+
+        new polygon(points,'#695fe6',0,'#695fe6',1,false);
+
+        t-=0.01;
+        t2+=radToDeg(0.01);
         requestAnimationFrame(draw);
     }
     
