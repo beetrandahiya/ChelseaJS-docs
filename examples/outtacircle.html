@@ -238,33 +238,33 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         t=0;
-        points=[]
+        t2=0;
+        
        
         function draw(){
             clearCanvas();
-            x=80+70*cos(t);
-            y=80+70*sin(t);
+            points=[]
+            x=90+80*cos(t);
+            y=HEIGHT/2+80*sin(t);
             
-            new circle(80,80,70,'#695fe6',0,'#fff',2);
-            new line(80,80-70,80,80+70,'#fff',1);
-            new line(80-70,80,80+70,80,'#fff',1);
-            new line(80,80,x,y,'#fff',2);
-            new circle(x,y,4,'#695fe6',0.8,'#fff',1);
-            new line(80,y,x,y,'#695fe6',2);
-            new line(x,80,x,y,'#EF57B5',2);
-            val=[80+70+radToDeg(t),y];
-            points.push(val);
-            
-            for(i=1;i<points.length;i++){
-                v=points[i];
-                v1=points[i-1];
-                new line(v[0],v[1],v1[0],v1[1],'#695fe6',2);
+            new circle(90,HEIGHT/2,80,'#695fe6',0,'#fff',2);
+            new line(90,HEIGHT/2,x,y,'#fff',2);
+            new circle(x,y,5,'#695fe6',0.6,'#fff',1);
+            new line(90,y,x,y,'#695fe6',1);
+            new line(90,HEIGHT/2-80,90,HEIGHT/2+80,'#695fe6',1);
+            for(i=0;i<WIDTH-90;i++){
+                
+                points.push([90+i,HEIGHT/2+80*sin(degToRad(i-t2))]);
                 
             }
-            if(points.length>WIDTH){
-                points.shift();
-            }
-            //t+=0.05;
+            
+
+            
+
+            new polygon(points,'#695fe6',0,'#695fe6',1,false);
+
+            t-=0.01;
+            t2+=radToDeg(0.01);
             requestAnimationFrame(draw);
         }
         
