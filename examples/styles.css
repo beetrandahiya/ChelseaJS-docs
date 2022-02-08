@@ -290,7 +290,7 @@ body{
 
 .inpfuncparam{
     width: 12em;
-    margin: 0.5em 2em;
+    margin: 0.5em 2em 0.5em 0.1em;
     padding: 1em;
     border: 1px solid #dddf;
     border-radius: 8px;
@@ -307,3 +307,14 @@ body{
     box-shadow: 0 0 0.1em 0.1em #695fe633;
 }
 
+.param-control{
+    width: calc(100% - 10em);
+    margin: 0.5em 2em;
+    padding: 1em 2em;
+    border: 1px solid #dddf;
+    border-radius: 8px;
+    font-size: 1.2em;
+    outline:none;
+    color: #695fe6dd;
+    transition: all 0.2s ease-in-out;
+}

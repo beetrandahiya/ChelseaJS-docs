@@ -195,8 +195,11 @@
         </div>
         <div class="doc">
             <div class="param-control">
-                <input type="text" class="inpfuncparam" id="inpfuncx" value="100*cos(3*degToRad(t))">
-                <input type="text" class="inpfuncparam" id="inpfuncy" value="100*sin(2*degToRad(t))">
+<div>                x=<input type="text" class="inpfuncparam" id="inpfuncx" value="100*cos(3*degToRad(t))" onchange="draw()">
+</div>              
+<div>
+    y=<input type="text" class="inpfuncparam" id="inpfuncy" value="100*sin(2*degToRad(t))" onchange="draw()">
+</div>
             </div>
             
             <div class="example-container">
@@ -227,17 +230,17 @@
         new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.5);
         new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.5);
 
-        for(i=0;i&lt;WIDTH;i++){
-            x=mapRange(i,0,WIDTH,-10,10);
-            y=eval(document.getElementById("inpfunc").value);
-            points.push([i,HEIGHT/2-y]);
+        for(t=0;t&lt;=360;t++){
+            x=eval(document.getElementById("inpfuncx").value);
+            y=eval(document.getElementById("inpfuncy").value);
+            points.push([WIDTH/2+x,HEIGHT/2-y]);
         }
 
         new polygon(points,'#695fe6',0,'#695fe6',2,false);
         
-            
-        requestAnimationFrame(draw);
     }
+    
+    draw();
 
     // use draw() as onchange event for input box.
                 
@@ -259,7 +262,7 @@
             new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.5);
             new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.5);
 
-           for(t=0;t<360;t++){
+           for(t=0;t<=360;t++){
                x=eval(document.getElementById("inpfuncx").value);
                y=eval(document.getElementById("inpfuncy").value);
                points.push([WIDTH/2+x,HEIGHT/2-y]);
