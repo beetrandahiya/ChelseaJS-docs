@@ -194,18 +194,22 @@
 
         </div>
         <div class="doc">
-            <input type="text" id="inpfunc" placeholder="Enter function here" onchange="draw()" value="100*sin(x)">
-
+            <div class="param-control">
+                <input type="text" class="inpfuncparam" id="inpfuncx" value="100*cos(3*degToRad(t))">
+                <input type="text" class="inpfuncparam" id="inpfuncy" value="100*sin(2*degToRad(t))">
+            </div>
+            
             <div class="example-container">
 
     
         </div>
         <h1>
-            2D Equations   </h1>
+            Parametric Equations   </h1>
         <p>
-            Very basic 2D equations plotter made using ChelseaJS.   <br>
-            Simple maths, nothing special.<br>
-            Just Input the function of x you want to plot. The range of x is -10 to 10.
+            Parametric equations is a vital part of mathematics.<br>
+            Parametric equations are equations in the form of $$x=f(t)$$$$y=g(t)$$<br>
+            Where t is the changing parameter and f(t) and g(t) are the functions.<br>
+            They are often used to describe the motion of moving objects and Parametric equations are also very important in Computer Graphics, Computer Aided Design (CAD).<br>
         </p>
 
         <h3>
@@ -255,10 +259,10 @@
             new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.5);
             new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.5);
 
-           for(i=0;i<WIDTH;i++){
-               x=mapRange(i,0,WIDTH,-10,10);
-               y=eval(document.getElementById("inpfunc").value);
-               points.push([i,HEIGHT/2-y]);
+           for(t=0;t<360;t++){
+               x=eval(document.getElementById("inpfuncx").value);
+               y=eval(document.getElementById("inpfuncy").value);
+               points.push([WIDTH/2+x,HEIGHT/2-y]);
            }
 
             new polygon(points,'#695fe6',0,'#695fe6',2,false);

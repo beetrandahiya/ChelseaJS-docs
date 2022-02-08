@@ -286,3 +286,24 @@ body{
     border: 1px solid #695fe688;
     box-shadow: 0 0 0.1em 0.1em #695fe633;
 }
+
+
+.inpfuncparam{
+    width: 10em;
+    margin: 0.5em 2em;
+    padding: 1em;
+    border: 1px solid #dddf;
+    border-radius: 8px;
+    font-size: 1.2em;
+    outline:none;
+    color: #695fe6dd;
+    transition: all 0.2s ease-in-out;
+}
+.inpfuncparam::placeholder{
+    color: #695fe644;
+}
+.inpfuncparam:focus{
+    border: 1px solid #695fe688;
+    box-shadow: 0 0 0.1em 0.1em #695fe633;
+}
+
