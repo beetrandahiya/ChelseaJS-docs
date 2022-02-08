@@ -194,16 +194,15 @@
 
         </div>
         <div class="doc">
-            <input type="text" id="inpfunc" placeholder="Enter function here" onchange="draw()" value="100*sin(x-t)*cos(t)">
             <div class="example-container">
 
     
         </div>
         <h1>
-           Animated Functions   </h1>
+           Random Chords   </h1>
         <p>
-            Not just plot, but also animate the functions added variable t.
-
+            This accumulation of random chords gives an illusion of a spheical ball of threads.<br>
+            Its based on <a href="https://p5js.org/examples/math-random-chords.html" target="_blank">p5js example for the same</a>.
         </p>
 
         <h3>
@@ -214,30 +213,26 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     
-    t=0;
-    function draw(){
-        clearCanvas();
-        points=[];
-        new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.5);
-        new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.5);
+    function draw() {
 
-        for(i=0;i&lt;WIDTH;i++){
-            x=mapRange(i,0,WIDTH,-10,10);
-            y=eval(document.getElementById("inpfunc").value);
-            points.push([i,HEIGHT/2-y]);
-        }
-
-        new polygon(points,'#695fe6',0,'#695fe6',2,false);
-        t+=0.01;
-            
+        // clearCanvas();
+        
+         // find a random point on a circle
+        let angle1 = random(0, 2 * PI);
+        let xpos1 = WIDTH/2 + 200 * cos(angle1);
+        let ypos1 = HEIGHT/2 + 200 * sin(angle1);
+        
+        // find another random point on the circle
+        let angle2 = random(0, 2 * PI);
+        let xpos2 = WIDTH/2 + 200 * cos(angle2);
+        let ypos2 = HEIGHT/2 + 200 * sin(angle2);
+        
+        new line(xpos1,ypos1,xpos2,ypos2,'#fff2');
         requestAnimationFrame(draw);
-    }
-    
-    draw();
-
-    // use draw() as onchange event for input box.
+         
+        }
                 
-            </code>
+    draw();              </code>
         </pre>
 
     </div>
@@ -248,24 +243,27 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-       t=0;
-        function draw(){
-            clearCanvas();
-            points=[];
-            new line(WIDTH/2,0,WIDTH/2,HEIGHT,'#fff',0.5);
-            new line(0,HEIGHT/2,WIDTH,HEIGHT/2,'#fff',0.5);
+       
+       function draw() {
 
-           for(i=0;i<WIDTH;i++){
-               x=mapRange(i,0,WIDTH,-10,10);
-               y=eval(document.getElementById("inpfunc").value);
-               points.push([i,HEIGHT/2-y]);
-           }
+// clearCanvas();
 
-            new polygon(points,'#695fe6',0,'#695fe6',2,false);
-         t+=0.01;
-               
-            requestAnimationFrame(draw);
-        }
+ // find a random point on a circle
+let angle1 = random(0, 2 * PI);
+let xpos1 = WIDTH/2 + 200 * cos(angle1);
+let ypos1 = HEIGHT/2 + 200 * sin(angle1);
+
+// find another random point on the circle
+let angle2 = random(0, 2 * PI);
+let xpos2 = WIDTH/2 + 200 * cos(angle2);
+let ypos2 = HEIGHT/2 + 200 * sin(angle2);
+
+new line(xpos1,ypos1,xpos2,ypos2,'#fff2');
+requestAnimationFrame(draw);
+ 
+}
+
+
         
         draw();
     </script>
