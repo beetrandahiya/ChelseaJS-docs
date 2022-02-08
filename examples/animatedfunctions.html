@@ -194,8 +194,7 @@
 
         </div>
         <div class="doc">
-            <input type="text" id="inpfunc" placeholder="Enter function here" onchange="draw()" value="100*sin(x)">
-
+            <input type="text" id="inpfunc" placeholder="Enter function here" onchange="draw()" value="100*sin(x-t)*cos(t)">
             <div class="example-container">
 
     
@@ -204,7 +203,7 @@
            Animated Functions   </h1>
         <p>
             Not just plot, but also animate the functions added variable t.
-                
+
         </p>
 
         <h3>
@@ -215,7 +214,7 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     
-    
+    t=0;
     function draw(){
         clearCanvas();
         points=[];
@@ -229,10 +228,12 @@
         }
 
         new polygon(points,'#695fe6',0,'#695fe6',2,false);
-        
+        t+=0.01;
             
         requestAnimationFrame(draw);
     }
+    
+    draw();
 
     // use draw() as onchange event for input box.
                 
@@ -247,7 +248,7 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-       
+       t=0;
         function draw(){
             clearCanvas();
             points=[];
@@ -261,9 +262,9 @@
            }
 
             new polygon(points,'#695fe6',0,'#695fe6',2,false);
-         
+         t+=0.01;
                
-            //requestAnimationFrame(draw);
+            requestAnimationFrame(draw);
         }
         
         draw();
