@@ -194,12 +194,12 @@
 
         </div>
         <div class="doc">
-            <div class="example-container" style="width:300px; height:300px; margin:auto;">
+            <div class="example-container" style="width:300px; height:300px; margin:auto; background: hsl(50,100%,50%)">
 
     
         </div>
         <h1>
-          Lorenz Attractor </h1>
+          Mandelbrot Set </h1>
         <p>
           Lorenz Attractor is a deterministic chaotic system.<br>
             For the physical significance, The Lorenz attractor is an attractor that arises in a simplified system of equations describing the two-dimensional flow of fluid of uniform depth , with an imposed temperature difference , under gravity , with buoyancy , thermal diffusivity , and kinematic viscosity .
@@ -269,8 +269,8 @@
   clearCanvas();
   w=WIDTH;
     h=HEIGHT;
-  for(i=0;i<w;i+=2){
-    for(j=0;j<h;j+=2){
+  for(i=0;i<w;i+=1){
+    for(j=0;j<h;j+=1){
         var a= mapRange(i,0,w,-2,1);
         var b= mapRange(j,0,h,-1.5,1.5);
         var ca=a;
@@ -290,12 +290,9 @@
         }
 
         var c=mapRange(n,0,100,0,360);
-        var cr=mapRange(n,0,100,0,186);
-        var cg=mapRange(n,0,100,0,245);
-        var cb=mapRange(n,0,100,0,247);
-        var color='rgb('+cr+','+cg+','+cb+')';
+
         if(c>10){
-        new rect(i,j,2.5,2.5,color,1,'#fff',0,'top-left',0);
+        new rect(i,j,2.5,2.5,`hsl(${c},100%,50%)`,1,`hsl(${c},100%,50%)`,0,'top-left',0);
         }
 
     }};
