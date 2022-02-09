@@ -194,53 +194,61 @@
 
         </div>
         <div class="doc">
-
-            <div class="example-container" style="width:40vw; height:50vw; margin:auto; background: #fff;">
+            <div class="example-container">
 
     
         </div>
         <h1>
-            8 Ecke
-        </h1>
+          Lorenz Attractor </h1>
         <p>
-            Not very well known, but 8 Ecke is a very important part of history of generative art.<br>
-            It was made by <a href="https://en.wikipedia.org/wiki/Georg_Nees">Georg Nees</a>.<br>
-            Nees became the first to exhibit what then was called computer art, computergrafik in German or, better, algorithmic art.<br>
-            His doctoral thesis was published as a book in 1969 (under the title, <a href="http://dada.compart-bremen.de/item/exhibition/164">Generative Computergrafik</a>). <br>
-            and This was in all likelihood world-wide the first doctoral thesis on a topic of computer art.
-
+          Lorenz Attractor is a deterministic chaotic system.<br>
+            For the physical significance, The Lorenz attractor is an attractor that arises in a simplified system of equations describing the two-dimensional flow of fluid of uniform depth , with an imposed temperature difference , under gravity , with buoyancy , thermal diffusivity , and kinematic viscosity .
+            <br>
+            This particular plot is x and z coordinates of Lorenz Attractor.
+             
         </p>
-
-        <h3>
+       <h3>
             Code
         </h3>
         <pre>
             <code class="language-js">
     elem=document.querySelector(".example-container");
     setCanvas(elem);
-    x = 0;
-    y = 0;
-    function draw(){
+    
+    x=0.01;
+    y=0.01;
+    z=0.01
+    a=10;
+    b=28;
+    c=8/3;
+    px=x;
+    py=y;
+    pz=z;
+    points=[];
+    function draw() {
+        clearCanvas();
+        dt=0.01;
+        dx= (a*(y-x))*dt;
+        dy= (x*(b-z)-y)*dt;
+        dz= (x*y - c*z)*dt;
+        
+        x=x+dx;
+        y=y+dy;
+        z=z+dz;
+        points.push([WIDTH/2+8*x,3*HEIGHT/4-5*z]);
+        
+        new polygon(points,'#696969',0,'#695fe6',0.7,false);
 
-        if(randomBool()){
-            new line(x,y,x+40,y+40,'#695fe6',2);
-        }
-        else{
-            new line(x,y+40,x+40,y,'#695fe6',2);
+        px=x;
+        py=y;
+        pz=z;
+
+        requestAnimationFrame(draw);
+
         }
 
-        x+=40;
-        if(x&gt;WIDTH){
-            x=0;
-            y+=40;
-        }
-
-        if(y&lt;HEIGHT){                       //stop the illustration when the canvas is filled
-            requestAnimationFrame(draw);            
-         }
-    }
-    draw();
-            </code>
+        
+    draw();         </code>
         </pre>
 
     </div>
@@ -248,43 +256,43 @@
     <script src="../main.js"></script>
     <script src="script.js"></script>
     <script>
-
-     
         elem=document.querySelector(".example-container");
         setCanvas(elem);
-        w = WIDTH
-     h = HEIGHT
-     scl = 20;
-     gap = scl / 4;
-     margin = 20;
-
-        cols = (w - margin * 2) / scl;
-  rows = (h - margin * 2) / scl;
-        function draw(){
-            //clearCanvas();
-
-            for (let y = 0; y < rows; y += gap) {
-                for (let x = 0; x < cols; x += gap) {
-                    points=[]
-                
-                let startX = Math.floor(random(1, 20) + x * scl) + margin + gap;
-                let startY = Math.floor(random(1, 20) + y * scl) + margin + gap;
-                
-                
-                for (i = 0; i < 8; i++) {
-                    points.push([Math.floor(random(1, 10)) * 5 + x * scl + margin + gap,Math.floor(random(1, 10)) * 5 + y * scl + margin + gap])
-                    
-                }
-
-                new cubicbezier(points,'#695fe6',0,'#695fe6',1,0.2,false)
-                
-                
-                
-                }
-            }
+        
+        x=0.01;
+        y=0.01;
+        z=0.01
+        a=10;
+        b=28;
+        c=8/3;
+        px=x;
+        py=y;
+        pz=z;
+        points=[];
+       function draw() {
+        clearCanvas();
+            dt=0.01;
+            dx= (a*(y-x))*dt;
+            dy= (x*(b-z)-y)*dt;
+            dz= (x*y - c*z)*dt;
             
+            x=x+dx;
+            y=y+dy;
+            z=z+dz;
+            points.push([WIDTH/2+8*x,3*HEIGHT/4-5*z]);
             
-        }
+            new polygon(points,'#696969',0,'#695fe6',0.7,false);
+
+            
+            px=x;
+                py=y;
+                pz=z;
+
+        requestAnimationFrame(draw);
+
+       }
+
+        
         draw();
     </script>
     
