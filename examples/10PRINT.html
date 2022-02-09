@@ -200,16 +200,13 @@
     
         </div>
         <h1>
-            Insertion Sort
+            10 PRINT
         </h1>
         <p>
-            This is a ChelseaJS visualization of the Insertion Sort algorithm.<br>
-            The algorithm is a simple sorting algorithm that works by taking an unsorted array and repeatedly stepping through each element in the array, inserting each element into the correct position in the sorted array.<br>
-            <br>
-            <b>Time Complexity:</b> O(n<sup>2</sup>)
-            <br><br>
-            Insertion sort is typically used to sort short arrays, but it is also used to sort lists that are already mostly sorted.<br>
-
+            10 PRINT CHR$(205.5+RND(1)); : GOTO 10<br>
+            This famous Commodore 64 BASIC line, that prints a beauiful line PETSCII art.
+            Not just a line of code, but an entire culture and history.<br>
+            
         </p>
 
         <h3>
@@ -219,37 +216,28 @@
             <code class="language-js">
     elem=document.querySelector(".example-container");
     setCanvas(elem);
-    arr=[];
-    for(i=0;i&lt;WIDTH/2;i++){
-        arr.push(random(0,HEIGHT));
-    }
-    k=0;
-    
+    x = 0;
+    y = 0;
     function draw(){
-        clearCanvas();
-        key= arr[k];
 
-        j=k-1;
-        while(j&gt;=0 && arr[j]&gt;key){
-            arr[j+1]=arr[j];
-            j--;
+        if(randomBool()){
+            new line(x,y,x+40,y+40,'#695fe6',2);
         }
-        arr[j+1]=key;
-            
-        [arr[min_idx] , arr[k]] = [arr[k],arr[min_idx]];   //es6 destructuring to swap elements
-        
-        for(i=0;i&lt;arr.length;i++){
-            x=mapRange(i,0,arr.length,0,WIDTH);
-            new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);
+        else{
+            new line(x,y+40,x+40,y,'#695fe6',2);
         }
-            
-        if(k&lt;WIDTH/2-1){
-            k++;
+
+        x+=40;
+        if(x&gt;WIDTH){
+            x=0;
+            y+=40;
         }
-            
-        requestAnimationFrame(draw);
+
+        if(y&lt;HEIGHT){                       //stop the illustration when the canvas is filled
+            requestAnimationFrame(draw);            
+         }
     }
-    draw()
+    draw();
             </code>
         </pre>
 
