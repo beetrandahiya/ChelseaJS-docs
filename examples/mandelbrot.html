@@ -194,23 +194,18 @@
 
         </div>
         <div class="doc">
-            <div class="example-container" style="width:300px; height:300px; margin:auto; background: hsl(50,100%,50%)">
+            <div class="example-container" style="width:300px; height:300px; margin:auto; background: hsl(20,100%,50%)">
 
     
         </div>
         <h1>
           Mandelbrot Set </h1>
         <p>
-          Lorenz Attractor is a deterministic chaotic system.<br>
-            For the physical significance, The Lorenz attractor is an attractor that arises in a simplified system of equations describing the two-dimensional flow of fluid of uniform depth , with an imposed temperature difference , under gravity , with buoyancy , thermal diffusivity , and kinematic viscosity .
-            <br>
-            This particular plot is x and z coordinates of Lorenz Attractor.
-             <br>
-             The attractor is described by the following system of differential equations:
-             $$\displaystyle\frac{{\left.{d}{x}\right.}}{{\left.{d}{t}\right.}}={a}{\left({y}-{x}\right)}$$
-             $$\displaystyle\frac{{\left.{d}{y}\right.}}{{\left.{d}{t}\right.}}={x}{\left({b}-{z}\right)}-{y}$$
-             $$\displaystyle\frac{{\left.{d}{z}\right.}}{{\left.{d}{t}\right.}}={x}{y}-{c}{z}$$
-
+            The Mandelbrot set is one of the most famous fractal.<br>
+            The mandelbrot set is defined by the set of complex numbers c for which the complex numbers of the sequence z<sub>n</sub> remain bounded in absolute value. The sequence z<sub>n</sub> is defined by:<br>
+            $$  z_0 = 0   $$
+            $$ z_n+1 = z_n^2 + c  $$
+            where c is a complex number and z<sub>n</sub> is the nth complex number in the sequence.
         </p>
        <h3>
             Code
@@ -220,40 +215,46 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     
-    x=0.01;
-    y=0.01;
-    z=0.01
-    a=10;
-    b=28;
-    c=8/3;
-    px=x;
-    py=y;
-    pz=z;
-    points=[];
     function draw() {
+            
         clearCanvas();
-        dt=0.01;
-        dx= (a*(y-x))*dt;
-        dy= (x*(b-z)-y)*dt;
-        dz= (x*y - c*z)*dt;
-        
-        x=x+dx;
-        y=y+dy;
-        z=z+dz;
-        points.push([WIDTH/2+8*x,3*HEIGHT/4-5*z]);
-        
-        new polygon(points,'#696969',0,'#695fe6',0.7,false);
+        w=WIDTH;
+        h=HEIGHT;
+        for(i=0;i&lt;w;i+=1){
+            for(j=0;j&lt;h;j+=1){
+                var a= mapRange(i,0,w,-2,1);
+                var b= mapRange(j,0,h,-1.5,1.5);
+                var ca=a;
+                var cb=b;
 
-        px=x;
-        py=y;
-        pz=z;
+                var n=0;
+                while(n&lt;100){
+
+                    var aa=a*a-b*b;
+                    var bb=2*a*b;
+                    a=aa+ca;
+                    b=bb+cb;
+                    if(a+b>4){
+                        break;
+                    }
+                    n++;
+                }
+
+                var c=mapRange(n,0,100,0,360);
+
+                if(c>20){
+                new rect(i,j,2.5,2.5,`hsl(${c},100%,50%)`,1,`hsl(${c},100%,50%)`,0,'top-left',0);
+                }
+
+            }
+        };
 
         requestAnimationFrame(draw);
 
-        }
-
+    }
         
-    draw();         </code>
+    
+    draw();      </code>
         </pre>
 
     </div>
@@ -291,7 +292,7 @@
 
         var c=mapRange(n,0,100,0,360);
 
-        if(c>10){
+        if(c>20){
         new rect(i,j,2.5,2.5,`hsl(${c},100%,50%)`,1,`hsl(${c},100%,50%)`,0,'top-left',0);
         }
 
