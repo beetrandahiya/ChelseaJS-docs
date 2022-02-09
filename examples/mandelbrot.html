@@ -194,7 +194,7 @@
 
         </div>
         <div class="doc">
-            <div class="example-container">
+            <div class="example-container" style="width:300px; height:300px; margin:auto;">
 
     
         </div>
@@ -264,34 +264,41 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-        x=0.01;
-        y=0.01;
-        z=0.01
-        a=10;
-        b=28;
-        c=8/3;
-        px=x;
-        py=y;
-        pz=z;
-        points=[];
        function draw() {
-        clearCanvas();
-            dt=0.01;
-            dx= (a*(y-x))*dt;
-            dy= (x*(b-z)-y)*dt;
-            dz= (x*y - c*z)*dt;
-            
-            x=x+dx;
-            y=y+dy;
-            z=z+dz;
-            points.push([WIDTH/2+8*x,3*HEIGHT/4-5*z]);
-            
-            new polygon(points,'#696969',0,'#695fe6',0.7,false);
+         
+  clearCanvas();
+  w=WIDTH;
+    h=HEIGHT;
+  for(i=0;i<w;i+=2){
+    for(j=0;j<h;j+=2){
+        var a= mapRange(i,0,w,-2,1);
+        var b= mapRange(j,0,h,-1.5,1.5);
+        var ca=a;
+        var cb=b;
 
-            
-            px=x;
-                py=y;
-                pz=z;
+        var n=0;
+        while(n<100){
+
+            var aa=a*a-b*b;
+            var bb=2*a*b;
+            a=aa+ca;
+            b=bb+cb;
+            if(a+b>4){
+                break;
+            }
+            n++;
+        }
+
+        var c=mapRange(n,0,100,0,360);
+        var cr=mapRange(n,0,100,0,186);
+        var cg=mapRange(n,0,100,0,245);
+        var cb=mapRange(n,0,100,0,247);
+        var color='rgb('+cr+','+cg+','+cb+')';
+        if(c>10){
+        new rect(i,j,2.5,2.5,color,1,'#fff',0,'top-left',0);
+        }
+
+    }};
 
         requestAnimationFrame(draw);
 
