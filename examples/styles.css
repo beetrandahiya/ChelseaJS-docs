@@ -318,3 +318,7 @@ body{
     color: #695fe6dd;
     transition: all 0.2s ease-in-out;
 }
+
+.disabled{
+    color: #695fe6 !important;
+}

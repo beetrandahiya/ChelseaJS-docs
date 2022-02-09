@@ -269,14 +269,17 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-        x1=WIDTH/2;
-    y1=HEIGHT/2-200;
+        x1=WIDTH/2-100;
+        y1=HEIGHT/2-100;
 
-    x2=WIDTH/2-sqrt(3)*100;
-    y2=HEIGHT/2+100;
+        x2=WIDTH/2+100;
+        y2=HEIGHT/2-100;
 
-    x3=WIDTH/2+sqrt(3)*100;
-    y3=HEIGHT/2+100;
+        x3=WIDTH/2+100;
+        y3=HEIGHT/2+100;
+
+        x4=WIDTH/2-100;
+        y4=HEIGHT/2+100;
 
         x=(x1+x2)/2;
         y=(y1+y2)/2;
@@ -287,8 +290,9 @@
     new circle(x1,y1,2,'#fff',1,'#fff',0);
     new circle(x2,y2,2,'#fff',1,'#fff',0);
     new circle(x3,y3,2,'#fff',1,'#fff',0);
+    new circle(x4,y4,2,'#fff',1,'#fff',0);
 
-    decision=randomInt(1,4);
+    decision=randomInt(1,5);
     console.log(decision);
   switch(decision){
       case(1):
@@ -305,6 +309,11 @@
       new circle((x+x3)/2,(y+y3)/2,2,'#fff',1,'#fff',0);
       x=(x+x3)/2;
       y=(y+y3)/2;
+      break;
+      case(4):
+      new circle((x+x4)/2,(y+y4)/2,2,'#fff',1,'#fff',0);
+      x=(x+x4)/2;
+      y=(y+y4)/2;
       break;
          
   }
