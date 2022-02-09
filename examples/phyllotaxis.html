@@ -256,7 +256,7 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-        c=8;   //change this to change the distance between points
+        c=7;   //change this to change the distance between points
 n=0;   //starting point of spiral
 t2=0;
        function draw() {
@@ -271,7 +271,7 @@ t2=0;
             var y = r * sin(a-t2);       //cartesian form of the same equation
             
             ic=mapRange(t,0,n,0,360);
-            new circle(WIDTH/2+x,HEIGHT/2+y,5,`hsl(${ic},100%,50%)`,1,'#fff',0);
+            new circle(WIDTH/2+x,HEIGHT/2+y,4,`hsl(${ic},100%,50%)`,1,'#fff',0);
 
         }
         t2+=0.01;
