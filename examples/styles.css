@@ -322,3 +322,14 @@ body{
 .disabled{
     color: #695fe6 !important;
 }
+
+.note{
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin: 2em 1em;
+    width: calc(100% - 12em);
+    padding: 1em;
+    border-radius: 8px;
+    background-color: rgba(105,95,230,0.1);
+    color:rgba(105,95,230,1)
+}
