@@ -194,90 +194,126 @@
 
         </div>
         <div class="doc">
-            <div class="example-container" style="height:500px;">
+            <div class="example-container" >
 
     
         </div>
         <h1>
-           20 Double Pendulums   </h1>
+           Three Body Problem   </h1>
         <p>
-            A set of Double Pendulums help us understand the chaos better.<br>
-            All these pendulums are left with a difference of very very small angle.<br>
-            At start their motion is quite identical but soon they deviate tremendously from their initial fashion.<br>
-                </p>
-                <div class="note">Note: You will see some pendulums going to infinity, thats because the method to calculate the angle breaks in some cases.</div>
-
-        <h3>
+            The Three Body problem is the problem of taking the initial positions and velocities (or momenta) of three point masses and solving for their subsequent motion according to Newton's laws of motion and Newton's law of universal gravitation.
+      <br>
+      For the problem, No general closed-form solution exists, as the resulting dynamical system is chaotic for most initial conditions, and numerical methods are generally required.  <h3>
             Code
         </h3>
         <pre>
             <code class="language-js">
-    elem=document.querySelector(".example-container");
+
+    elem = document.getElementsByClassName("example-container")[0];
     setCanvas(elem);
-                
+
     w=WIDTH;
     h=HEIGHT;
-    ///////////////////////////////////////////////////////////////////////////////
-    r1 = 100;
-    r2 = 100;
-    m1 = 5;
-    m2 = 5;
-    n=20;
-    m=[];
-    a1=[];
-    a2=[];
-    v1=[];
-    v2=[];
-    a_a1=[];
-    a_a2=[];
-    g=1;
-    for(i=0;i&lt;n;i++){
-        m.push(10);
-        a1.push(Math.PI/3 +i/1000);
-        a2.push(Math.PI/3 +i/1000);
-        v1.push(0);
-        v2.push(0);
-        a_a1.push(0);
-        a_a2.push(0);
+
+    
+    G=10**1;
+    m1=20;
+    m2=20;
+    m3=20;
+
+    x1=w/2-100;
+    y1=150;
+
+    x2=w/2+100;
+    y2=150;
+
+    x3=w/2;
+    y3=273.2+50;
+
+    v=1;
+    vm1={
+        x: -v/2,
+        y: v*Math.sqrt(3)/2
+    };
+    vm2={
+        x: -v/2,
+        y: -v*Math.sqrt(3)/2
+    };
+    vm3={
+        x: v,
+        y: 0
+    };
+
+    t=0;
+    points1=[];
+    points2=[];
+    points3=[];
+
+    function draw() {
+    
+        clearCanvas();
+        
+        new circle(x1,y1,10,'#C10FF0','#000000');
+        new circle(x2,y2,10,'#EA4567');
+        new circle(x3,y3,10,'#F7BFCD');
+        points1.push([x1,y1]);
+        points2.push([x2,y2]);
+        points3.push([x3,y3]);
+
+        if(points1.length>200){
+            points1.shift();}
+        if(points2.length>200){
+            points2.shift();}
+        if(points3.length>200){
+            points3.shift();}
+
+
+        new polygon(points1,'#c10ff0',0,'#c10ff0',2,false);
+        new polygon(points2,'#ea4567',0,'#ea4567',2,false);
+        new polygon(points3,'#f7bfcd',0,'#f7bfcd',2,false);
+        
+
+        Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
+        Fm2m3=Fbetween(x2,y2,x3,y3,m2,m3);
+        Fm1m3=Fbetween(x1,y1,x3,y3,m1,m3);
+
+        Fon1={x:Fm1m2.x+Fm1m3.x,y:Fm1m2.y+Fm1m3.y};
+        Fon2={x:Fm2m3.x-Fm1m2.x,y:Fm2m3.y-Fm1m2.y};
+        Fon3={x:-Fm1m3.x-Fm2m3.x,y:-Fm1m3.y-Fm2m3.y};
+
+        am1={x:Fon1.x/m1,y:Fon1.y/m1};
+        am2={x:Fon2.x/m2,y:Fon2.y/m2};
+        am3={x:Fon3.x/m3,y:Fon3.y/m3};
+
+        vm1.x+=am1.x;
+        vm1.y+=am1.y;
+        vm2.x+=am2.x;
+        vm2.y+=am2.y;
+        vm3.x+=am3.x;
+        vm3.y+=am3.y;
+        
+        x1+=vm1.x;
+        y1+=vm1.y;
+        x2+=vm2.x;
+        y2+=vm2.y;
+        x3+=vm3.x;
+        y3+=vm3.y;
+
+        requestAnimationFrame(draw);
+    
     }
-        
-        
-    function draw(){
-        clearCanvas()
-        for(i=0;i&lt;n;i++){
-            let num1 = -g * (2 * m1 + m2) * sin(a1[i]);
-            let num2 = -m2 * g * sin(a1[i] - 2 * a2[i]);
-            let num3 = -2 * sin(a1[i] - a2[i]) * m2;
-            let num4 = v2[i] * v2[i] * r2 + v1[i] * v1[i] * r1 * cos(a1[i] - a2[i]);
-            let den = r1 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-            a_a1[i] = (num1 + num2 + num3 * num4) / den;
-            num1 = 2 * sin(a1[i] - a2[i]);
-            num2 = v1[i] * v1[i] * r1 * (m1 + m2);
-            num3 = g * (m1 + m2) * cos(a1[i]);
-            num4 = v2[i] * v2[i] * r2 * m2 * cos(a1[i] - a2[i]);
-            den = r2 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-            a_a2[i] = (num1 * (num2 + num3 + num4)) / den;
 
-            x1 = r1 * sin(a1[i]);
-            y1 = r1 * cos(a1[i]);
-        
-            x2 = x1 + r2 * sin(a2[i]);
-            y2 = y1 + r2 * cos(a2[i]);
-            
-            new line(w/2,0+h/2, w/2+x1, y1+h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, 2 );
-            new line(w/2 + x1, y1 +h/2, w/2+ x2, y2 +h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`,2);
-
-            new circle(w/2+x1, y1 +h/2, m1, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-            new circle(w/2+x2, y2 +h/2, m2, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-
-            v1[i] += a_a1[i];
-            v2[i] += a_a2[i];
-            a1[i] += v1[i];
-            a2[i] += v2[i];
+    function Fbetween(x1,y1,x2,y2,m1,m2) {
+        r=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        F={
+            x:((G*m1*m2)/(r*r*r))*(x2-x1),
+            y:((G*m1*m2)/(r*r*r))*(y2-y1)
         }
-            requestAnimationFrame(draw);
+        return F;
     }
-        
+    ///////////////////////////////////////////////////////////////////////////////
+
+
     draw();
             </code>
         </pre>
@@ -287,75 +323,125 @@
     <script src="../main.js"></script>
     <script src="script.js"></script>
     <script>
-        elem=document.querySelector(".example-container");
-        setCanvas(elem);
-        
+     
+
+elem = document.getElementsByClassName("example-container")[0];
+setCanvas(elem);
+
 w=WIDTH;
 h=HEIGHT;
-///////////////////////////////////////////////////////////////////////////////
-r1 = 100;
-r2 = 100;
-m1 = 5;
-m2 = 5;
-n=20;
-m=[];
-a1=[];
-a2=[];
-v1=[];
-v2=[];
-a_a1=[];
-a_a2=[];
-g=1;
-for(i=0;i<n;i++){
-  m.push(10);
-  a1.push(Math.PI/3 +i/1000);
-  a2.push(Math.PI/3 +i/1000);
-  v1.push(0);
-  v2.push(0);
-  a_a1.push(0);
-  a_a2.push(0);
+
+
+
+   
+   G=10**1  ;
+   m1=20;
+   m2=20;
+   m3=20;
+  
+   x1=w/2-100;
+   y1=150;
+
+   x2=w/2+100;
+   y2=150;
+   
+   x3=w/2;
+   y3=273.2+50;
+ 
+v=1;
+   vm1={
+    x: -v/2,
+    y: v*Math.sqrt(3)/2
+};
+    vm2={
+    x: -v/2,
+    y: -v*Math.sqrt(3)/2
+};
+    vm3={
+      x: v,
+      y: 0
+  };
+
+   
+   colors=['#17078B','#4F03A1','#AA2595','#C5417D','#DB5C67','#E97158','#F8973F','#FCB530','#F3EE22']
+   Fabsmax=0;
+   Fabsmin=0;
+   t=0;
+   points1=[];
+    points2=[];
+    points3=[];
+
+function draw() {
+   
+  clearCanvas();
+  
+  new circle(x1,y1,10,'#C10FF0','#000000');
+  new circle(x2,y2,10,'#EA4567');
+  new circle(x3,y3,10,'#F7BFCD');
+  points1.push([x1,y1]);
+  points2.push([x2,y2]);
+  points3.push([x3,y3]);
+
+ if(points1.length>200){
+    points1.shift();}
+    if(points2.length>200){
+    points2.shift();}
+    if(points3.length>200){
+    points3.shift();}
+
+
+  new polygon(points1,'#c10ff0',0,'#c10ff0',2,false);
+    new polygon(points2,'#ea4567',0,'#ea4567',2,false);
+    new polygon(points3,'#f7bfcd',0,'#f7bfcd',2,false);
+ 
+
+  Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
+  Fm2m3=Fbetween(x2,y2,x3,y3,m2,m3);
+  Fm1m3=Fbetween(x1,y1,x3,y3,m1,m3);
+
+  Fon1={x:Fm1m2.x+Fm1m3.x,y:Fm1m2.y+Fm1m3.y};
+  Fon2={x:Fm2m3.x-Fm1m2.x,y:Fm2m3.y-Fm1m2.y};
+  Fon3={x:-Fm1m3.x-Fm2m3.x,y:-Fm1m3.y-Fm2m3.y};
+
+  am1={x:Fon1.x/m1,y:Fon1.y/m1};
+  am2={x:Fon2.x/m2,y:Fon2.y/m2};
+  am3={x:Fon3.x/m3,y:Fon3.y/m3};
+
+  vm1.x+=am1.x;
+  vm1.y+=am1.y;
+  vm2.x+=am2.x;
+  vm2.y+=am2.y;
+  vm3.x+=am3.x;
+  vm3.y+=am3.y;
+  
+  x1+=vm1.x;
+  y1+=vm1.y;
+  x2+=vm2.x;
+  y2+=vm2.y;
+  x3+=vm3.x;
+  y3+=vm3.y;
+
+
+
+
+
+
+ requestAnimationFrame(draw);
+ 
 }
 
+function Fbetween(x1,y1,x2,y2,m1,m2) {
+  r=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+  F={
+    x:((G*m1*m2)/(r*r*r))*(x2-x1),
+    y:((G*m1*m2)/(r*r*r))*(y2-y1)
+  }
+  return F;
+}
+///////////////////////////////////////////////////////////////////////////////
 
-    function draw(){
-        clearCanvas()
-        for(i=0;i<n;i++){
-            let num1 = -g * (2 * m1 + m2) * sin(a1[i]);
-            let num2 = -m2 * g * sin(a1[i] - 2 * a2[i]);
-            let num3 = -2 * sin(a1[i] - a2[i]) * m2;
-            let num4 = v2[i] * v2[i] * r2 + v1[i] * v1[i] * r1 * cos(a1[i] - a2[i]);
-            let den = r1 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-            a_a1[i] = (num1 + num2 + num3 * num4) / den;
-            num1 = 2 * sin(a1[i] - a2[i]);
-            num2 = v1[i] * v1[i] * r1 * (m1 + m2);
-            num3 = g * (m1 + m2) * cos(a1[i]);
-            num4 = v2[i] * v2[i] * r2 * m2 * cos(a1[i] - a2[i]);
-            den = r2 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-            a_a2[i] = (num1 * (num2 + num3 + num4)) / den;
 
-            x1 = r1 * sin(a1[i]);
-            y1 = r1 * cos(a1[i]);
-        
-            x2 = x1 + r2 * sin(a2[i]);
-            y2 = y1 + r2 * cos(a2[i]);
-            
-            new line(w/2,0+h/2, w/2+x1, y1+h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, 2 );
-            new line(w/2 + x1, y1 +h/2, w/2+ x2, y2 +h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`,2);
-
-            new circle(w/2+x1, y1 +h/2, m1, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-            new circle(w/2+x2, y2 +h/2, m2, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-
-            v1[i] += a_a1[i];
-            v2[i] += a_a2[i];
-            a1[i] += v1[i];
-            a2[i] += v2[i];
-        
-   
-    }
-            requestAnimationFrame(draw);
-        }
-        
-        draw();
+draw();
     </script>
     
     <script src="../assets/prism.js"></script>
