@@ -194,16 +194,19 @@
 
         </div>
         <div class="doc">
+            <input type="text" id="inpfunc" placeholder="Enter function here" onchange="draw()" value="100*sin(x-t)*cos(t)">
             <div class="example-container">
 
     
         </div>
         <h1>
-          De-Broglie Rainbow</h1>
+           Animated Functions   </h1>
         <p>
+            Not just plot, but also animate the functions added variable t.
 
         </p>
-       <h3>
+
+        <h3>
             Code
         </h3>
         <pre>
@@ -211,28 +214,30 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     
-    n=200;
     t=0;
-    function draw() {
-        clearCanvas();
-        
-        for(j=0;j&lt;7;j++){
-            for(i=0;i&lt;=360;i+=3){
-                r=100+40*sin(degToRad(3*i+t+10*j))*sin(degToRad(3*i+t+10*j));
-                y=r*sin(degToRad(i));
-                x=r*cos(degToRad(i));
-                y=HEIGHT/2-y;
-                x=WIDTH/2+x;
-                new circle(x,y,3,`hsl(${50*j},100%,50%)`,'#fff',0);
-            }
-        }
-        
-        t++;
+    fetch_mouse_pos(elem,'mousemove');
+    function draw(){
+        clearCanvas()
+        new circle(WIDTH/3,HEIGHT/2,100,'#fff',1);
+        theta=atan2(HEIGHT/2-mousepos.y,mousepos.x-WIDTH/3);
+        x1=WIDTH/3+50*cos(theta);
+        y1=HEIGHT/2-50*sin(theta);
 
+        new circle(2*WIDTH/3,HEIGHT/3,60,'#fff',1);
+
+        theta2=atan2(HEIGHT/3-mousepos.y,mousepos.x-2*WIDTH/3);
+        x2=2*WIDTH/3+30*cos(theta2);
+        y2=HEIGHT/3-30*sin(theta2);
+
+        new circle(x2,y2,30,'#222',1);
+
+
+        new circle(x1,y1,50,'#222',1);
         requestAnimationFrame(draw);
     }
     
-    draw();         </code>
+    draw();  
+            </code>
         </pre>
 
     </div>
@@ -243,24 +248,25 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         
-        n=200;
-        t=0;
-        function draw() {
-            clearCanvas();
-            
-            for(j=0;j<7;j++){
-                for(i=0;i<=360;i+=3){
-                    r=100+40*sin(degToRad(3*i+t+10*j))*sin(degToRad(3*i+t+10*j));
-                    y=r*sin(degToRad(i));
-                    x=r*cos(degToRad(i));
-                    y=HEIGHT/2-y;
-                    x=WIDTH/2+x;
-                    new circle(x,y,3,`hsl(${50*j},100%,50%)`,'#fff',0);
-                }
-            }
-            
-            t++;
+       t=0;
+       fetch_mouse_pos(elem,'mousemove');
+        function draw(){
+            clearCanvas()
+            new circle(WIDTH/3,HEIGHT/2,100,'#fff',1);
+            theta=atan2(HEIGHT/2-mousepos.y,mousepos.x-WIDTH/3);
+            x1=WIDTH/3+50*cos(theta);
+            y1=HEIGHT/2-50*sin(theta);
 
+            new circle(2*WIDTH/3,HEIGHT/3,60,'#fff',1);
+
+            theta2=atan2(HEIGHT/3-mousepos.y,mousepos.x-2*WIDTH/3);
+            x2=2*WIDTH/3+30*cos(theta2);
+            y2=HEIGHT/3-30*sin(theta2);
+
+            new circle(x2,y2,30,'#222',1);
+
+
+            new circle(x1,y1,50,'#222',1);
             requestAnimationFrame(draw);
         }
         
