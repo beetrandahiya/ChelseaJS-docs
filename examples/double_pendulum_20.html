@@ -194,7 +194,7 @@
 
         </div>
         <div class="doc">
-            <div class="example-container">
+            <div class="example-container" style="height:500px;">
 
     
         </div>
@@ -202,7 +202,8 @@
            20 Double Pendulum   </h1>
         <p>
             A set of Double Pendulums help us understand the chaos better.<br>
-            All these pendulums are left with a difference of very very small angle.
+            All these pendulums are left with a difference of very very small angle.<br>
+            At start their motion is quite identical but soon they deviate tremendously from their initial fashion.<br>
                 </p>
 
         <h3>
@@ -210,75 +211,73 @@
         </h3>
         <pre>
             <code class="language-js">
-                elem=document.querySelector(".example-container");
-                setCanvas(elem);
+    elem=document.querySelector(".example-container");
+    setCanvas(elem);
                 
-        w=WIDTH;
-        h=HEIGHT;
-        ///////////////////////////////////////////////////////////////////////////////
-        r1 = 100;
-        r2 = 100;
-        m1 = 5;
-        m2 = 5;
-        n=20;
-        m=[];
-        a1=[];
-        a2=[];
-        v1=[];
-        v2=[];
-        a_a1=[];
-        a_a2=[];
-        g=1;
+    w=WIDTH;
+    h=HEIGHT;
+    ///////////////////////////////////////////////////////////////////////////////
+    r1 = 100;
+    r2 = 100;
+    m1 = 5;
+    m2 = 5;
+    n=20;
+    m=[];
+    a1=[];
+    a2=[];
+    v1=[];
+    v2=[];
+    a_a1=[];
+    a_a2=[];
+    g=1;
+    for(i=0;i&lt;n;i++){
+        m.push(10);
+        a1.push(Math.PI/3 +i/1000);
+        a2.push(Math.PI/3 +i/1000);
+        v1.push(0);
+        v2.push(0);
+        a_a1.push(0);
+        a_a2.push(0);
+    }
+        
+        
+    function draw(){
+        clearCanvas()
         for(i=0;i&lt;n;i++){
-          m.push(10);
-          a1.push(Math.PI/3 +i/1000);
-          a2.push(Math.PI/3 +i/1000);
-          v1.push(0);
-          v2.push(0);
-          a_a1.push(0);
-          a_a2.push(0);
+            let num1 = -g * (2 * m1 + m2) * sin(a1[i]);
+            let num2 = -m2 * g * sin(a1[i] - 2 * a2[i]);
+            let num3 = -2 * sin(a1[i] - a2[i]) * m2;
+            let num4 = v2[i] * v2[i] * r2 + v1[i] * v1[i] * r1 * cos(a1[i] - a2[i]);
+            let den = r1 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
+            a_a1[i] = (num1 + num2 + num3 * num4) / den;
+            num1 = 2 * sin(a1[i] - a2[i]);
+            num2 = v1[i] * v1[i] * r1 * (m1 + m2);
+            num3 = g * (m1 + m2) * cos(a1[i]);
+            num4 = v2[i] * v2[i] * r2 * m2 * cos(a1[i] - a2[i]);
+            den = r2 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
+            a_a2[i] = (num1 * (num2 + num3 + num4)) / den;
+
+            x1 = r1 * sin(a1[i]);
+            y1 = r1 * cos(a1[i]);
+        
+            x2 = x1 + r2 * sin(a2[i]);
+            y2 = y1 + r2 * cos(a2[i]);
+            
+            new line(w/2,0+h/2, w/2+x1, y1+h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, 2 );
+            new line(w/2 + x1, y1 +h/2, w/2+ x2, y2 +h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`,2);
+
+            new circle(w/2+x1, y1 +h/2, m1, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
+            new circle(w/2+x2, y2 +h/2, m2, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
+
+            v1[i] += a_a1[i];
+            v2[i] += a_a2[i];
+            a1[i] += v1[i];
+            a2[i] += v2[i];
         }
+            requestAnimationFrame(draw);
+    }
         
-        
-            function draw(){
-                clearCanvas()
-                for(i=0;i&lt;n;i++){
-                    let num1 = -g * (2 * m1 + m2) * sin(a1[i]);
-                    let num2 = -m2 * g * sin(a1[i] - 2 * a2[i]);
-                    let num3 = -2 * sin(a1[i] - a2[i]) * m2;
-                    let num4 = v2[i] * v2[i] * r2 + v1[i] * v1[i] * r1 * cos(a1[i] - a2[i]);
-                    let den = r1 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-                    a_a1[i] = (num1 + num2 + num3 * num4) / den;
-                    num1 = 2 * sin(a1[i] - a2[i]);
-                    num2 = v1[i] * v1[i] * r1 * (m1 + m2);
-                    num3 = g * (m1 + m2) * cos(a1[i]);
-                    num4 = v2[i] * v2[i] * r2 * m2 * cos(a1[i] - a2[i]);
-                    den = r2 * (2 * m1 + m2 - m2 * cos(2 * a1[i] - 2 * a2[i]));
-                    a_a2[i] = (num1 * (num2 + num3 + num4)) / den;
-        
-                    x1 = r1 * sin(a1[i]);
-                    y1 = r1 * cos(a1[i]);
-                
-                    x2 = x1 + r2 * sin(a2[i]);
-                    y2 = y1 + r2 * cos(a2[i]);
-                    
-                    new line(w/2,0+h/2, w/2+x1, y1+h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, 2 );
-                    new line(w/2 + x1, y1 +h/2, w/2+ x2, y2 +h/2 , `hsl(${mapRange(i,0,n,0,340)},100%,50%)`,2);
-        
-                    new circle(w/2+x1, y1 +h/2, m1, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-                    new circle(w/2+x2, y2 +h/2, m2, `hsl(${mapRange(i,0,n,0,340)},100%,50%)`, "#000000");
-        
-                    v1[i] += a_a1[i];
-                    v2[i] += a_a2[i];
-                    a1[i] += v1[i];
-                    a2[i] += v2[i];
-                
-           
-            }
-                    requestAnimationFrame(draw);
-                }
-                
-                draw();
+    draw();
             </code>
         </pre>
 
