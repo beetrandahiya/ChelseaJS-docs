@@ -201,16 +201,7 @@
         <h1>
           De-Broglie Rainbow</h1>
         <p>
-          Lorenz Attractor is a deterministic chaotic system.<br>
-            For the physical significance, The Lorenz attractor is an attractor that arises in a simplified system of equations describing the two-dimensional flow of fluid of uniform depth , with an imposed temperature difference , under gravity , with buoyancy , thermal diffusivity , and kinematic viscosity .
-            <br>
-            This particular plot is x and z coordinates of Lorenz Attractor.
-             <br>
-             The attractor is described by the following system of differential equations:
-             $$\displaystyle\frac{{\left.{d}{x}\right.}}{{\left.{d}{t}\right.}}={a}{\left({y}-{x}\right)}$$
-             $$\displaystyle\frac{{\left.{d}{y}\right.}}{{\left.{d}{t}\right.}}={x}{\left({b}-{z}\right)}-{y}$$
-             $$\displaystyle\frac{{\left.{d}{z}\right.}}{{\left.{d}{t}\right.}}={x}{y}-{c}{z}$$
-
+          
         </p>
        <h3>
             Code
@@ -220,39 +211,27 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     
-    x=0.01;
-    y=0.01;
-    z=0.01
-    a=10;
-    b=28;
-    c=8/3;
-    px=x;
-    py=y;
-    pz=z;
-    points=[];
+    n=200;
+    t=0;
     function draw() {
         clearCanvas();
-        dt=0.01;
-        dx= (a*(y-x))*dt;
-        dy= (x*(b-z)-y)*dt;
-        dz= (x*y - c*z)*dt;
         
-        x=x+dx;
-        y=y+dy;
-        z=z+dz;
-        points.push([WIDTH/2+8*x,3*HEIGHT/4-5*z]);
+        for(j=0;j&lt;7;j++){
+            for(i=0;i&lt;=360;i+=3){
+                r=100+40*sin(degToRad(3*i+t+10*j))*sin(degToRad(3*i+t+10*j));
+                y=r*sin(degToRad(i));
+                x=r*cos(degToRad(i));
+                y=HEIGHT/2-y;
+                x=WIDTH/2+x;
+                new circle(x,y,3,`hsl(${50*j},100%,50%)`,'#fff',0);
+            }
+        }
         
-        new polygon(points,'#696969',0,'#695fe6',0.7,false);
-
-        px=x;
-        py=y;
-        pz=z;
+        t++;
 
         requestAnimationFrame(draw);
-
-        }
-
-        
+    }
+    
     draw();         </code>
         </pre>
 
@@ -265,29 +244,25 @@
         setCanvas(elem);
         
         n=200;
-t=0;
-       function draw() {
-        clearCanvas();
-           
-
-        for(j=0;j<7;j++){
-        for(i=0;i<=360;i+=3){
+        t=0;
+        function draw() {
+            clearCanvas();
             
-            r=100+40*sin(degToRad(3*i+t+10*j))*sin(degToRad(3*i+t+10*j));
-            y=r*sin(degToRad(i));
-            x=r*cos(degToRad(i));
-            y=HEIGHT/2-y;
-            x=WIDTH/2+x;
-            new circle(x,y,3,`hsl(${50*j},100%,50%)`,'#fff',0);
+            for(j=0;j<7;j++){
+                for(i=0;i<=360;i+=3){
+                    r=100+40*sin(degToRad(3*i+t+10*j))*sin(degToRad(3*i+t+10*j));
+                    y=r*sin(degToRad(i));
+                    x=r*cos(degToRad(i));
+                    y=HEIGHT/2-y;
+                    x=WIDTH/2+x;
+                    new circle(x,y,3,`hsl(${50*j},100%,50%)`,'#fff',0);
+                }
+            }
+            
+            t++;
+
+            requestAnimationFrame(draw);
         }
-        }
-        
-        t++;
-
-        requestAnimationFrame(draw);
-
-       }
-
         
         draw();
     </script>
