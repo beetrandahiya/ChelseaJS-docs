@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link
+    rel="stylesheet"
+    href="../assets/prism.css"
+  />
+    <link rel="stylesheet" href="styles.css">
+    <title>Chelsea.js Docs</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="theme-color" content="#ffffff">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"> <span style="font-weight: 800;">CHELSEA</span>JS</div>
+        <a href="javascript:void(0);" class="navbar-burger" onclick="navbar_resp()">
+            <i class="fa fa-bars"></i>
+            </a>
+        <div class="navstuff">
+            <div>
+                <a href="../index.html">Home</a>
+            </div>
+            <div>
+                <a href="../examples.html">Examples</a>
+            </div>
+            <div>
+                <a href="../download.html">Download</a>
+            </div>
+            <div>
+                <a href="https://www.github.com/beetrandahiya">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 1024 1024" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z" transform="scale(64)" fill="#1B1F23"/>
+                        </svg>                </a>
+            </div>
+            
+        </div>
+       
+    </div>
+    <div class="main">
+        <div class="sidebar">
+            <div class="sidebar-elem ">
+                <a href="../index.html">Getting Started</a>
+            </div>
+            <button class="dropdown-btn">Shapes <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../shapes/point.html">Point</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/line.html">Line</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/rectangle.html">Rectangle</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/circle.html">Circle</a>
+                </div>  
+                <div class="sidebar-elem">
+                    <a href="../shapes/ellipse.html">Ellipse</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/arc.html">Arc</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/polygon.html">Polygon</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/regpolygon.html">Regular Polygon</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/star.html">Star</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/cubbezier.html">Cubic Bezier Curve</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/twopointcubicbezier.html">Two Point Cubic Bezier Curve</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../shapes/twopointquadbezier.html">Two Point Cubic Bezier Curve</a>
+                </div>
+                
+
+                
+
+            </div>
+            <button class="dropdown-btn">Enviroment <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../enviro/width.html">Width</a>
+                    </div>  
+                <div class="sidebar-elem">
+                    <a href="../enviro/height.html">Height</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../enviro/framerate.html">frameRate</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../enviro/clearCanvas.html">clearCanvas</a>
+                    </div>
+                
+
+
+
+            </div>
+            <button class="dropdown-btn">Math <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../math/trignometry.html">Trigonometry</a>
+                    </div>  
+                <div class="sidebar-elem">
+                    <a href="../math/algebra.html">Algebraic Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/conversions.html">Conversions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/interp.html">Interpolations</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/random.html">Random Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/scaling.html">Scaling Functions</a>
+                    </div>
+                <div class="sidebar-elem">
+                    <a href="../math/constants.html">Constants</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../math/vector.html">Vector Functions</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Color <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../color/rgb.html">RGB</a>
+                </div>
+<div class="sidebar-elem">
+                    <a href="../color/hsl.html">HSL</a>
+                </div>
+<div class="sidebar-elem">
+                    <a href="../color/hex.html">Hex</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/lerpColor.html">Lerp Color</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../color/colorConversions.html">Color Conversions</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Events <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                <div class="sidebar-elem">
+                    <a href="../events/mouse.html">Mouse</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../events/keyboard.html">Keyboard</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../events/touch.html">Touch</a>
+                </div>
+            </div>
+            <button class="dropdown-btn">Time <i class="fas fa-angle-down"></i></button>
+            <div class="dropdown-container">
+                
+                
+                <div class="sidebar-elem">
+                    <a href="../time/getTime.html">Time</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/date.html">Date</a>
+                </div>
+                <div class="sidebar-elem">
+                    <a href="../time/day.html">Day</a>
+                </div>
+                
+                <div class="sidebar-elem">
+                    <a href="../time/timeTaken.html">Execution time</a>
+                    </div>
+            </div>
+            
+
+
+            
+
+        </div>
+        <div class="doc">
+            <div class="example-container" >
+
+    
+        </div>
+        <h1>
+           Gravitational Field   </h1>
+        <p>
+            </p>
+           <h3>          Code
+        </h3>
+        <pre>
+            <code class="language-js">
+
+    elem = document.getElementsByClassName("example-container")[0];
+    setCanvas(elem);
+
+    w=WIDTH;
+    h=HEIGHT;
+
+    
+    G=10**1;
+    m1=20;
+    m2=20;
+    m3=20;
+
+    x1=w/2-100;
+    y1=150;
+
+    x2=w/2+100;
+    y2=150;
+
+    x3=w/2;
+    y3=273.2+50;
+
+    v=1;
+    vm1={
+        x: -v/2,
+        y: v*Math.sqrt(3)/2
+    };
+    vm2={
+        x: -v/2,
+        y: -v*Math.sqrt(3)/2
+    };
+    vm3={
+        x: v,
+        y: 0
+    };
+
+    t=0;
+    points1=[];
+    points2=[];
+    points3=[];
+
+    function draw() {
+    
+        clearCanvas();
+        
+        new circle(x1,y1,10,'#C10FF0','#000000');
+        new circle(x2,y2,10,'#EA4567');
+        new circle(x3,y3,10,'#F7BFCD');
+        points1.push([x1,y1]);
+        points2.push([x2,y2]);
+        points3.push([x3,y3]);
+
+        if(points1.length>200){
+            points1.shift();}
+        if(points2.length>200){
+            points2.shift();}
+        if(points3.length>200){
+            points3.shift();}
+
+
+        new polygon(points1,'#c10ff0',0,'#c10ff0',2,false);
+        new polygon(points2,'#ea4567',0,'#ea4567',2,false);
+        new polygon(points3,'#f7bfcd',0,'#f7bfcd',2,false);
+        
+
+        Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
+        Fm2m3=Fbetween(x2,y2,x3,y3,m2,m3);
+        Fm1m3=Fbetween(x1,y1,x3,y3,m1,m3);
+
+        Fon1={x:Fm1m2.x+Fm1m3.x,y:Fm1m2.y+Fm1m3.y};
+        Fon2={x:Fm2m3.x-Fm1m2.x,y:Fm2m3.y-Fm1m2.y};
+        Fon3={x:-Fm1m3.x-Fm2m3.x,y:-Fm1m3.y-Fm2m3.y};
+
+        am1={x:Fon1.x/m1,y:Fon1.y/m1};
+        am2={x:Fon2.x/m2,y:Fon2.y/m2};
+        am3={x:Fon3.x/m3,y:Fon3.y/m3};
+
+        vm1.x+=am1.x;
+        vm1.y+=am1.y;
+        vm2.x+=am2.x;
+        vm2.y+=am2.y;
+        vm3.x+=am3.x;
+        vm3.y+=am3.y;
+        
+        x1+=vm1.x;
+        y1+=vm1.y;
+        x2+=vm2.x;
+        y2+=vm2.y;
+        x3+=vm3.x;
+        y3+=vm3.y;
+
+        requestAnimationFrame(draw);
+    
+    }
+
+    function Fbetween(x1,y1,x2,y2,m1,m2) {
+        r=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+        F={
+            x:((G*m1*m2)/(r*r*r))*(x2-x1),
+            y:((G*m1*m2)/(r*r*r))*(y2-y1)
+        }
+        return F;
+    }
+    ///////////////////////////////////////////////////////////////////////////////
+
+
+    draw();
+            </code>
+        </pre>
+
+    </div>
+    
+    <script src="../main.js"></script>
+    <script src="script.js"></script>
+    <script>
+     
+
+
+
+     elem = document.getElementsByClassName("example-container")[0];
+setCanvas(elem);
+
+w=WIDTH;
+h=HEIGHT;
+
+
+
+   fetch_mouse_pos(elem,'mousemove');
+   
+   G=10**1  ;
+   m1=20;
+   m2=50;
+   m3=100;
+  
+   x1=w/2-100;
+   y1=h/2;
+   x2=w/2+100;
+   y2=h/2;
+   vm1={x:0,y:1};
+    vm2={x:0,y:0};
+    vm3={x:0,y:0};
+
+   
+   colors=['#17078B','#4F03A1','#AA2595','#C5417D','#DB5C67','#E97158','#F8973F','#FCB530','#F3EE22']
+   Fabsmax=0;
+   Fabsmin=0;
+   t=0;
+
+function draw() {
+   
+  clearCanvas();
+  x3=mousepos.x;
+  y3=mousepos.y;
+ 
+  new circle(x1,y1,m1,'#C10FF0','#000000');
+  new circle(x2,y2,20,'#EA4567');
+  new circle(x3,y3,20,'#EA4567');
+ 
+  for(i=0;i<w;i+=30) {
+    for(j=0;j<h;j+=30) {
+      x=i;
+      y=j;
+      r1=Math.sqrt((x-x1)*(x-x1)+(y-y1)*(y-y1));
+      r2=Math.sqrt((x-x2)*(x-x2)+(y-y2)*(y-y2));
+      r3=Math.sqrt((x-x3)*(x-x3)+(y-y3)*(y-y3));
+      Fp1={
+        x:((G*m1)/(r1*r1*r1))*(x-x1),
+        y:((G*m1)/(r1*r1*r1))*(y-y1)
+      }
+      Fp2={
+        x:((G*m2)/(r2*r2*r2))*(x-x2),
+        y:((G*m2)/(r2*r2*r2))*(y-y2)
+      }
+      Fp3={
+        x:((G*m3)/(r3*r3*r3))*(x-x3),
+        y:((G*m3)/(r3*r3*r3))*(y-y3)
+      }
+      F={
+        x:Fp1.x+Fp2.x+Fp3.x,
+        y:Fp1.y+Fp2.y+Fp3.y
+      }
+      Fabs=Math.sqrt(F.x*F.x+F.y*F.y);
+      if(abs(r1)>m1 && abs(r2)>m2 && abs(r3)>m2) {
+      Fabsmax= Fabs>Fabsmax?Fabs:Fabsmax;
+      Fabsmin= Fabs<Fabsmin?Fabs:Fabsmin;
+        new line(x,y,x-20*F.x/Fabs,y-20*F.y/Fabs,colors[round(mapRange(Fabs,Fabsmin,Fabsmax,0,colors.length-1))],1);
+     
+      }
+      
+      
+     
+ 
+    }
+  }
+
+  Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
+  Fm2m3=Fbetween(x2,y2,x3,y3,m2,m3);
+  Fm1m3=Fbetween(x1,y1,x3,y3,m1,m3);
+
+  Fon1={x:Fm1m2.x+Fm1m3.x,y:Fm1m2.y+Fm1m3.y};
+  Fon2={x:Fm2m3.x+Fm1m2.x,y:Fm2m3.y+Fm1m2.y};
+  Fon3={x:Fm1m3.x+Fm2m3.x,y:Fm1m3.y+Fm2m3.y};
+
+  am1={x:Fon1.x/m1,y:Fon1.y/m1};
+  am2={x:Fon2.x/m2,y:Fon2.y/m2};
+  am3={x:Fon3.x/m3,y:Fon3.y/m3};
+
+  vm1.x+=am1.x;
+  vm1.y+=am1.y;
+  vm2.x+=am2.x;
+  vm2.y+=am2.y;
+  vm3.x+=am3.x;
+  vm3.y+=am3.y;
+  
+  x1+=vm1.x;
+  y1+=vm1.y;
+  x2+=vm2.x;
+
+
+
+
+
+ requestAnimationFrame(draw);
+ 
+}
+
+function Fbetween(x1,y1,x2,y2,m1,m2) {
+  r=Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+  F={
+    x:((G*m1*m2)/(r*r*r))*(x2-x1),
+    y:((G*m1*m2)/(r*r*r))*(y2-y1)
+  }
+  return F;
+}
+///////////////////////////////////////////////////////////////////////////////
+
+
+draw();
+    </script>
+    
+    <script src="../assets/prism.js"></script>
+
+
+</body>
+</html>
