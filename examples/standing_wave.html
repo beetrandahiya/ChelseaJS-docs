@@ -225,7 +225,7 @@
         <h1>
             Standing Wave        </h1>
         <p>
-            Here is a Standing Wave Simulation in ChelseaJS. Helps understand how Standing wave actually move.
+            Here is a Standing Wave Simulation in ChelseaJS. Helps understand how Standing wave actually move.<br>
             Standing wave, also called Stationary wave, combination of two waves moving in opposite directions, each having the same amplitude and frequency. The phenomenon is the result of interference; that is, when waves are superimposed, their energies are either added together or canceled out      </p>
 
         <h3>
@@ -236,18 +236,18 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     t=0;
-    t2=0;
-
-
+    
     function draw(){
-        lambda=document.getElementById("lambda").value;
+        nh=document.getElementById("nharm").value;
         amp=document.getElementById("amp").value;
         timep=document.getElementById("timep").value;
         clearCanvas();
         points=[]
             for(i=0;i&lt;WIDTH;i++){
+                x=mapRange(i,0,WIDTH,WIDTH/4,3*WIDTH/4);
             
-            points.push([i,HEIGHT/2+amp*sin(i*2*PI/lambda-t*2*PI/timep)]);
+                y=2*amp*sin(i*nh*PI/(1*WIDTH))*cos(t*2*PI/timep)
+            points.push([x,HEIGHT/2+y]);
             
         }
     
@@ -256,11 +256,11 @@
         t+=0.01;
         requestAnimationFrame(draw);
     }
-    
+        
     draw();
 
-    document.getElementById("lambda").addEventListener("input",function(){
-        document.getElementById("wlval").innerHTML=this.value;
+    document.getElementById("nharm").addEventListener("input",function(){
+        document.getElementById("nhval").innerHTML=this.value;
     });
     document.getElementById("amp").addEventListener("input",function(){
         document.getElementById("aval").innerHTML=this.value;
