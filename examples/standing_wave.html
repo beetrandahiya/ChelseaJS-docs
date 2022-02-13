@@ -194,16 +194,39 @@
 
         </div>
         <div class="doc">
-            <div class="example-container">
 
-    
+            <div class="example-container">
+                
+        </div>
+        <div class="example-control">
+            <div>
+                <div class="example-control-label">
+                    <span id="nth-harmonic">n<sup>th</sup> harmonic </span> = <span id="nhval">2</span>
+                </div>
+                <input type="range" id="nharm" min="1" max="10" value="2">
+
+            </div> 
+            <div>
+                <div class="example-control-label">
+                    <span id="amplitude">Amplitude </span> = <span id="aval">50</span>
+                </div>
+                <input type="range" id="amp" min="1" max="500" value="50">
+
+            </div> 
+            <div>
+                <div class="example-control-label">
+                    <span id="time-period">Time Period </span> = <span id="tval">1</span>
+                </div>
+                <input type="range" id="timep" min="1" max="10" value="1">
+
+            </div> 
+            
         </div>
         <h1>
-           Collision   </h1>
+            Standing Wave        </h1>
         <p>
-          Collision Simulation in ChelseaJS.
-          Just some balls colliding with each other and the walls. 
-        </p>
+            Here is a Standing Wave Simulation in ChelseaJS. Helps understand how Standing wave actually move.
+            Standing wave, also called Stationary wave, combination of two waves moving in opposite directions, each having the same amplitude and frequency. The phenomenon is the result of interference; that is, when waves are superimposed, their energies are either added together or canceled out      </p>
 
         <h3>
             Code
@@ -212,31 +235,39 @@
             <code class="language-js">
     elem=document.querySelector(".example-container");
     setCanvas(elem);
-    
     t=0;
-    fetch_mouse_pos(elem,'mousemove');
+    t2=0;
+
+
     function draw(){
-        clearCanvas()
-        new circle(WIDTH/3,HEIGHT/2,100,'#fff',1);
-        theta=atan2(HEIGHT/2-mousepos.y,mousepos.x-WIDTH/3);
-        x1=WIDTH/3+50*cos(theta);
-        y1=HEIGHT/2-50*sin(theta);
+        lambda=document.getElementById("lambda").value;
+        amp=document.getElementById("amp").value;
+        timep=document.getElementById("timep").value;
+        clearCanvas();
+        points=[]
+            for(i=0;i&lt;WIDTH;i++){
+            
+            points.push([i,HEIGHT/2+amp*sin(i*2*PI/lambda-t*2*PI/timep)]);
+            
+        }
+    
+        new polygon(points,'#695fe6',0,'#695fe6',3,false);
 
-        new circle(2*WIDTH/3,HEIGHT/3,60,'#fff',1);
-
-        theta2=atan2(HEIGHT/3-mousepos.y,mousepos.x-2*WIDTH/3);
-        x2=2*WIDTH/3+30*cos(theta2);
-        y2=HEIGHT/3-30*sin(theta2);
-
-        new circle(x2,y2,30,'#222',1);
-
-
-        new circle(x1,y1,50,'#222',1);
+        t+=0.01;
         requestAnimationFrame(draw);
     }
     
-    draw();  
-            </code>
+    draw();
+
+    document.getElementById("lambda").addEventListener("input",function(){
+        document.getElementById("wlval").innerHTML=this.value;
+    });
+    document.getElementById("amp").addEventListener("input",function(){
+        document.getElementById("aval").innerHTML=this.value;
+    });
+    document.getElementById("timep").addEventListener("input",function(){
+        document.getElementById("tval").innerHTML=this.value;
+    }); </code>
         </pre>
 
     </div>
@@ -246,56 +277,41 @@
     <script>
         elem=document.querySelector(".example-container");
         setCanvas(elem);
-        arr=[];
-        for(i=0;i<14;i++){
-            arr.push({
-                x:Math.random()*WIDTH,
-                y:Math.random()*HEIGHT,
-                r:Math.random()*50+10,
-                vx:Math.random()*2-1,
-                vy:Math.random()*2-1
-            }
-            );
-        }
+        t=0;
+        t2=0;
+
+
         function draw(){
-            clearCanvas()
-            for(i=0;i<14;i++){
-                new circle(arr[i].x,arr[i].y,arr[i].r,'#fff',1,'#222',0.5);
-                arr[i].x+=arr[i].vx;
-                arr[i].y+=arr[i].vy;
-                collision_wall(arr[i]);
+            nh=document.getElementById("nharm").value;
+            amp=document.getElementById("amp").value;
+            timep=document.getElementById("timep").value;
+            clearCanvas();
+            points=[]
+             for(i=0;i<WIDTH;i++){
+                 x=mapRange(i,0,WIDTH,WIDTH/4,3*WIDTH/4);
+                
+                 y=2*amp*sin(i*nh*PI/(1*WIDTH))*cos(t*2*PI/timep)
+                points.push([x,HEIGHT/2+y]);
+                
             }
-            collision_circles(arr);
-            
+        
+            new polygon(points,'#695fe6',0,'#695fe6',3,false);
+
+            t+=0.01;
             requestAnimationFrame(draw);
         }
         
         draw();
 
-        function collision_circles(pos_arr){
-            for(i=0;i<pos_arr.length;i++){
-                for(j=i+1;j<pos_arr.length;j++){
-                    if(dist(pos_arr[i].x,pos_arr[i].y,pos_arr[j].x,pos_arr[j].y)<pos_arr[i].r+pos_arr[j].r){
-                        pos_arr[i].vx*=-1;
-                        pos_arr[i].vy*=-1;
-                    }
-                }
-            }
-        }
-        function collision_wall(pos){
-            if(pos.x-pos.r<0){
-                pos.vx*=-1;
-            }
-            if(pos.x+pos.r>WIDTH){
-                pos.vx*=-1;
-            }
-            if(pos.y-pos.r<0){
-                pos.vy*=-1;
-            }
-            if(pos.y+pos.r>HEIGHT){
-                pos.vy*=-1;
-            }
-        }
+        document.getElementById("nharm").addEventListener("input",function(){
+            document.getElementById("nhval").innerHTML=this.value;
+        });
+        document.getElementById("amp").addEventListener("input",function(){
+            document.getElementById("aval").innerHTML=this.value;
+        });
+        document.getElementById("timep").addEventListener("input",function(){
+            document.getElementById("tval").innerHTML=this.value;
+        });
     </script>
     
     <script src="../assets/prism.js"></script>
