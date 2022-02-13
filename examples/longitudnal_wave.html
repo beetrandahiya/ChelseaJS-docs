@@ -208,16 +208,16 @@
             </div> 
             <div>
                 <div class="example-control-label">
-                    <span id="amplitude">Amplitude </span> = <span id="aval">100</span>
+                    <span id="amplitude">Amplitude </span> = <span id="aval">50</span>
                 </div>
-                <input type="range" id="amp" min="1" max="500" value="100">
+                <input type="range" id="amp" min="1" max="500" value="50">
 
             </div>
             <div>
                 <div class="example-control-label">
-                    <span id="n-particles">No. of particles</span> = <span id="nval">70</span>
+                    <span id="n-particles">No. of particles</span> = <span id="nval">50</span>
                 </div>
-                <input type="range" id="np" min="1" max="500" value="70">
+                <input type="range" id="np" min="1" max="500" value="50">
 
             </div> 
             <div>
@@ -295,15 +295,20 @@ Quick tip: The wave looks beautiful when the wavelength is above 900 and time pe
             amp=document.getElementById("amp").value;
             timep=document.getElementById("timep").value;
             n=document.getElementById("np").value;
+            d=WIDTH/n;
             clearCanvas();
             points=[]
-             for(i=0;i<WIDTH;i++){
-                
-                points.push([i,HEIGHT/2+amp*sin(i*2*PI/lambda-t*2*PI/timep)]);
-                
-            }
+            for(i=-WIDTH/2+200;i<WIDTH/2-200;i+=d){
+    
+    x=amp*sin(i*2*PI/lambda-t*2*PI/timep)
+
+
+    ic=mapRange(i,-WIDTH/2+200,WIDTH/2-200,0,360);
+
+    new rect(WIDTH/2+i+x,HEIGHT/2-100,d/4,200,`hsl(${ic},100%,50%)`,1,'#fff',0);
         
-            new polygon(points,'#695fe6',0,'#695fe6',3,false);
+  }
+         //   new polygon(points,'#695fe6',0,'#695fe6',3,false);
 
             t+=0.01;
             requestAnimationFrame(draw);
