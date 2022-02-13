@@ -253,24 +253,24 @@
     
         clearCanvas();
         
-        new circle(x1,y1,10,'#C10FF0','#000000');
-        new circle(x2,y2,10,'#EA4567');
-        new circle(x3,y3,10,'#F7BFCD');
+        new circle(x1,y1,10,'#17D690');
+        new circle(x2,y2,10,'#4DE3FF');
+        new circle(x3,y3,10,'#FF57B5');
         points1.push([x1,y1]);
         points2.push([x2,y2]);
         points3.push([x3,y3]);
 
         if(points1.length>200){
             points1.shift();}
-        if(points2.length>200){
+            if(points2.length>200){
             points2.shift();}
-        if(points3.length>200){
+            if(points3.length>200){
             points3.shift();}
 
 
-        new polygon(points1,'#c10ff0',0,'#c10ff0',2,false);
-        new polygon(points2,'#ea4567',0,'#ea4567',2,false);
-        new polygon(points3,'#f7bfcd',0,'#f7bfcd',2,false);
+        new polygon(points1,'#17D690',0,'#17D690',2,false);
+        new polygon(points2,'#4DE3FF',0,'#4DE3FF',2,false);
+        new polygon(points3,'#FF57B5',0,'#FF57B5',2,false);
         
 
         Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
@@ -363,9 +363,7 @@ v=1;
   };
 
    
-   colors=['#17078B','#4F03A1','#AA2595','#C5417D','#DB5C67','#E97158','#F8973F','#FCB530','#F3EE22']
-   Fabsmax=0;
-   Fabsmin=0;
+  
    t=0;
    points1=[];
     points2=[];
@@ -375,9 +373,9 @@ function draw() {
    
   clearCanvas();
   
-  new circle(x1,y1,10,'#C10FF0','#000000');
-  new circle(x2,y2,10,'#EA4567');
-  new circle(x3,y3,10,'#F7BFCD');
+  new circle(x1,y1,10,'#17D690');
+  new circle(x2,y2,10,'#4DE3FF');
+  new circle(x3,y3,10,'#FF57B5');
   points1.push([x1,y1]);
   points2.push([x2,y2]);
   points3.push([x3,y3]);
@@ -390,9 +388,9 @@ function draw() {
     points3.shift();}
 
 
-  new polygon(points1,'#c10ff0',0,'#c10ff0',2,false);
-    new polygon(points2,'#ea4567',0,'#ea4567',2,false);
-    new polygon(points3,'#f7bfcd',0,'#f7bfcd',2,false);
+  new polygon(points1,'#17D690',0,'#17D690',2,false);
+    new polygon(points2,'#4DE3FF',0,'#4DE3FF',2,false);
+    new polygon(points3,'#FF57B5',0,'#FF57B5',2,false);
  
 
   Fm1m2=Fbetween(x1,y1,x2,y2,m1,m2);
