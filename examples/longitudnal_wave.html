@@ -246,22 +246,23 @@
     elem=document.querySelector(".example-container");
     setCanvas(elem);
     t=0;
-    t2=0;
-
 
     function draw(){
         lambda=document.getElementById("lambda").value;
         amp=document.getElementById("amp").value;
         timep=document.getElementById("timep").value;
+        n=document.getElementById("np").value;
+        d=WIDTH/n;
         clearCanvas();
-        points=[]
-            for(i=0;i&lt;WIDTH;i++){
-            
-            points.push([i,HEIGHT/2+amp*sin(i*2*PI/lambda-t*2*PI/timep)]);
-            
+        points=[];
+
+        for(i=-WIDTH/2+200;i&lt;WIDTH/2-200;i+=d){
+
+            x=amp*sin(i*2*PI/lambda-t*2*PI/timep)
+            ic=mapRange(i,-WIDTH/2+200,WIDTH/2-200,0,360);
+            new rect(WIDTH/2+i+x,HEIGHT/2-100,d/4,200,`hsl(${ic},100%,50%)`,1,'#fff',0);
+                
         }
-    
-        new polygon(points,'#695fe6',0,'#695fe6',3,false);
 
         t+=0.01;
         requestAnimationFrame(draw);
@@ -277,7 +278,10 @@
     });
     document.getElementById("timep").addEventListener("input",function(){
         document.getElementById("tval").innerHTML=this.value;
-    }); </code>
+    });
+    document.getElementById("np").addEventListener("input",function(){
+        document.getElementById("nval").innerHTML=this.value;
+    });</code>
         </pre>
 
     </div>
@@ -309,7 +313,6 @@
     new rect(WIDTH/2+i+x,HEIGHT/2-100,d/4,200,`hsl(${ic},100%,50%)`,1,'#fff',0);
         
   }
-         //   new polygon(points,'#695fe6',0,'#695fe6',3,false);
 
             t+=0.01;
             requestAnimationFrame(draw);
