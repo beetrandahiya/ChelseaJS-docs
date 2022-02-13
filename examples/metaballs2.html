@@ -194,7 +194,7 @@
 
         </div>
         <div class="doc">
-            <div class="example-container" style="height:300px; width:300px; margin:auto; background-color: hsl(280,100%,50%);">
+            <div class="example-container" style="height:300px; width:300px; margin:auto;">
 
     
         </div>
@@ -204,7 +204,9 @@
            Metaballs are organic-looking n-dimensional ( 2D in our case ) isosurfaces, characterised by their ability to meld together when in close proximity to create single, contiguous objects.
     </p>
     <p>
-        This is a simple metaballs simulation and it might look laggy depending on the computer, If you want to experience a better metaballs simulation using a more amazing algorithm, check out <a href="metaballs2.html">this</a> example.
+This is a Marching Sqaures Algorithm implementation to simulate Metaballs. <br>
+Marching Squares is a 2D algorithm that can be used to generate contour from scalar fields.
+In simpler words ,In Marching Sqaures algorithm we divide the space into a grid of squares and for each square we calculate the value of the scalar field at the edges of the square and then use a simple thresholding function to determine where to draw the contour.
     </p>
 
         <h3>
@@ -212,78 +214,145 @@
         </h3>
         <pre>
             <code class="language-js">
-    elem=document.querySelector(".example-container");
+    elem = document.getElementsByClassName("example-container")[0];
     setCanvas(elem);
-            
-    w=WIDTH;
-    h=HEIGHT;
     
+    w = WIDTH;
+    h = HEIGHT;
     
-    t=0;
-    i=0;
-    pos={
-        x:40,
-        y:40,
-        r:30
+    t = 0;
+    i = 0;
+    pos = {
+        x: 40,
+        y: 40,
+        r: 30
     }
-    pos1={
-        x:120,
-        y:150,
-        r:30
+    pos1 = {
+        x: 120,
+        y: 150,
+        r: 30
     }
-    vel={
-        x:random(4,5),
-        y:random(1,4)
+    vel = {
+        x: random(4, 5),
+        y: random(1, 4)
     }
-    vel1={
-        x:random(4,5),
-        y:random(1,4)
+    vel1 = {
+        x: random(4, 5),
+        y: random(1, 4)
     }
     
+    function velOnCollision(pos, vel) {
     
+        if (pos.x + pos.r &gt; w || pos.x - pos.r &lt; 0) {
+            vel.x *= -1
+        }
+        if (pos.y + pos.r &gt; h || pos.y - pos.r &lt; 0) {
+            vel.y *= -1;
+        }
     
-    function velOnCollision(pos,vel){
-    
-            if(pos.x+pos.r&gt;w || pos.x-pos.r&lt;0){
-                vel.x*=-1
-            }
-            if(pos.y+pos.r&gt;h || pos.y-pos.r&lt;0){
-                vel.y*=-1;
-            }
-        
     }
-    ii=5;
+    ii = 2;
+    c = 1;
+    
+    
     
     function draw() {
     
         clearCanvas();
     
-        
-            pos.x+=vel.x;
-            pos.y+=vel.y;
-            pos1.x+=vel1.x;
-            pos1.y+=vel1.y;
     
-            velOnCollision(pos,vel);
-            velOnCollision(pos1,vel1);
-            for(i=0;i&lt;w;i+=ii){
-                for(j=0;j&lt;h;j+=ii){
-                d=1/dist(pos.x,pos.y,i,j);
-                d+=1/dist(pos1.x,pos1.y,i,j);
-                d=9/d;
-                d=clamp(d,200,360);
-                if(d&lt;280){
-                new rect(i,j,ii,ii,`hsl(${d},100%,50%)`,1,`hsl(${d},100%,50%)`,1);}}
+        pos.x += vel.x;
+        pos.y += vel.y;
+        pos1.x += vel1.x;
+        pos1.y += vel1.y;
+    
+        velOnCollision(pos, vel);
+        velOnCollision(pos1, vel1);
+        for (i = 0; i &lt; w; i += ii) {
+            for (j = 0; j &lt; h; j += ii) {
+                d1 = pos.r / dist(pos.x, pos.y, i, j);
+                d2 = pos1.r / dist(pos1.x, pos1.y, i, j);
+                d = [d1 + d2];
+                d1 = pos.r / dist(pos.x, pos.y, i + ii, j);
+                d2 = pos1.r / dist(pos1.x, pos1.y, i + ii, j);
+                d.push(d1 + d2);
+                d1 = pos.r / dist(pos.x, pos.y, i, j + ii);
+                d2 = pos1.r / dist(pos1.x, pos1.y, i, j + ii);
+                d.push(d1 + d2);
+                d1 = pos.r / dist(pos.x, pos.y, i + ii, j + ii);
+                d2 = pos1.r / dist(pos1.x, pos1.y, i + ii, j + ii);
+                d.push(d1 + d2);
+                
+                activeconvers = 0;
+                activec = [];
+                for (k = 0; k &lt; d.length; k++) {
+                if (d[k] &gt; 1) {
+                    activeconvers += 1;
+                    activec.push(1);
+                } else {
+                    activec.push(0);
+                }
+                }
+                if (activeconvers == 1) {
+                if (activec[0] == 1) {
+                    dx = i + (c - d[0]) * ii / (d[1] - d[0]);
+                    dy = j + (c - d[0]) * ii / (d[2] - d[0]);
+                    new line(dx, j, i, dy, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[1] == 1) {
+                    dx = i + ((c-d[0])*ii)/(d[1]-d[0]);
+                    dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+                    new line(dx, j, i+ii, dy, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[2] == 1) {
+                    dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+                    dy = j + ((c-d[0])*ii)/(d[2]-d[0]);
+                    new line(i, dy, dx, j+ii, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[3] == 1) {
+                    dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+                    dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+                    new line(i+ii, dy,dx,j+ii, `hsl(${t},100%,50%)`, 2);
+                
+                }
+                } else if (activeconvers == 2) {
+                if ((activec[0] == 1 && activec[1] == 1) || (activec[2] == 1 && activec[3] == 1)) {
+                    dy1 = j + (c - d[0]) * ii / (d[2] - d[0]);
+                    dy2 = j + (c - d[1]) * ii / (d[3] - d[1]);
+                    new line(i, dy1, i + ii, dy2, `hsl(${t},100%,50%)`, 2);
+                } else if ((activec[0] == 1 && activec[2] == 1) || (activec[1] == 1 && activec[3] == 1)) {
+                    dx1 = i + (c - d[0]) * ii / (d[1] - d[0]);
+                    dx2 = i + (c - d[2]) * ii / (d[3] - d[2]);
+                    new line(dx1, j, dx2, j + ii, `hsl(${t},100%,50%)`, 2);
+                }
+                
+    
+                }
+                else if(activeconvers ==3){
+                if (activec[0] == 0) {
+                    dx = i + (c - d[0]) * ii / (d[1] - d[0]);
+                    dy = j + (c - d[0]) * ii / (d[2] - d[0]);
+                    new line(dx, j, i, dy, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[1] == 0) {
+                    dx = i + ((c-d[0])*ii)/(d[1]-d[0]);
+                    dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+                    new line(dx, j, i+ii, dy, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[2] == 0) {
+                    dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+                    dy = j + ((c-d[0])*ii)/(d[2]-d[0]);
+                    new line(i, dy, dx, j+ii, `hsl(${t},100%,50%)`, 2);
+                } else if (activec[3] == 0) {
+                    dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+                    dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+                    new line(i+ii, dy,dx,j+ii, `hsl(${t},100%,50%)`, 2);
+                
+                }         }
             }
-            //new circle(pos.x,pos.y,pos.r,'red',1,'#ff0',2);
+        } 
     
-            
-        t+=0.01;
+        t += 0.01;
         requestAnimationFrame(draw);
-        
+      
     }
-    
-    draw();      </code>
+ 
+    draw();     </code>
         </pre>
 
     </div>
@@ -291,80 +360,156 @@
     <script src="../main.js"></script>
     <script src="script.js"></script>
     <script>
-        elem=document.querySelector(".example-container");
-        setCanvas(elem);
-        
-w=WIDTH;
-h=HEIGHT;
+elem = document.getElementsByClassName("example-container")[0];
+setCanvas(elem);
 
+w = WIDTH;
+h = HEIGHT;
 
-t=0;
-i=0;
-pos={
-   x:40,
-   y:40,
-   r:30
+t = 0;
+i = 0;
+pos = {
+   x: 40,
+   y: 40,
+   r: 30
 }
-pos1={
-   x:120,
-   y:150,
-   r:30
+pos1 = {
+   x: 120,
+   y: 150,
+   r: 30
 }
-vel={
-   x:random(4,5),
-   y:random(1,4)
+vel = {
+   x: random(4, 5),
+   y: random(1, 4)
 }
-vel1={
-   x:random(4,5),
-   y:random(1,4)
+vel1 = {
+   x: random(4, 5),
+   y: random(1, 4)
 }
 
 
+function velOnCollision(pos, vel) {
 
-function velOnCollision(pos,vel){
+   if (pos.x + pos.r > w || pos.x - pos.r < 0) {
+      vel.x *= -1
+   }
+   if (pos.y + pos.r > h || pos.y - pos.r < 0) {
+      vel.y *= -1;
+   }
 
-      if(pos.x+pos.r>w || pos.x-pos.r<0){
-         vel.x*=-1
-      }
-      if(pos.y+pos.r>h || pos.y-pos.r<0){
-         vel.y*=-1;
-      }
-   
 }
-ii=5;
+ii = 2;
+c = 1;
+
+
 
 function draw() {
 
    clearCanvas();
 
-   
-      pos.x+=vel.x;
-      pos.y+=vel.y;
-      pos1.x+=vel1.x;
-      pos1.y+=vel1.y;
 
-      velOnCollision(pos,vel);
-      velOnCollision(pos1,vel1);
-      for(i=0;i<w;i+=ii){
-         for(j=0;j<h;j+=ii){
-            d=1/dist(pos.x,pos.y,i,j);
-            d+=1/dist(pos1.x,pos1.y,i,j);
-            d=9/d;
-            d=clamp(d,200,360);
-            if(d<280){
-         new rect(i,j,ii,ii,`hsl(${d},100%,50%)`,1,`hsl(${d},100%,50%)`,1);}}
+   pos.x += vel.x;
+   pos.y += vel.y;
+   pos1.x += vel1.x;
+   pos1.y += vel1.y;
+
+   velOnCollision(pos, vel);
+   velOnCollision(pos1, vel1);
+   for (i = 0; i < w; i += ii) {
+      for (j = 0; j < h; j += ii) {
+         d1 = pos.r / dist(pos.x, pos.y, i, j);
+         d2 = pos1.r / dist(pos1.x, pos1.y, i, j);
+         d = [d1 + d2];
+         d1 = pos.r / dist(pos.x, pos.y, i + ii, j);
+         d2 = pos1.r / dist(pos1.x, pos1.y, i + ii, j);
+         d.push(d1 + d2);
+         d1 = pos.r / dist(pos.x, pos.y, i, j + ii);
+         d2 = pos1.r / dist(pos1.x, pos1.y, i, j + ii);
+         d.push(d1 + d2);
+         d1 = pos.r / dist(pos.x, pos.y, i + ii, j + ii);
+         d2 = pos1.r / dist(pos1.x, pos1.y, i + ii, j + ii);
+         d.push(d1 + d2);
+         
+         activeconvers = 0;
+         activec = [];
+         for (k = 0; k < d.length; k++) {
+            if (d[k] > 1) {
+               activeconvers += 1;
+               activec.push(1);
+            } else {
+               activec.push(0);
+            }
+         }
+         if (activeconvers == 1) {
+            if (activec[0] == 1) {
+               dx = i + (c - d[0]) * ii / (d[1] - d[0]);
+               dy = j + (c - d[0]) * ii / (d[2] - d[0]);
+               new line(dx, j, i, dy, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[1] == 1) {
+               dx = i + ((c-d[0])*ii)/(d[1]-d[0]);
+               dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+               new line(dx, j, i+ii, dy, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[2] == 1) {
+               dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+               dy = j + ((c-d[0])*ii)/(d[2]-d[0]);
+               new line(i, dy, dx, j+ii, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[3] == 1) {
+               dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+               dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+               new line(i+ii, dy,dx,j+ii, `hsl(${t},100%,50%)`, 2);
+           
+            }
+         } else if (activeconvers == 2) {
+            if ((activec[0] == 1 && activec[1] == 1) || (activec[2] == 1 && activec[3] == 1)) {
+               dy1 = j + (c - d[0]) * ii / (d[2] - d[0]);
+               dy2 = j + (c - d[1]) * ii / (d[3] - d[1]);
+               new line(i, dy1, i + ii, dy2, `hsl(${t},100%,50%)`, 2);
+            } else if ((activec[0] == 1 && activec[2] == 1) || (activec[1] == 1 && activec[3] == 1)) {
+               dx1 = i + (c - d[0]) * ii / (d[1] - d[0]);
+               dx2 = i + (c - d[2]) * ii / (d[3] - d[2]);
+               new line(dx1, j, dx2, j + ii, `hsl(${t},100%,50%)`, 2);
+            }
+           
+
+         }
+         else if(activeconvers ==3){
+            if (activec[0] == 0) {
+               dx = i + (c - d[0]) * ii / (d[1] - d[0]);
+               dy = j + (c - d[0]) * ii / (d[2] - d[0]);
+               new line(dx, j, i, dy, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[1] == 0) {
+               dx = i + ((c-d[0])*ii)/(d[1]-d[0]);
+               dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+               new line(dx, j, i+ii, dy, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[2] == 0) {
+               dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+               dy = j + ((c-d[0])*ii)/(d[2]-d[0]);
+               new line(i, dy, dx, j+ii, `hsl(${t},100%,50%)`, 2);
+            } else if (activec[3] == 0) {
+               dx = i + ((c-d[2])*ii)/(d[3]-d[2]);
+               dy = j + ((c-d[1])*ii)/(d[3]-d[1]);
+               new line(i+ii, dy,dx,j+ii, `hsl(${t},100%,50%)`, 2);
+           
+            }         }
+
+
+
       }
-      //new circle(pos.x,pos.y,pos.r,'red',1,'#ff0',2);
 
-      
- t+=0.01;
+
+
+   }
+
+  
+
+   t += 0.01;
  requestAnimationFrame(draw);
- 
+
+
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////////////////////////////////
 
 draw();
       
