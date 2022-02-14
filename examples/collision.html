@@ -338,15 +338,17 @@
                 y:y,
                 r:r,
                 vx:Math.random()*2-1,
-                vy:Math.random()*2-1
+                vy:Math.random()*2-1,
+                c:randomColorHSL()
             }
             )};
         }
 
         function draw(){
             clearCanvas()
+
             for(i=0;i<14;i++){
-                new circle(arr[i].x,arr[i].y,arr[i].r,'#fff',1,'#222',0.5);
+                new circle(arr[i].x,arr[i].y,arr[i].r,arr[i].c,1,'#222',0.5);
                 arr[i].x+=arr[i].vx;
                 arr[i].y+=arr[i].vy;
                 collision_wall(arr[i]);
