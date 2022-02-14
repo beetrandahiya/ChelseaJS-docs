@@ -247,16 +247,36 @@
         elem=document.querySelector(".example-container");
         setCanvas(elem);
         arr=[];
-        for(i=0;i<14;i++){
+
+        //making sure there is no overlap in circles at start
+
+        overlap=false;
+        for(i=0;i<30;i++){
+            x=random(70,WIDTH-70);
+            y=random(70,HEIGHT-70);
+            r=random(30,50);
+            for(j=0;j<arr.length;j++){
+                if(dist(x,y,arr[j].x,arr[j].y)<r+arr[j].r){
+                    i--;
+                    overlap=true;
+                    break;
+                }
+                else{
+                    overlap=false;
+                }
+            }
+
+            if(!overlap){
             arr.push({
-                x:Math.random()*WIDTH,
-                y:Math.random()*HEIGHT,
-                r:Math.random()*50+10,
+                x:x,
+                y:y,
+                r:r,
                 vx:Math.random()*2-1,
                 vy:Math.random()*2-1
             }
-            );
+            )};
         }
+
         function draw(){
             clearCanvas()
             for(i=0;i<14;i++){
@@ -276,8 +296,28 @@
             for(i=0;i<pos_arr.length;i++){
                 for(j=i+1;j<pos_arr.length;j++){
                     if(dist(pos_arr[i].x,pos_arr[i].y,pos_arr[j].x,pos_arr[j].y)<pos_arr[i].r+pos_arr[j].r){
-                        pos_arr[i].vx*=-1;
-                        pos_arr[i].vy*=-1;
+                        phi= Math.atan2(pos_arr[j].y-pos_arr[i].y,pos_arr[j].x-pos_arr[i].x);
+                        theta1=Math.atan2(pos_arr[i].vy,pos_arr[i].vx);
+                        theta2=Math.atan2(pos_arr[j].vy,pos_arr[j].vx);
+                        m1=pos_arr[i].r*pos_arr[i].r;
+                        m2=pos_arr[j].r*pos_arr[j].r;
+                        v1=sqrt(pos_arr[i].vx*pos_arr[i].vx+pos_arr[i].vy*pos_arr[i].vy);
+                        v2=sqrt(pos_arr[j].vx*pos_arr[j].vx+pos_arr[j].vy*pos_arr[j].vy);
+                        vn1=v1*cos(phi-theta1);
+                        vn2=v2*cos(phi-theta2);
+                        vt1=v1*sin(phi-theta1);
+                        vt2=v2*sin(phi-theta2);
+
+                        vf1=vn1*(m1-m2)/(m1+m2)+vn2*(2*m2)/(m1+m2);
+                        vf2=vn2*(m2-m1)/(m1+m2)+vn1*(2*m1)/(m1+m2);
+
+                        pos_arr[i].vx=vf1*cos(phi)+vt1*sin(phi);
+                        pos_arr[i].vy=vf1*sin(phi)-vt1*cos(phi);
+                        pos_arr[j].vx=vf2*cos(phi)+vt2*sin(phi);
+                        pos_arr[j].vy=vf2*sin(phi)-vt2*cos(phi);
+
+
+
                     }
                 }
             }
