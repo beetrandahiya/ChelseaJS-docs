@@ -201,8 +201,8 @@
         <h1>
            Collision   </h1>
         <p>
-          Collision Simulation in ChelseaJS.
-          Just some balls colliding with each other and the walls. 
+          A sweet Collision Simulation in ChelseaJS.
+          Basic Kinematics is used to model such Simulations.
         </p>
 
         <h3>
@@ -212,30 +212,96 @@
             <code class="language-js">
     elem=document.querySelector(".example-container");
     setCanvas(elem);
-    
-    t=0;
-    fetch_mouse_pos(elem,'mousemove');
+    arr=[];
+
+    //making sure there is no overlap in circles at start
+
+    overlap=false;
+    for(i=0;i&lt;30;i++){
+        x=random(70,WIDTH-70);
+        y=random(70,HEIGHT-70);
+        r=random(30,50);
+        for(j=0;j&lt;arr.length;j++){
+            if(dist(x,y,arr[j].x,arr[j].y)&lt;r+arr[j].r){
+                i--;
+                overlap=true;
+                break;
+            }
+            else{
+                overlap=false;
+            }
+        }
+
+        if(!overlap){
+        arr.push({
+            x:x,
+            y:y,
+            r:r,
+            vx:Math.random()*2-1,
+            vy:Math.random()*2-1
+        }
+        )};
+    }
+
     function draw(){
         clearCanvas()
-        new circle(WIDTH/3,HEIGHT/2,100,'#fff',1);
-        theta=atan2(HEIGHT/2-mousepos.y,mousepos.x-WIDTH/3);
-        x1=WIDTH/3+50*cos(theta);
-        y1=HEIGHT/2-50*sin(theta);
-
-        new circle(2*WIDTH/3,HEIGHT/3,60,'#fff',1);
-
-        theta2=atan2(HEIGHT/3-mousepos.y,mousepos.x-2*WIDTH/3);
-        x2=2*WIDTH/3+30*cos(theta2);
-        y2=HEIGHT/3-30*sin(theta2);
-
-        new circle(x2,y2,30,'#222',1);
-
-
-        new circle(x1,y1,50,'#222',1);
+        for(i=0;i&lt;14;i++){
+            new circle(arr[i].x,arr[i].y,arr[i].r,'#fff',1,'#222',0.5);
+            arr[i].x+=arr[i].vx;
+            arr[i].y+=arr[i].vy;
+            collision_wall(arr[i]);
+        }
+        collision_circles(arr);
+        
         requestAnimationFrame(draw);
     }
     
-    draw();  
+    draw();
+
+    function collision_circles(pos_arr){
+        for(i=0;i&lt;pos_arr.length;i++){
+            for(j=i+1;j&lt;pos_arr.length;j++){
+                if(dist(pos_arr[i].x,pos_arr[i].y,pos_arr[j].x,pos_arr[j].y)&lt;pos_arr[i].r+pos_arr[j].r){
+                    phi= Math.atan2(pos_arr[j].y-pos_arr[i].y,pos_arr[j].x-pos_arr[i].x);
+                    theta1=Math.atan2(pos_arr[i].vy,pos_arr[i].vx);
+                    theta2=Math.atan2(pos_arr[j].vy,pos_arr[j].vx);
+                    m1=pos_arr[i].r*pos_arr[i].r;
+                    m2=pos_arr[j].r*pos_arr[j].r;
+                    v1=sqrt(pos_arr[i].vx*pos_arr[i].vx+pos_arr[i].vy*pos_arr[i].vy);
+                    v2=sqrt(pos_arr[j].vx*pos_arr[j].vx+pos_arr[j].vy*pos_arr[j].vy);
+                    vn1=v1*cos(phi-theta1);
+                    vn2=v2*cos(phi-theta2);
+                    vt1=v1*sin(phi-theta1);
+                    vt2=v2*sin(phi-theta2);
+
+                    vf1=vn1*(m1-m2)/(m1+m2)+vn2*(2*m2)/(m1+m2);
+                    vf2=vn2*(m2-m1)/(m1+m2)+vn1*(2*m1)/(m1+m2);
+
+                    pos_arr[i].vx=vf1*cos(phi)+vt1*sin(phi);
+                    pos_arr[i].vy=vf1*sin(phi)-vt1*cos(phi);
+                    pos_arr[j].vx=vf2*cos(phi)+vt2*sin(phi);
+                    pos_arr[j].vy=vf2*sin(phi)-vt2*cos(phi);
+
+
+
+                }
+            }
+        }
+    }
+    function collision_wall(pos){
+        if(pos.x-pos.r&lt;0){
+            pos.vx*=-1;
+        }
+        if(pos.x+pos.r&gt;WIDTH){
+            pos.vx*=-1;
+        }
+        if(pos.y-pos.r&lt;0){
+            pos.vy*=-1;
+        }
+        if(pos.y+pos.r&gt;HEIGHT){
+            pos.vy*=-1;
+        }
+    } 
             </code>
         </pre>
 
