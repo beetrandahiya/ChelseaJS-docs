@@ -257,26 +257,32 @@
             arr.push(random(0,HEIGHT));
         }
         k=0;
+        interval=floor(arr.length/2);
+
         function draw(){
             clearCanvas();
             
-                for(j=0;j<arr.length-k-1;j++){                
-                    if(arr[j]>arr[j+1]){                              //check wrong order
-                        [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];      //es6 destructuring to swap adjacents
-                        swap=true;
+            if(interval>0){
+
+                for(i=interval;i<arr.length;i++){
+                    temp=arr[i];
+                    for (j = i; j >= interval && arr[j-interval] > temp; j-=interval)  {
+                        arr[j] = arr[j-interval];
                     }
+                    arr[j]=temp;
 
                 }
+
                 
+            }
+
             
             for(i=0;i<arr.length;i++){
                 x=mapRange(i,0,arr.length,0,WIDTH);
                 new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);
             }
-              if(swap){
-                k++;
-                swap=false;
-              }
+            interval=floor(interval/2);
+
             requestAnimationFrame(draw);
         }
         draw();
