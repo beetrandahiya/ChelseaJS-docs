@@ -216,6 +216,8 @@
 
     //making sure there is no overlap in circles at start
 
+    sprngcolors=['#697C35','#F0D604','#FDBB0A','#FC9253','#FB8060','#EF4D40','#FD7A82','#EA9EC5','#AB6CBB','#6B56BC','#246CC3','#74A3E5']
+
     overlap=false;
     n_circles=12;
     for(i=0;i&lt;n_circles;i++){
@@ -239,7 +241,8 @@
             y:y,
             r:r,
             vx:Math.random()*2-1,
-            vy:Math.random()*2-1
+            vy:Math.random()*2-1,
+            c:sprngcolors[randomInt(0,sprngcolors.length-1)]
         }
         )};
     }
@@ -247,7 +250,7 @@
     function draw(){
         clearCanvas()
         for(i=0;i&lt;n_circles;i++){
-            new circle(arr[i].x,arr[i].y,arr[i].r,'#fff',1,'#222',0.5);
+            new circle(arr[i].x,arr[i].y,arr[i].r,arr[i].c,1,'#222',0.5);
             arr[i].x+=arr[i].vx;
             arr[i].y+=arr[i].vy;
             collision_wall(arr[i]);
@@ -317,6 +320,8 @@
 
         //making sure there is no overlap in circles at start
 
+        sprngcolors=['#697C35','#F0D604','#FDBB0A','#FC9253','#FB8060','#EF4D40','#FD7A82','#EA9EC5','#AB6CBB','#6B56BC','#246CC3','#74A3E5']
+        
         overlap=false;
         n_circles=12;
         for(i=0;i<n_circles;i++){
@@ -341,7 +346,7 @@
                 r:r,
                 vx:Math.random()*2-1,
                 vy:Math.random()*2-1,
-                c:randomColorHSL()
+                c:sprngcolors[randomInt(0,sprngcolors.length-1)]
             }
             )};
         }
