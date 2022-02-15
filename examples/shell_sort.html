@@ -203,7 +203,11 @@
             Shell Sort
         </h1>
         <p>
-            Shell Sort 
+            Shell Sort is a highly effecient sorting algorithm. The method starts by sorting pairs of elements far apart from each other, then progressively reducing the gap between elements to be compared. <br>
+           <br> <b>Time Complexity:</b> Generally depends on the gap sequence. <br>
+            For many practical variants of gap sequence, determining their time complexity remains an open problem.<br>
+            But for the best known gap sequence, the time complexity is O(n log<sup>2</sup>n).
+            
         </p>
 
         <h3>
@@ -215,34 +219,34 @@
     setCanvas(elem);
     arr=[];
     for(i=0;i&lt;WIDTH/2;i++){
-        arr.push(random(0,HEIGHT));                            //make a random array
+        arr.push(random(0,HEIGHT));
     }
     k=0;
+    interval=floor(arr.length/2);
+
     function draw(){
         clearCanvas();
         
-            for(j=0;j&lt;arr.length-k-1;j++){                
-                if(arr[j]>arr[j+1]){                           //check wrong order
-                    [arr[j] , arr[j+1]] = [arr[j+1],arr[j]];   //es6 destructuring to swap adjacents
-                    swap=true;
-                }
+        if(interval&gt;0){
 
+            for(i=interval;i&lt;arr.length;i++){
+                temp=arr[i];
+                for (j = i; j &gt;= interval && arr[j-interval] &gt; temp; j-=interval)  {
+                    arr[j] = arr[j-interval];
+                }
+                arr[j]=temp;
             }
-            
+        }
         
         for(i=0;i&lt;arr.length;i++){
             x=mapRange(i,0,arr.length,0,WIDTH);
-            new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);   //drawing the array
+            new line(x,HEIGHT,x,HEIGHT-arr[i],'#695fe6',2);
         }
+        interval=floor(interval/2);
 
-            if(swap){                                         //stop swapping if no swap occured
-            k++;
-            swap=false;
-            }
         requestAnimationFrame(draw);
     }
-    draw();
-            </code>
+    draw();  </code>
         </pre>
 
     </div>
