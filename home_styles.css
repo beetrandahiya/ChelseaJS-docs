@@ -148,14 +148,14 @@ body{
 }
 
 .home-content p{
-    font-size: 1.2em;
-    line-height: 1.5em;
+    font-size: 1.5em;
+    line-height: 1.8em;
     margin: 2em 1em;
     width:calc(100% - 2em);
 }
 .home-content ul{
-    font-size: 1.2em;
-    line-height: 1.5em;
+    font-size: 1.5em;
+    line-height: 1.8em;
     margin: 2em 4em;
     width:calc(100% - 8em);
     list-style: none;
