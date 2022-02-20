@@ -301,7 +301,10 @@ body{
     color: #111;
     border: 1px solid #ddd;
 }
-
+.logo a{
+    color:#000;
+    text-decoration: none;
+}
 
 #fps-counter{
     border-radius: 12px;

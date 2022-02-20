@@ -373,3 +373,7 @@ body{
     transition: all 0.3s ease-in-out;
 
 }
+.logo a{
+    color:#000;
+    text-decoration: none;
+}
