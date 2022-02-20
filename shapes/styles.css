@@ -253,7 +253,10 @@ body{
     
     
 }
-
+.logo a{
+    color:#000;
+    text-decoration: none;
+}
 
 
 /* parameter table */
